@@ -1,5 +1,3 @@
-package com.chukimmuoi.buildsrc
-
 /**
  * @author: My Project
  * @Skype: chukimmuoi
