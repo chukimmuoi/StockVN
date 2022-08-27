@@ -15,4 +15,7 @@ object Versions {
     const val compileSdk = 32
     const val targetSdk = 32
     const val minSdk = 26
+
+    // Compose
+    const val compose_version = "1.1.0-beta01"
 }
