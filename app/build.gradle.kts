@@ -36,7 +36,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose_version
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
     packagingOptions {
         resources {
@@ -47,16 +47,19 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.compose.ui:ui:${Versions.compose_version}")
-    implementation("androidx.compose.material:material:${Versions.compose_version}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose_version}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose_version}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose_version}")
+    implementation(Libs.AndroidX.coreKtx)
+    implementation(Libs.AndroidX.Compose.ui)
+    implementation(Libs.AndroidX.Compose.material)
+    implementation(Libs.AndroidX.Compose.uiToolingPreview)
+    implementation(Libs.AndroidX.Lifecycle.runtimeKTX)
+    implementation(Libs.AndroidX.Activity.activityCompose)
+
+    testImplementation(Libs.Junit.junit)
+
+    androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.espressoCore)
+    androidTestImplementation(Libs.AndroidX.Compose.uiTestJunit4)
+
+    debugImplementation(Libs.AndroidX.Compose.uiTooling)
+    debugImplementation(Libs.AndroidX.Compose.uiTestManifest)
 }
