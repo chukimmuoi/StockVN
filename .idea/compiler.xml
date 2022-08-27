@@ -3,6 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="StockVN.app" target="11" />
+      <module name="StockVN.buildSrc" target="11" />
+      <module name="StockVN.buildSrc.main" target="11" />
+      <module name="StockVN.buildSrc.test" target="11" />
       <module name="StockVN.data" target="11" />
     </bytecodeTargetLevel>
   </component>
