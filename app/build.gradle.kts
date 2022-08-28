@@ -46,6 +46,9 @@ android {
 }
 
 dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(":domain"))
+    implementation(project(":data"))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.Compose.ui)

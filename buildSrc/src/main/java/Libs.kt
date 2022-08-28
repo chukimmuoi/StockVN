@@ -13,6 +13,14 @@ object Libs {
     const val androidLibrary = "com.android.library"
     const val kotlinAndroid = "org.jetbrains.kotlin.android"
 
+    object Coroutines {
+
+        private const val version = "1.6.4"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+    }
+
     // Default libs support.
     object AndroidX {
 
@@ -52,7 +60,7 @@ object Libs {
                 private const val version = "1.1.3"
                 const val junit = "androidx.test.ext:junit:$version"
             }
-            
+
             object Espresso {
                 private const val version = "3.4.0"
                 const val espressoCore = "androidx.test.espresso:espresso-core:$version"
@@ -67,6 +75,9 @@ object Libs {
             private const val version = "1.6.1"
             const val material = "com.google.android.material:material:$version"
         }
+
+        private const val gsonVersion = "2.9.1"
+        const val gson = "com.google.code.gson:gson:$gsonVersion"
     }
 
     object Junit {
