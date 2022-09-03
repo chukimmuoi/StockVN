@@ -9,10 +9,19 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.chukimmuoi.stockvn.ui.stock.StockViewModel
+import com.chukimmuoi.stockvn.ui.stock.StockViewModelFactory
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var factory: StockViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Greeting(factory, "Android")
                 }
             }
         }
@@ -30,14 +39,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Greeting(
+    factory: StockViewModelFactory,
+    name: String,
+    stockViewModel: StockViewModel = viewModel(factory = factory)
+) {
     Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    StockVNTheme {
-        Greeting("Android")
-    }
+    stockViewModel.importFromCsv()
 }

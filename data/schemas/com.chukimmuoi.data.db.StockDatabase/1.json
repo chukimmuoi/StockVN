@@ -1,0 +1,211 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a6bedf3b58e30e3a725a56e64ee38b06",
+    "entities": [
+      {
+        "tableName": "stock",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `exchange` TEXT NOT NULL, `nameCompany` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "exchange",
+            "columnName": "exchange",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameCompany",
+            "columnName": "nameCompany",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "date_stock_info",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`adAverage` REAL NOT NULL, `adChange` REAL NOT NULL, `adClose` REAL NOT NULL, `adHigh` REAL NOT NULL, `adLow` REAL NOT NULL, `adOpen` REAL NOT NULL, `average` REAL NOT NULL, `basicPrice` REAL NOT NULL, `ceilingPrice` REAL NOT NULL, `change` REAL NOT NULL, `close` REAL NOT NULL, `code` TEXT NOT NULL, `date` TEXT NOT NULL, `floor` TEXT NOT NULL, `floorPrice` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `nmValue` REAL NOT NULL, `nmVolume` REAL NOT NULL, `open` REAL NOT NULL, `pctChange` REAL NOT NULL, `ptValue` REAL NOT NULL, `ptVolume` REAL NOT NULL, `time` TEXT NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`code`, `date`))",
+        "fields": [
+          {
+            "fieldPath": "adAverage",
+            "columnName": "adAverage",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adChange",
+            "columnName": "adChange",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adClose",
+            "columnName": "adClose",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adHigh",
+            "columnName": "adHigh",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adLow",
+            "columnName": "adLow",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adOpen",
+            "columnName": "adOpen",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "average",
+            "columnName": "average",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "basicPrice",
+            "columnName": "basicPrice",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ceilingPrice",
+            "columnName": "ceilingPrice",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "change",
+            "columnName": "change",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "close",
+            "columnName": "close",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "floor",
+            "columnName": "floor",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "floorPrice",
+            "columnName": "floorPrice",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "high",
+            "columnName": "high",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "low",
+            "columnName": "low",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nmValue",
+            "columnName": "nmValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nmVolume",
+            "columnName": "nmVolume",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "open",
+            "columnName": "open",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pctChange",
+            "columnName": "pctChange",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ptValue",
+            "columnName": "ptValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ptVolume",
+            "columnName": "ptVolume",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "code",
+            "date"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a6bedf3b58e30e3a725a56e64ee38b06')"
+    ]
+  }
+}

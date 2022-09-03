@@ -19,5 +19,5 @@ object Versions {
 
     // Setting
     const val android = "7.2.1"
-    const val kotlin = "1.5.31"
+    const val kotlin = "1.6.21"
 }

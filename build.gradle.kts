@@ -7,6 +7,7 @@ plugins {
     id(Libs.androidApplication) version(Versions.android) apply(false)
     id(Libs.androidLibrary) version(Versions.android) apply(false)
     id(Libs.kotlinAndroid) version(Versions.kotlin) apply(false)
+    id(Libs.Google.Dagger.hiltAndroidGradlePlugin) version(Libs.Google.Dagger.version) apply(false)
 }
 
 tasks.register("clean", Delete::class.java) {

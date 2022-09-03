@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -65,4 +67,11 @@ dependencies {
 
     debugImplementation(Libs.AndroidX.Compose.uiTooling)
     debugImplementation(Libs.AndroidX.Compose.uiTestManifest)
+
+    implementation(Libs.AndroidX.Lifecycle.liveDataKTX)
+    implementation(Libs.AndroidX.Lifecycle.viewModelKTX)
+    implementation(Libs.AndroidX.Lifecycle.viewModelCompose)
+
+    implementation(Libs.Google.Dagger.hiltAndroid)
+    kapt(Libs.Google.Dagger.hiltAndroidCompiler)
 }

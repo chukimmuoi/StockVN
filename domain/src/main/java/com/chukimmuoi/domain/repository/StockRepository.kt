@@ -14,9 +14,9 @@ import kotlinx.coroutines.flow.Flow
  */
 interface StockRepository {
 
-    suspend fun importFromJson(): Boolean
+    suspend fun importFromJson(fileName: String): Boolean
 
-    suspend fun importFromCsv(): Boolean
+    suspend fun importFromCsv(fileName: String): Boolean
 
     suspend fun insert(stock: Stock): Long
 

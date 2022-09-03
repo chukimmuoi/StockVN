@@ -13,5 +13,5 @@ import com.chukimmuoi.domain.repository.StockRepository
  */
 class ImportJsonUseCase(private val stockRepository: StockRepository) {
 
-    suspend operator fun invoke() = stockRepository.importFromJson()
+    suspend operator fun invoke(fileName: String) = stockRepository.importFromJson(fileName)
 }

@@ -1,6 +1,6 @@
 package com.chukimmuoi.domain.model
 
-import com.chukimmuoi.domain.common.toJson
+import com.chukimmuoi.domain.util.toJson
 
 /**
  * @author: My Project

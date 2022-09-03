@@ -13,5 +13,5 @@ import com.chukimmuoi.domain.repository.StockRepository
  */
 class ImportCsvUseCase(private val stockRepository: StockRepository) {
 
-    suspend operator fun invoke() = stockRepository.importFromCsv()
+    suspend operator fun invoke(fileName: String) = stockRepository.importFromCsv(fileName)
 }
