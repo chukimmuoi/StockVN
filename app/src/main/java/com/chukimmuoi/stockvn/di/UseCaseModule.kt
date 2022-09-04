@@ -1,10 +1,7 @@
 package com.chukimmuoi.stockvn.di
 
 import com.chukimmuoi.domain.repository.StockRepository
-import com.chukimmuoi.domain.usecase.ImportCsvUseCase
-import com.chukimmuoi.domain.usecase.ImportJsonUseCase
-import com.chukimmuoi.domain.usecase.InsertListStockUseCase
-import com.chukimmuoi.domain.usecase.InsertStockUseCase
+import com.chukimmuoi.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +20,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
+
+    @Provides
+    @Singleton
+    fun provideGetStocksUseCase(
+        stockRepository: StockRepository
+    ): GetStocksUseCase {
+        return GetStocksUseCase(stockRepository)
+    }
 
     @Provides
     @Singleton

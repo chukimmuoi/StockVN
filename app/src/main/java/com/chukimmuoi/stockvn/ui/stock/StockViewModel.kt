@@ -2,10 +2,9 @@ package com.chukimmuoi.stockvn.ui.stock
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import com.chukimmuoi.domain.usecase.ImportJsonUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.chukimmuoi.data.model.mapToData
+import com.chukimmuoi.domain.usecase.GetStocksUseCase
+import kotlinx.coroutines.flow.map
 
 /**
  * @author: My Project
@@ -18,12 +17,8 @@ import kotlinx.coroutines.launch
  */
 class StockViewModel(
     private val app: Application,
-    private val importJsonUseCase: ImportJsonUseCase
+    private val getStocksUseCase: GetStocksUseCase,
 ): AndroidViewModel(app) {
 
-    fun importFromCsv() {
-        viewModelScope.launch(Dispatchers.IO) {
-            importJsonUseCase("StockCode.json")
-        }
-    }
+    fun getStock() = getStocksUseCase().map { it.map { it.mapToData() } }
 }

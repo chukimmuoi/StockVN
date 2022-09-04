@@ -3,6 +3,7 @@ package com.chukimmuoi.stockvn.ui.stock
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.chukimmuoi.domain.usecase.GetStocksUseCase
 import com.chukimmuoi.domain.usecase.ImportJsonUseCase
 import javax.inject.Inject
 
@@ -18,10 +19,13 @@ import javax.inject.Inject
 class StockViewModelFactory
 @Inject constructor(
     private val app: Application,
-    private val importJsonUseCase: ImportJsonUseCase
+    private val getStocksUseCase: GetStocksUseCase
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return StockViewModel(app, importJsonUseCase) as T
+        return StockViewModel(
+            app,
+            getStocksUseCase
+        ) as T
     }
 }

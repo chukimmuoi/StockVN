@@ -32,7 +32,7 @@ interface StockRepository {
 
     fun search(keySearch: String): Flow<List<Stock>>
 
-    fun getAll(): Flow<List<Stock>>
+    fun getAllStock(): Flow<List<Stock>>
 
     suspend fun clear(): Boolean
 }

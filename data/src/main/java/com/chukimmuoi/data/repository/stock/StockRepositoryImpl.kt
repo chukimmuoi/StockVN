@@ -8,7 +8,8 @@ import com.chukimmuoi.data.util.isSuccess
 import com.chukimmuoi.domain.model.Stock
 import com.chukimmuoi.domain.repository.StockRepository
 import com.chukimmuoi.domain.util.fromJsonList
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 
 /**
  * @author: My Project
@@ -74,8 +75,33 @@ class StockRepositoryImpl(
         TODO("Not yet implemented")
     }
 
-    override fun getAll(): Flow<List<Stock>> {
-        TODO("Not yet implemented")
+    override fun getAllStock(): Flow<List<Stock>> {
+        return getFromCache().flowOn(Dispatchers.IO)
+    }
+
+    private fun getFromCache(): Flow<List<Stock>> {
+        return cache.getStock().flatMapConcat {
+            if (it.isNullOrEmpty()) {
+                return@flatMapConcat getFromLocal()
+            } else {
+                return@flatMapConcat flowOf(it)
+            }
+        }
+    }
+
+    private fun getFromLocal(): Flow<List<Stock>> {
+        return local.getStock().flatMapConcat {
+            if (it.isNullOrEmpty()) {
+                if (importFromJson("StockCode.json")) {
+                    return@flatMapConcat getFromLocal()
+                } else {
+                    return@flatMapConcat flowOf()
+                }
+            } else {
+                cache.saveStock(it)
+                return@flatMapConcat flowOf(it)
+            }
+        }
     }
 
     override suspend fun clear(): Boolean {

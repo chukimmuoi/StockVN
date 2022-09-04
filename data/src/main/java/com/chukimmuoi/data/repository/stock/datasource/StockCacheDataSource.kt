@@ -1,6 +1,7 @@
 package com.chukimmuoi.data.repository.stock.datasource
 
 import com.chukimmuoi.domain.model.Stock
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author: My Project
@@ -13,7 +14,7 @@ import com.chukimmuoi.domain.model.Stock
  */
 interface StockCacheDataSource {
 
-    suspend fun getStock(): List<Stock>
+    fun getStock(): Flow<List<Stock>>
 
     suspend fun saveStock(stocks: List<Stock>)
 

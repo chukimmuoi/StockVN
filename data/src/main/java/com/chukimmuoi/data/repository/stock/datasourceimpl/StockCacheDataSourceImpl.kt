@@ -2,6 +2,8 @@ package com.chukimmuoi.data.repository.stock.datasourceimpl
 
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
 import com.chukimmuoi.domain.model.Stock
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 /**
  * @author: My Project
@@ -16,7 +18,7 @@ class StockCacheDataSourceImpl: StockCacheDataSource {
 
     private var stocks = arrayListOf<Stock>()
 
-    override suspend fun getStock(): List<Stock> = stocks
+    override fun getStock(): Flow<List<Stock>> = flowOf(stocks)
 
     override suspend fun saveStock(stocks: List<Stock>) {
         this.stocks.addAll(stocks)
