@@ -1,10 +1,13 @@
 package com.chukimmuoi.stockvn.compose.stock
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.chukimmuoi.data.model.Stock
 
 /**
@@ -26,9 +29,12 @@ fun StockList(
             items = stocks.value,
             key = { it.code }
         ) {
-            StockItem(
-                stock = it
-            )
+            Column {
+                StockItem(
+                    stock = it
+                )
+                Divider(color = Color.Gray)
+            }
         }
     }
 }
