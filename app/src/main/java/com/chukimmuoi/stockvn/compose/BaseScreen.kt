@@ -1,9 +1,9 @@
 package com.chukimmuoi.stockvn.compose
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.chukimmuoi.stockvn.compose.stock.StockScreen
 import com.chukimmuoi.stockvn.ui.stock.StockViewModel
 import com.chukimmuoi.stockvn.ui.stock.StockViewModelFactory
@@ -23,7 +23,7 @@ fun BaseScreen(
     stockViewModel: StockViewModel = viewModel(factory = factory),
     modifier: Modifier = Modifier
 ) {
-    val stocks = stockViewModel.getStock().collectAsState(initial = emptyList())
+    val stocks = stockViewModel.getStock().collectAsLazyPagingItems()
 
     StockScreen(
         stocks = stocks

@@ -18,21 +18,21 @@ interface StockRepository {
 
     suspend fun importFromCsv(fileName: String): Boolean
 
-    suspend fun insert(stock: Stock): Long
+    suspend fun <T> insert(stock: T): Long
 
-    suspend fun insert(stocks: List<Stock>): List<Long>
+    suspend fun <T> insert(stocks: List<T>): List<Long>
 
-    suspend fun saveFavorite(stock: Stock): Long
+    suspend fun <T> saveFavorite(stock: T): Long
 
-    suspend fun saveFavorites(stocks: List<Stock>): List<Long>
+    suspend fun <T> saveFavorites(stocks: List<T>): List<Long>
 
-    suspend fun removeFavorite(stock: Stock): Long
+    suspend fun <T> removeFavorite(stock: T): Long
 
-    suspend fun removeFavorites(stocks: List<Stock>): List<Long>
+    suspend fun <T> removeFavorites(stocks: List<T>): List<Long>
 
-    fun search(keySearch: String): Flow<List<Stock>>
+    fun <T> search(keySearch: String): Flow<T>
 
-    fun getAllStock(): Flow<List<Stock>>
+    fun <T> getAllStock(): Flow<T>
 
     suspend fun clear(): Boolean
 }

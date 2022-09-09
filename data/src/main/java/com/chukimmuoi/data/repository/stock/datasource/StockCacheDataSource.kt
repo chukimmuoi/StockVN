@@ -1,6 +1,6 @@
 package com.chukimmuoi.data.repository.stock.datasource
 
-import com.chukimmuoi.domain.model.Stock
+import com.chukimmuoi.data.model.Stock
 import kotlinx.coroutines.flow.Flow
 
 /**

@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.stock.datasourceimpl
 
+import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
-import com.chukimmuoi.domain.model.Stock
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

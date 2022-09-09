@@ -13,8 +13,8 @@ object Versions {
     const val versionCodeBase = 1   // XYYZZM; M = Module (tv, mobile)
     const val versionCodeMobile = versionCodeBase + 3
 
-    const val compileSdk = 32
-    const val targetSdk = 32
+    const val compileSdk = 33
+    const val targetSdk = 33
     const val minSdk = 26
 
     // Setting

@@ -1,12 +1,10 @@
 package com.chukimmuoi.data.repository.stock.datasourceimpl
 
+import androidx.paging.*
 import com.chukimmuoi.data.db.StockDao
-import com.chukimmuoi.data.model.mapToData
-import com.chukimmuoi.data.model.mapToDomain
+import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
-import com.chukimmuoi.domain.model.Stock
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 /**
  * @author: My Project
@@ -21,12 +19,18 @@ class StockLocalDataSourceImpl(
     private val stockDao: StockDao
 ): StockLocalDataSource {
 
-    override fun getStock(): Flow<List<Stock>> {
-        return stockDao.getAll().map { it.map { it.mapToDomain() } }
+    override fun getStock(): Flow<PagingData<Stock>> {
+        val pagingSourceFactory = stockDao.getAll()
+
+        return Pager(PagingConfig(pageSize = 50)) { pagingSourceFactory }.flow
     }
 
     override suspend fun saveStock(stocks: List<Stock>): List<Long> {
-        return stockDao.inserts(stocks.map { it.mapToData() })
+        return stockDao.inserts(stocks)
+    }
+
+    override fun isExists(): Flow<Boolean> {
+        return stockDao.isExists()
     }
 
     override suspend fun clear(): Int {

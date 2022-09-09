@@ -1,8 +1,8 @@
 package com.chukimmuoi.stockvn.compose.stock
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.paging.compose.LazyPagingItems
 import com.chukimmuoi.data.model.Stock
 
 /**
@@ -16,7 +16,7 @@ import com.chukimmuoi.data.model.Stock
  */
 @Composable
 fun StockScreen(
-    stocks: State<List<Stock>>,
+    stocks: LazyPagingItems<Stock>,
     modifier: Modifier = Modifier
 ) {
     StockList(

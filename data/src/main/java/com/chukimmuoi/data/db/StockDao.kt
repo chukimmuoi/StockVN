@@ -1,5 +1,6 @@
 package com.chukimmuoi.data.db
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.model.StockWithDateInfo
@@ -24,7 +25,10 @@ interface StockDao {
     suspend fun inserts(stock: List<Stock>): List<Long>
 
     @Query("SELECT * FROM stock")
-    fun getAll(): Flow<List<Stock>>
+    fun getAll(): PagingSource<Int, Stock>
+
+    @Query("SELECT EXISTS(SELECT * FROM stock)")
+    fun isExists(): Flow<Boolean>
 
     @Delete
     suspend fun delete(stock: Stock): Int

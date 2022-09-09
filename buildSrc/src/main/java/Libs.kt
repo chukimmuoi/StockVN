@@ -72,7 +72,7 @@ object Libs {
             const val roomKtx = "androidx.room:room-ktx:$version"
 
             private const val pagingVersion = "2.5.0-alpha03"
-            const val roomPaging = "androidx.room:room-paging:$pagingVersion"
+            const val roomPaging = "androidx.room:room-paging:$version"
         }
 
         object Test {
@@ -85,6 +85,14 @@ object Libs {
                 private const val version = "3.4.0"
                 const val espressoCore = "androidx.test.espresso:espresso-core:$version"
             }
+        }
+
+        object Paging {
+            private const val version = "3.1.1"
+            private const val versionCompose = "1.0.0-alpha16"
+
+            const val pagingRuntime = "androidx.paging:paging-runtime:$version"
+            const val pagingCompose = "androidx.paging:paging-compose:$versionCompose"
         }
     }
 

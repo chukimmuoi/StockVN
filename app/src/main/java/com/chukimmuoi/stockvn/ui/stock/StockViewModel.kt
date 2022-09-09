@@ -2,9 +2,12 @@ package com.chukimmuoi.stockvn.ui.stock
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.chukimmuoi.data.model.mapToData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.domain.usecase.GetStocksUseCase
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author: My Project
@@ -20,5 +23,6 @@ class StockViewModel(
     private val getStocksUseCase: GetStocksUseCase,
 ): AndroidViewModel(app) {
 
-    fun getStock() = getStocksUseCase().map { it.map { it.mapToData() } }
+    fun getStock():Flow<PagingData<Stock>> =
+        getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
 }

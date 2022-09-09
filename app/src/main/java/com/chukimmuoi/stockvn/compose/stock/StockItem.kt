@@ -23,9 +23,11 @@ import com.chukimmuoi.data.model.Stock
  */
 @Composable
 fun StockItem(
-    stock: Stock,
+    stock: Stock?,
     modifier: Modifier = Modifier
 ) {
+    if (stock == null) return
+
     val color = listOf(Color.Green, Color.Red, Color.Blue, Color.Magenta).random()
 
     Row(
@@ -34,7 +36,7 @@ fun StockItem(
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
 
-    ) {
+        ) {
         Text(
             text = stock.code,
             fontSize = 22.sp,
@@ -53,8 +55,7 @@ fun StockItem(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = modifier.padding(bottom = 4.dp),
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
+                fontWeight = FontWeight.Bold
             )
             Text(
                 text = stock.exchange,

@@ -1,6 +1,7 @@
 package com.chukimmuoi.domain.usecase
 
 import com.chukimmuoi.domain.repository.StockRepository
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author: My Project
@@ -13,5 +14,5 @@ import com.chukimmuoi.domain.repository.StockRepository
  */
 class GetStocksUseCase(private val stockRepository: StockRepository) {
 
-    operator fun invoke() = stockRepository.getAllStock()
+    operator fun <T> invoke(): Flow<T> = stockRepository.getAllStock()
 }

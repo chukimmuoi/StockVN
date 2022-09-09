@@ -2,12 +2,12 @@ package com.chukimmuoi.stockvn.compose.stock
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 import com.chukimmuoi.data.model.Stock
 
 /**
@@ -21,12 +21,12 @@ import com.chukimmuoi.data.model.Stock
  */
 @Composable
 fun StockList(
-    stocks: State<List<Stock>>,
+    stocks: LazyPagingItems<Stock>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn {
         items(
-            items = stocks.value,
+            items = stocks,
             key = { it.code }
         ) {
             Column {

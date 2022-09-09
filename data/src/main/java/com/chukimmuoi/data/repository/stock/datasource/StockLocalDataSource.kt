@@ -1,6 +1,7 @@
 package com.chukimmuoi.data.repository.stock.datasource
 
-import com.chukimmuoi.domain.model.Stock
+import androidx.paging.PagingData
+import com.chukimmuoi.data.model.Stock
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -14,7 +15,9 @@ import kotlinx.coroutines.flow.Flow
  */
 interface StockLocalDataSource {
 
-    fun getStock(): Flow<List<Stock>>
+    fun getStock(): Flow<PagingData<Stock>>
+
+    fun isExists(): Flow<Boolean>
 
     suspend fun saveStock(stocks: List<Stock>): List<Long>
 

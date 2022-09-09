@@ -55,4 +55,8 @@ dependencies {
     api(Libs.AndroidX.Room.roomRuntime)
     kapt(Libs.AndroidX.Room.roomCompiler)
     api(Libs.AndroidX.Room.roomKtx)
+    api(Libs.AndroidX.Room.roomPaging)
+
+    api(Libs.AndroidX.Paging.pagingRuntime)
+    api(Libs.AndroidX.Paging.pagingCompose)
 }

@@ -24,7 +24,9 @@ class LocalDataModule {
 
     @Provides
     @Singleton
-    fun provideStockLocalDataSource(stockDao: StockDao): StockLocalDataSource {
+    fun provideStockLocalDataSource(
+        stockDao: StockDao
+    ): StockLocalDataSource {
         return StockLocalDataSourceImpl(stockDao)
     }
 }

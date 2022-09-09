@@ -1,11 +1,11 @@
 package com.chukimmuoi.data.repository.stock
 
 import android.content.Context
+import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
 import com.chukimmuoi.data.util.getJsonDataFromAsset
 import com.chukimmuoi.data.util.isSuccess
-import com.chukimmuoi.domain.model.Stock
 import com.chukimmuoi.domain.repository.StockRepository
 import com.chukimmuoi.domain.util.fromJsonList
 import kotlinx.coroutines.Dispatchers
@@ -42,64 +42,56 @@ class StockRepositoryImpl(
         TODO("Not yet implemented")
     }
 
-    override suspend fun insert(stock: Stock): Long {
+    override suspend fun <T> insert(stock: T): Long {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insert(stocks: List<Stock>): List<Long> {
+    override suspend fun <T> insert(stocks: List<T>): List<Long> {
 
-        val savedIds = local.saveStock(stocks)
+        val savedIds = local.saveStock(stocks as List<Stock>)
         val isSuccess = savedIds.isNotEmpty()
         if (isSuccess) { cache.saveStock(stocks) }
 
         return savedIds
     }
 
-    override suspend fun saveFavorite(stock: Stock): Long {
+    override suspend fun <T> saveFavorite(stock: T): Long {
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveFavorites(stocks: List<Stock>): List<Long> {
+    override suspend fun <T> saveFavorites(stocks: List<T>): List<Long> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun removeFavorite(stock: Stock): Long {
+    override suspend fun <T> removeFavorite(stock: T): Long {
         TODO("Not yet implemented")
     }
 
-    override suspend fun removeFavorites(stocks: List<Stock>): List<Long> {
+    override suspend fun <T> removeFavorites(stocks: List<T>): List<Long> {
         TODO("Not yet implemented")
     }
 
-    override fun search(keySearch: String): Flow<List<Stock>> {
+    override fun <T> search(keySearch: String): Flow<T> {
         TODO("Not yet implemented")
     }
 
-    override fun getAllStock(): Flow<List<Stock>> {
-        return getFromCache().flowOn(Dispatchers.IO)
+    override fun <T> getAllStock(): Flow<T> {
+        return getFromLocal<T>().flowOn(Dispatchers.IO)
     }
 
-    private fun getFromCache(): Flow<List<Stock>> {
-        return cache.getStock().flatMapConcat {
-            if (it.isNullOrEmpty()) {
-                return@flatMapConcat getFromLocal()
+    private fun <T> getFromLocal(): Flow<T> {
+        return local.isExists().flatMapConcat { isExists ->
+            if (isExists) {
+                val stocks = local.getStock()
+                return@flatMapConcat stocks as Flow<T>
             } else {
-                return@flatMapConcat flowOf(it)
-            }
-        }
-    }
+                val stocksImportFileName = "StockCode.json"
 
-    private fun getFromLocal(): Flow<List<Stock>> {
-        return local.getStock().flatMapConcat {
-            if (it.isNullOrEmpty()) {
-                if (importFromJson("StockCode.json")) {
+                if (importFromJson(stocksImportFileName)) {
                     return@flatMapConcat getFromLocal()
                 } else {
                     return@flatMapConcat flowOf()
                 }
-            } else {
-                cache.saveStock(it)
-                return@flatMapConcat flowOf(it)
             }
         }
     }
