@@ -1,4 +1,4 @@
-package com.chukimmuoi.domain.util
+package com.chukimmuoi.data.util
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

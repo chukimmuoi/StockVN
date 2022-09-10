@@ -7,7 +7,7 @@ import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
 import com.chukimmuoi.data.util.getJsonDataFromAsset
 import com.chukimmuoi.data.util.isSuccess
 import com.chukimmuoi.domain.repository.StockRepository
-import com.chukimmuoi.domain.util.fromJsonList
+import com.chukimmuoi.data.util.fromJsonList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 

@@ -1,6 +1,5 @@
 package com.chukimmuoi.domain.repository
 
-import com.chukimmuoi.domain.model.DateStockInfo
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -14,13 +13,13 @@ import kotlinx.coroutines.flow.Flow
  */
 interface DateStockInfoRepository {
 
-    suspend fun insert(dateStockInfo: DateStockInfo): Long
+    suspend fun <T> insert(dateStockInfo: T): Long
 
-    suspend fun inserts(dateStockInfo: List<DateStockInfo>): List<Long>
+    suspend fun <T> inserts(dateStockInfo: List<T>): List<Long>
 
-    fun getAll(): Flow<List<DateStockInfo>>
+    fun <T> getAll(): Flow<T>
 
-    fun getQuery(): Flow<List<DateStockInfo>>
+    fun <T> getQuery(): Flow<T>
 
     suspend fun clear(): Boolean
 }

@@ -3,7 +3,6 @@ package com.chukimmuoi.data.repository.datestockinfo
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockCacheDataSource
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDataSource
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockRemoteDataSource
-import com.chukimmuoi.domain.model.DateStockInfo
 import com.chukimmuoi.domain.repository.DateStockInfoRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -22,19 +21,19 @@ class DateStockInfoRepository(
     private val remote: DateStockRemoteDataSource
 ): DateStockInfoRepository {
 
-    override suspend fun insert(dateStockInfo: DateStockInfo): Long {
+    override suspend fun <T> insert(dateStockInfo: T): Long {
         TODO("Not yet implemented")
     }
 
-    override suspend fun inserts(dateStockInfo: List<DateStockInfo>): List<Long> {
+    override suspend fun <T> inserts(dateStockInfo: List<T>): List<Long> {
         TODO("Not yet implemented")
     }
 
-    override fun getAll(): Flow<List<DateStockInfo>> {
+    override fun <T> getAll(): Flow<T> {
         TODO("Not yet implemented")
     }
 
-    override fun getQuery(): Flow<List<DateStockInfo>> {
+    override fun <T> getQuery(): Flow<T> {
         TODO("Not yet implemented")
     }
 

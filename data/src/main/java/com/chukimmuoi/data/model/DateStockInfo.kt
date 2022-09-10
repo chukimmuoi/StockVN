@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.model
 
 import androidx.room.Entity
-import com.chukimmuoi.domain.util.toJson
+import com.chukimmuoi.data.util.toJson
 import com.google.gson.annotations.SerializedName
 
 /**

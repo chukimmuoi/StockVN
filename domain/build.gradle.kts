@@ -11,6 +11,5 @@ java {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    api(Libs.Google.gson)
     implementation(Libs.Coroutines.core)
 }

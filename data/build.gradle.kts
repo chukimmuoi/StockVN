@@ -52,6 +52,8 @@ dependencies {
     androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
     androidTestImplementation(Libs.AndroidX.Test.Espresso.espressoCore)
 
+    api(Libs.Google.gson)
+
     api(Libs.AndroidX.Room.roomRuntime)
     kapt(Libs.AndroidX.Room.roomCompiler)
     api(Libs.AndroidX.Room.roomKtx)

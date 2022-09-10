@@ -44,20 +44,4 @@ class UseCaseModule {
     ): ImportCsvUseCase {
         return ImportCsvUseCase(stockRepository)
     }
-
-    @Provides
-    @Singleton
-    fun provideInsertListStockUseCase(
-        stockRepository: StockRepository
-    ): InsertListStockUseCase {
-        return InsertListStockUseCase(stockRepository)
-    }
-
-    @Provides
-    @Singleton
-    fun provideInsertStockUseCase(
-        stockRepository: StockRepository
-    ): InsertStockUseCase {
-        return InsertStockUseCase(stockRepository)
-    }
 }
