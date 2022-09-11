@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.ui.stock
+package com.chukimmuoi.stockvn.presentation.screen.stock
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

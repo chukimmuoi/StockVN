@@ -1,12 +1,12 @@
-package com.chukimmuoi.stockvn.compose
+package com.chukimmuoi.stockvn.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.chukimmuoi.stockvn.compose.stock.StockScreen
-import com.chukimmuoi.stockvn.ui.stock.StockViewModel
-import com.chukimmuoi.stockvn.ui.stock.StockViewModelFactory
+import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
+import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModel
+import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModelFactory
 
 /**
  * @author: My Project

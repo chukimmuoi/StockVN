@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.chukimmuoi.stockvn.compose.BaseScreen
-import com.chukimmuoi.stockvn.ui.stock.StockViewModelFactory
+import com.chukimmuoi.stockvn.presentation.navigation.BaseScreen
+import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModelFactory
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

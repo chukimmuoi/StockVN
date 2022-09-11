@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.compose.stock
+package com.chukimmuoi.stockvn.presentation.screen.stock
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
