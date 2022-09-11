@@ -26,6 +26,9 @@ fun BaseScreen(
     val stocks = stockViewModel.getStock().collectAsLazyPagingItems()
 
     StockScreen(
-        stocks = stocks
+        stocks = stocks,
+        clickable = {
+            stockViewModel.getStockData(it.code)
+        }
     )
 }

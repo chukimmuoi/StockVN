@@ -1,5 +1,6 @@
 package com.chukimmuoi.stockvn.compose.stock
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +25,7 @@ import com.chukimmuoi.data.model.Stock
 @Composable
 fun StockItem(
     stock: Stock?,
+    clickable: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (stock == null) return
@@ -33,7 +35,10 @@ fun StockItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable {
+                clickable(stock)
+            },
         verticalAlignment = Alignment.CenterVertically,
 
         ) {

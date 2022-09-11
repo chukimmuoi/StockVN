@@ -124,6 +124,23 @@ object Libs {
         private const val version = "4.13.2"
         const val junit = "junit:junit:$version"
     }
+
+    object SquareUp {
+        object Retrofit2 {
+            // https://square.github.io/retrofit/
+            // https://github.com/square/retrofit
+            private const val version = "2.9.0"
+
+            const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+            const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
+        }
+
+        object Okhttp3 {
+            private const val version = "4.10.0"
+
+            const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+        }
+    }
 }
 
 //object Libs {

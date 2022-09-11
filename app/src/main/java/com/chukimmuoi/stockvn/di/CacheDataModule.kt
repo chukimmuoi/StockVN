@@ -1,5 +1,7 @@
 package com.chukimmuoi.stockvn.di
 
+import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockCacheDataSource
+import com.chukimmuoi.data.repository.datestockinfo.datasourceimpl.DateStockCacheDataSourceImpl
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
 import com.chukimmuoi.data.repository.stock.datasourceimpl.StockCacheDataSourceImpl
 import dagger.Module
@@ -25,5 +27,11 @@ class CacheDataModule {
     @Singleton
     fun provideStockCacheDataSource(): StockCacheDataSource {
         return StockCacheDataSourceImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDateStockCacheDataSource(): DateStockCacheDataSource {
+        return DateStockCacheDataSourceImpl()
     }
 }

@@ -1,9 +1,14 @@
 package com.chukimmuoi.stockvn.di
 
 import android.app.Application
+import com.chukimmuoi.data.repository.datestockinfo.DateStockInfoRepositoryImpl
+import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockCacheDataSource
+import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDataSource
+import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockRemoteDataSource
 import com.chukimmuoi.data.repository.stock.StockRepositoryImpl
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
+import com.chukimmuoi.domain.repository.DateStockInfoRepository
 import com.chukimmuoi.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
@@ -36,6 +41,21 @@ class RepositoryModule {
             application,
             stockCacheDataSource,
             stockLocalDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideDateStockInfoRepository(
+        dateStockCacheDataSource: DateStockCacheDataSource,
+        dateStockLocalDataSource: DateStockLocalDataSource,
+        dateStockRemoteDataSource: DateStockRemoteDataSource
+    ): DateStockInfoRepository {
+
+        return DateStockInfoRepositoryImpl(
+            dateStockCacheDataSource,
+            dateStockLocalDataSource,
+            dateStockRemoteDataSource
         )
     }
 }

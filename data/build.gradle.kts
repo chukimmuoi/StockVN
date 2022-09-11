@@ -61,4 +61,8 @@ dependencies {
 
     api(Libs.AndroidX.Paging.pagingRuntime)
     api(Libs.AndroidX.Paging.pagingCompose)
+
+    api(Libs.SquareUp.Retrofit2.retrofit)
+    api(Libs.SquareUp.Retrofit2.converterGson)
+    api(Libs.SquareUp.Okhttp3.loggingInterceptor)
 }

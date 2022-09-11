@@ -17,9 +17,11 @@ interface DateStockInfoRepository {
 
     suspend fun <T> inserts(dateStockInfo: List<T>): List<Long>
 
-    fun <T> getAll(): Flow<T>
+    suspend fun <T> updateAllDataFromServer(code: String): Flow<T>
 
-    fun <T> getQuery(): Flow<T>
+    suspend fun <T> getQuery(): Flow<T>
 
-    suspend fun clear(): Boolean
+    suspend fun clear(code: String): Int
+
+    suspend fun clear(): Int
 }

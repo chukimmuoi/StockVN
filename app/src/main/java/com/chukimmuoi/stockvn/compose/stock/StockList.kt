@@ -22,6 +22,7 @@ import com.chukimmuoi.data.model.Stock
 @Composable
 fun StockList(
     stocks: LazyPagingItems<Stock>,
+    clickable: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn {
@@ -31,7 +32,8 @@ fun StockList(
         ) {
             Column {
                 StockItem(
-                    stock = it
+                    stock = it,
+                    clickable = clickable
                 )
                 Divider(color = Color.Gray)
             }

@@ -17,9 +17,11 @@ import com.chukimmuoi.data.model.Stock
 @Composable
 fun StockScreen(
     stocks: LazyPagingItems<Stock>,
+    clickable: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
     StockList(
-        stocks = stocks
+        stocks = stocks,
+        clickable = clickable
     )
 }

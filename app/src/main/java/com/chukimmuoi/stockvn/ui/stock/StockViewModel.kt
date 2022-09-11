@@ -1,13 +1,19 @@
 package com.chukimmuoi.stockvn.ui.stock
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.data.model.Stock
-import com.chukimmuoi.domain.usecase.GetStocksUseCase
+import com.chukimmuoi.domain.usecase.StockUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 
 /**
  * @author: My Project
@@ -20,9 +26,22 @@ import kotlinx.coroutines.flow.Flow
  */
 class StockViewModel(
     private val app: Application,
-    private val getStocksUseCase: GetStocksUseCase,
+    private val stockUseCase: StockUseCase
 ): AndroidViewModel(app) {
 
     fun getStock():Flow<PagingData<Stock>> =
-        getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+        stockUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+
+    fun getStockData(code: String) {
+        viewModelScope.launch {
+            stockUseCase.updateStockDateUseCase<List<DateStockInfo>>(code)
+                .flowOn(Dispatchers.IO)
+                .catch { e ->
+                    e.printStackTrace()
+                }
+                .collect {
+                    Log.e("LOL", "$it")
+                }
+        }
+    }
 }

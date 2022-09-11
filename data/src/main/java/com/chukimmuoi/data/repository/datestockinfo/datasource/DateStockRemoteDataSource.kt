@@ -1,5 +1,8 @@
 package com.chukimmuoi.data.repository.datestockinfo.datasource
 
+import com.chukimmuoi.data.model.VNDirectResponse
+import retrofit2.Response
+
 /**
  * @author: My Project
  * @Skype: chukimmuoi
@@ -10,4 +13,13 @@ package com.chukimmuoi.data.repository.datestockinfo.datasource
  * Created by chukimmuoi on 28/08/2022.
  */
 interface DateStockRemoteDataSource {
+
+    suspend fun getDateStock(
+        code: String,
+        fromDate: String,
+        toDate: String,
+        size: Long
+    ): Response<VNDirectResponse>
+
+    suspend fun getAllDateStock(code: String): Response<VNDirectResponse>
 }

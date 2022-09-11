@@ -1,5 +1,6 @@
 package com.chukimmuoi.stockvn.di
 
+import com.chukimmuoi.domain.repository.DateStockInfoRepository
 import com.chukimmuoi.domain.repository.StockRepository
 import com.chukimmuoi.domain.usecase.*
 import dagger.Module
@@ -43,5 +44,25 @@ class UseCaseModule {
         stockRepository: StockRepository
     ): ImportCsvUseCase {
         return ImportCsvUseCase(stockRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUpdateStockDateUseCase(
+        dateStockInfoRepository: DateStockInfoRepository
+    ): UpdateStockDateUseCase {
+        return UpdateStockDateUseCase(dateStockInfoRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStockUseCase(
+        getStocksUseCase: GetStocksUseCase,
+        updateStockDateUseCase: UpdateStockDateUseCase
+    ): StockUseCase {
+        return StockUseCase(
+            getStocksUseCase,
+            updateStockDateUseCase
+        )
     }
 }
