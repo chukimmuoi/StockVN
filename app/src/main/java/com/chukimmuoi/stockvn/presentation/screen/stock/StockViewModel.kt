@@ -8,12 +8,14 @@ import androidx.paging.cachedIn
 import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.domain.usecase.StockUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * @author: My Project
@@ -24,7 +26,9 @@ import timber.log.Timber
  * @Project: StockVN
  * Created by chukimmuoi on 02/09/2022.
  */
-class StockViewModel(
+@HiltViewModel
+class StockViewModel
+@Inject constructor(
     private val app: Application,
     private val stockUseCase: StockUseCase
 ): AndroidViewModel(app) {

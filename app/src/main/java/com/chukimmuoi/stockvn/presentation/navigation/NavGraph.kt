@@ -2,13 +2,10 @@ package com.chukimmuoi.stockvn.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
-import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModel
-import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModelFactory
 
 /**
  * @author: My Project
@@ -21,8 +18,6 @@ import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModelFactory
  */
 @Composable
 fun NavGraph(
-    factory: StockViewModelFactory,
-    stockViewModel: StockViewModel = viewModel(factory = factory),
     navController: NavHostController,
     startDestination: String = Screen.Home.route,
     modifier: Modifier = Modifier
@@ -38,7 +33,6 @@ fun NavGraph(
 
         composable(Screen.Stock.route) {
             StockScreen(
-                stockViewModel = stockViewModel,
                 modifier = modifier
             )
         }

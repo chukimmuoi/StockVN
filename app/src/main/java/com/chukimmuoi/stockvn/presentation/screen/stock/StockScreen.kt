@@ -4,6 +4,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.chukimmuoi.stockvn.ui.theme.appContentColor
 import com.chukimmuoi.stockvn.ui.theme.appThemeColor
@@ -19,10 +20,10 @@ import com.chukimmuoi.stockvn.ui.theme.appThemeColor
  */
 @Composable
 fun StockScreen(
-    stockViewModel: StockViewModel,
+    viewModel: StockViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
-    val stocks = stockViewModel.getStock().collectAsLazyPagingItems()
+    val stocks = viewModel.getStock().collectAsLazyPagingItems()
 
     Scaffold(
         backgroundColor = MaterialTheme.colors.appThemeColor,
@@ -42,7 +43,7 @@ fun StockScreen(
             StockList(
                 stocks = stocks,
                 clickable = {
-
+                    viewModel.getStockData(it.code)
                 }
             )
         }
