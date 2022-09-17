@@ -1,14 +1,21 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chukimmuoi.data.model.Stock
@@ -32,40 +39,85 @@ fun StockItem(
 
     val color = listOf(Color.Green, Color.Red, Color.Blue, Color.Magenta).random()
 
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable {
-                clickable(stock)
-            },
-        verticalAlignment = Alignment.CenterVertically,
-
-        ) {
-        Text(
-            text = stock.code,
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-            color = color,
-            modifier = modifier
-                .fillMaxWidth(0.3F)
-        )
-
-        Column(
+    Card(
+        modifier = modifier.clickable { clickable(stock) },
+        elevation = 4.dp,
+    ) {
+        Row(
             modifier = modifier
                 .fillMaxWidth()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = stock.nameCompany,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = modifier.padding(bottom = 4.dp),
-                fontWeight = FontWeight.Bold
+                text = stock.code,
+                style = TextStyle(
+                    color = color,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                ),
+                modifier = modifier
+                    .weight(0.3F)
             )
-            Text(
-                text = stock.exchange,
-                modifier = modifier.padding(top = 4.dp)
-            )
+
+            Column(
+                modifier = modifier
+                    .weight(0.7F)
+            ) {
+                Text(
+                    text = stock.nameCompany,
+                    style = MaterialTheme.typography.h6,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = modifier.padding(bottom = 4.dp),
+                )
+                Text(
+                    text = stock.exchange,
+                    style = MaterialTheme.typography.caption,
+                    modifier = modifier.padding(top = 4.dp)
+                )
+            }
         }
     }
+}
+
+class StockProvider: CollectionPreviewParameterProvider<Stock>(
+    listOf(
+        Stock(
+            "HPG",
+            "HOUSE",
+            "Thép Hòa Phát"
+        ),
+        Stock(
+            "PNJ",
+            "HOUSE",
+            "Vàng bạc đá quá Phú Nhuận"
+        ),
+        Stock(
+            "MWG",
+            "HOUSE",
+            "Công ty cổ phần Thế Giới Di Động"
+        )
+    )
+)
+
+@Preview(
+    name = "UI_MODE_NIGHT_NO",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    showBackground = true,
+    group = "Theme"
+)
+@Preview(
+    name = "UI_MODE_NIGHT_YES",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    group = "Theme"
+)
+@Composable
+fun StockItemPreview(@PreviewParameter(StockProvider::class) stock: Stock) {
+
+    StockItem(
+        stock = stock,
+        clickable = {}
+    )
 }

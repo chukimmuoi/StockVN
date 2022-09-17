@@ -1,14 +1,19 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.unit.dp
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.chukimmuoi.data.model.Stock
+import kotlinx.coroutines.flow.flowOf
 
 /**
  * @author: My Project
@@ -25,7 +30,10 @@ fun StockList(
     clickable: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn {
+    LazyColumn(
+        contentPadding = PaddingValues(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         items(
             items = stocks,
             key = { it.code }
@@ -35,8 +43,41 @@ fun StockList(
                     stock = it,
                     clickable = clickable
                 )
-                Divider(color = Color.Gray)
             }
         }
     }
+}
+
+class StockListProvider: PreviewParameterProvider<List<Stock>> {
+    override val values: Sequence<List<Stock>>
+        get() = sequenceOf(
+            listOf(
+                Stock(
+                    "HPG",
+                    "HOUSE",
+                    "Thép Hòa Phát"
+                ),
+                Stock(
+                    "PNJ",
+                    "HOUSE",
+                    "Vàng bạc đá quá Phú Nhuận"
+                ),
+                Stock(
+                    "MWG",
+                    "HOUSE",
+                    "Công ty cổ phần Thế Giới Di Động"
+                )
+            )
+        )
+}
+
+@Preview
+@Composable
+fun StockListPreview(
+    @PreviewParameter(StockListProvider::class) stocks: List<Stock>
+) {
+    StockList(
+        stocks = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
+        clickable = {}
+    )
 }
