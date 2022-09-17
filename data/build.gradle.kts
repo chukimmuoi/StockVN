@@ -65,4 +65,6 @@ dependencies {
     api(Libs.SquareUp.Retrofit2.retrofit)
     api(Libs.SquareUp.Retrofit2.converterGson)
     api(Libs.SquareUp.Okhttp3.loggingInterceptor)
+
+    api(Libs.SquareUp.JakeWharton.timber)
 }

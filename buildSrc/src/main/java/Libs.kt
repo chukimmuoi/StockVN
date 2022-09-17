@@ -140,6 +140,12 @@ object Libs {
 
             const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
         }
+
+        object JakeWharton {
+            private const val version = "5.0.1"
+
+            const val timber = "com.jakewharton.timber:timber:$version"
+        }
     }
 }
 

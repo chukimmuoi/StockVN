@@ -1,7 +1,6 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -14,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * @author: My Project
@@ -40,7 +40,7 @@ class StockViewModel(
                     e.printStackTrace()
                 }
                 .collect {
-                    Log.e("LOL", "$it")
+                    Timber.e("$it")
                 }
         }
     }

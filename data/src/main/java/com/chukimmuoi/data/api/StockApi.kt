@@ -14,6 +14,9 @@ import retrofit2.http.Query
  * @Project: StockVN
  * Created by chukimmuoi on 10/09/2022.
  */
+/**
+ * @see [guides.codepath.com](https://guides.codepath.com/android/Consuming-APIs-with-Retrofit)
+ * */
 interface StockApi {
 
     @GET("stock_prices")
