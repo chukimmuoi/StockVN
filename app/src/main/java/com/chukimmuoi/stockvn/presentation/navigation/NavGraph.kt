@@ -3,7 +3,9 @@ package com.chukimmuoi.stockvn.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModel
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModelFactory
@@ -15,27 +17,34 @@ import com.chukimmuoi.stockvn.presentation.screen.stock.StockViewModelFactory
  * @Email: chukimmuoi@gmail.com
  * @Website: https://github.com/chukimmuoi
  * @Project: StockVN
- * Created by chukimmuoi on 04/09/2022.
+ * Created by chukimmuoi on 17/09/2022.
  */
 @Composable
-fun BaseScreen(
+fun NavGraph(
     factory: StockViewModelFactory,
     stockViewModel: StockViewModel = viewModel(factory = factory),
+    navController: NavHostController,
+    startDestination: String = Screen.Home.route,
     modifier: Modifier = Modifier
 ) {
-    val stocks = stockViewModel.getStock().collectAsLazyPagingItems()
-
-    StockScreen(
-        stocks = stocks,
-        clickable = {
-            stockViewModel.getStockData(it.code)
-        },
-        actionBack = {
-            // TODO
-        },
-        actionSearch = {
-            // TODO
-        },
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
         modifier = modifier
-    )
+    ) {
+        composable(Screen.Home.route) {
+
+        }
+
+        composable(Screen.Stock.route) {
+            StockScreen(
+                stockViewModel = stockViewModel,
+                modifier = modifier
+            )
+        }
+
+        composable(Screen.StockDetails.route) {
+
+        }
+    }
 }

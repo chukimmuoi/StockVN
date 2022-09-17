@@ -94,6 +94,15 @@ object Libs {
             const val pagingRuntime = "androidx.paging:paging-runtime:$version"
             const val pagingCompose = "androidx.paging:paging-compose:$versionCompose"
         }
+
+        object Navigation {
+            private const val version = "2.5.2"
+
+            const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+            const val navigationCompose = "androidx.navigation:navigation-compose:$version"
+
+        }
     }
 
     object Google {
