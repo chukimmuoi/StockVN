@@ -1,3 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">StockVN</string>
+
+    <string name="stock_screen_title">Stock List</string>
+
+    <string name="back_icon_content_description" tools:ignore="MissingTranslation">Back icon</string>
+    <string name="search_icon_content_description" tools:ignore="MissingTranslation">Search icon</string>
 </resources>

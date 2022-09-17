@@ -1,18 +1,21 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.dp
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.stockvn.R
+import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 import kotlinx.coroutines.flow.flowOf
 
 /**
@@ -31,8 +34,16 @@ fun StockList(
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        contentPadding = PaddingValues(
+            dimensionResource(
+                id = R.dimen.padding_content_of_list_card
+            )
+        ),
+        verticalArrangement = Arrangement.spacedBy(
+            dimensionResource(
+                id = R.dimen.space_item_of_list_card
+            )
+        )
     ) {
         items(
             items = stocks,
@@ -76,8 +87,10 @@ class StockListProvider: PreviewParameterProvider<List<Stock>> {
 fun StockListPreview(
     @PreviewParameter(StockListProvider::class) stocks: List<Stock>
 ) {
-    StockList(
-        stocks = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
-        clickable = {}
-    )
+    StockVNTheme {
+        StockList(
+            stocks = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
+            clickable = {}
+        )
+    }
 }

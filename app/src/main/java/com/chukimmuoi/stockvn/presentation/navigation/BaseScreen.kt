@@ -29,6 +29,13 @@ fun BaseScreen(
         stocks = stocks,
         clickable = {
             stockViewModel.getStockData(it.code)
-        }
+        },
+        actionBack = {
+            // TODO
+        },
+        actionSearch = {
+            // TODO
+        },
+        modifier = modifier
     )
 }

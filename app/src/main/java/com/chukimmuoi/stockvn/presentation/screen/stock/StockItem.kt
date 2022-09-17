@@ -10,15 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.stockvn.R
+import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 
 /**
  * @author: My Project
@@ -41,12 +43,18 @@ fun StockItem(
 
     Card(
         modifier = modifier.clickable { clickable(stock) },
-        elevation = 4.dp,
+        elevation = dimensionResource(
+            id = R.dimen.elevation_of_card_item
+        ),
     ) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(
+                    dimensionResource(
+                        id = R.dimen.padding_content_of_card_item
+                    )
+                ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
@@ -69,12 +77,20 @@ fun StockItem(
                     style = MaterialTheme.typography.h6,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = modifier.padding(bottom = 4.dp),
+                    modifier = modifier.padding(
+                        bottom = dimensionResource(
+                            id = R.dimen.padding_text_of_card_item
+                        )
+                    ),
                 )
                 Text(
                     text = stock.exchange,
                     style = MaterialTheme.typography.caption,
-                    modifier = modifier.padding(top = 4.dp)
+                    modifier = modifier.padding(
+                        top = dimensionResource(
+                            id = R.dimen.padding_text_of_card_item
+                        )
+                    )
                 )
             }
         }
@@ -115,9 +131,10 @@ class StockProvider: CollectionPreviewParameterProvider<Stock>(
 )
 @Composable
 fun StockItemPreview(@PreviewParameter(StockProvider::class) stock: Stock) {
-
-    StockItem(
-        stock = stock,
-        clickable = {}
-    )
+    StockVNTheme {
+        StockItem(
+            stock = stock,
+            clickable = {}
+        )
+    }
 }
