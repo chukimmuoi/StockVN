@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -42,7 +41,6 @@ class DetailsViewModel
                     e.printStackTrace()
                 }
                 .collect {
-                    Timber.e("getStockData = $it")
                     _selectedDateStockInfo.value = it
                 }
         }

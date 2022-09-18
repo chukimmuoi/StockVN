@@ -27,6 +27,6 @@ class StockViewModel
     private val stockUseCase: StockUseCase
 ): AndroidViewModel(app) {
 
-    fun getStock():Flow<PagingData<Stock>> =
+    val allStock:Flow<PagingData<Stock>> =
         stockUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
 }

@@ -26,7 +26,7 @@ fun StockScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    val stocks = viewModel.getStock().collectAsLazyPagingItems()
+    val stocks = viewModel.allStock.collectAsLazyPagingItems()
 
     Scaffold(
         backgroundColor = MaterialTheme.colors.appThemeColor,

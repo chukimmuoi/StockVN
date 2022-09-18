@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.chukimmuoi.stockvn.presentation.screen.details.DetailsScreen
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
@@ -21,7 +22,7 @@ import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
  */
 @Composable
 fun NavGraph(
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     startDestination: String = Screen.Home.route,
     modifier: Modifier = Modifier
 ) {
