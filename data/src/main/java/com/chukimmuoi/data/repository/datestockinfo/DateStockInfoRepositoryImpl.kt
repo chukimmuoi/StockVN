@@ -39,6 +39,7 @@ class DateStockInfoRepositoryImpl(
                 if (local.isExists(code)) local.clear(code)
 
                 inserts(it as List<T>)
+                it
             } as Flow<T>
     }
 

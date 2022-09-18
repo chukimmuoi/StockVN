@@ -5,16 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.domain.usecase.StockUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -35,17 +29,4 @@ class StockViewModel
 
     fun getStock():Flow<PagingData<Stock>> =
         stockUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
-
-    fun getStockData(code: String) {
-        viewModelScope.launch {
-            stockUseCase.updateStockDateUseCase<List<DateStockInfo>>(code)
-                .flowOn(Dispatchers.IO)
-                .catch { e ->
-                    e.printStackTrace()
-                }
-                .collect {
-                    Timber.e("$it")
-                }
-        }
-    }
 }

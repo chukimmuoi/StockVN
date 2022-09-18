@@ -1,15 +1,15 @@
-package com.chukimmuoi.stockvn.presentation.screen.stock
+package com.chukimmuoi.stockvn.presentation.screen.details
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.chukimmuoi.stockvn.presentation.navigation.Screen
 import com.chukimmuoi.stockvn.ui.theme.appContentColor
 import com.chukimmuoi.stockvn.ui.theme.appThemeColor
+import androidx.compose.runtime.getValue
+import androidx.navigation.NavController
 
 /**
  * @author: My Project
@@ -18,35 +18,39 @@ import com.chukimmuoi.stockvn.ui.theme.appThemeColor
  * @Email: chukimmuoi@gmail.com
  * @Website: https://github.com/chukimmuoi
  * @Project: StockVN
- * Created by chukimmuoi on 04/09/2022.
+ * Created by chukimmuoi on 17/09/2022.
  */
+/**
+ * @see [compose-navigation](https://developer.android.com/jetpack/compose/navigation)
+ * */
 @Composable
-fun StockScreen(
-    viewModel: StockViewModel = hiltViewModel(),
-    navController: NavHostController,
-    modifier: Modifier = Modifier
+fun DetailsScreen(
+    stock: String,
+    navController: NavController,
+    viewModel: DetailsViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
 ) {
-    val stocks = viewModel.getStock().collectAsLazyPagingItems()
+
+    viewModel.getStockData(stock)
+    val dateStockInfo by viewModel.selectedDateStockInfo.collectAsState()
 
     Scaffold(
         backgroundColor = MaterialTheme.colors.appThemeColor,
         contentColor = MaterialTheme.colors.appContentColor,
         topBar = {
-            StockTopBar(
+            DetailTopBar(
+                stock = stock,
                 actionBack = {
-
-                },
-                actionSearch = {
-
+                    navController.popBackStack()
                 },
                 modifier = modifier
             )
         },
         content = {
-            StockList(
-                stocks = stocks,
+            DetailsList(
+                dateStockInfo = dateStockInfo,
                 clickable = {
-                    navController.navigate(route = Screen.StockDetails.passStockCode(it.code))
+
                 }
             )
         }

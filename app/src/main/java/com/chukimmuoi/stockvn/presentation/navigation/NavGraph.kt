@@ -3,8 +3,11 @@ package com.chukimmuoi.stockvn.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.chukimmuoi.stockvn.presentation.screen.details.DetailsScreen
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
 
 /**
@@ -33,12 +36,22 @@ fun NavGraph(
 
         composable(Screen.Stock.route) {
             StockScreen(
-                modifier = modifier
+                modifier = modifier,
+                navController = navController
             )
         }
 
-        composable(Screen.StockDetails.route) {
-
+        composable(
+            Screen.StockDetails.route,
+            arguments = listOf(navArgument(Screen.CODE) { type = NavType.StringType })
+        ) {
+            it.arguments?.getString(Screen.CODE)?.let {
+                DetailsScreen(
+                    stock = it,
+                    navController = navController,
+                    modifier = modifier
+                )
+            }
         }
     }
 }

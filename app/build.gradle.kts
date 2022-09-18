@@ -56,6 +56,7 @@ dependencies {
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.Compose.ui)
     implementation(Libs.AndroidX.Compose.material)
+    implementation(Libs.AndroidX.Compose.materialIconExtended)
     implementation(Libs.AndroidX.Compose.uiToolingPreview)
     implementation(Libs.AndroidX.Lifecycle.runtimeKTX)
     implementation(Libs.AndroidX.Activity.activityCompose)

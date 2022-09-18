@@ -1,8 +1,12 @@
 package com.chukimmuoi.data.model
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.room.Entity
 import com.chukimmuoi.data.util.toJson
 import com.google.gson.annotations.SerializedName
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 /**
  * @author: My Project
@@ -69,6 +73,48 @@ data class DateStockInfo(
     @SerializedName("type")
     val type: String = ""
 ) {
+
+    fun getPriceVolatility(): String {
+        val value = close - open
+        return String.format("%.2f", value)
+    }
+
+    fun getVolume(): String {
+        val formatter: NumberFormat = DecimalFormat("#,###")
+        return "${formatter.format(nmVolume)}K"
+    }
+
+    fun handlerSateIcon(
+        upAction: () -> ImageVector,
+        downAction: () -> ImageVector,
+        unchanged: () -> ImageVector
+    ): ImageVector {
+        val value = close - open
+
+        return if (value > 0) {
+            upAction()
+        } else if (value < 0){
+            downAction()
+        } else {
+            unchanged()
+        }
+    }
+
+    fun handlerSateColor(limitChange: Double = 7.0): Color {
+        val blockOn = limitChange / 100 * 90
+        val blockBelow = limitChange / 100 * 90 * -1
+
+        val value = close - open
+        val color = when {
+            value <= blockBelow -> Color.Blue
+            value < 0 -> Color.Red
+            value > 0 -> Color.Green
+            value >= blockOn -> Color.Magenta
+            else -> Color.Gray
+        }
+
+        return color
+    }
 
     override fun toString(): String {
         return this.toJson()

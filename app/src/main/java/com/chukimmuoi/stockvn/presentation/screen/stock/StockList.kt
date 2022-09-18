@@ -48,12 +48,10 @@ fun StockList(
             items = stocks,
             key = { it.code }
         ) {
-            Column {
-                StockItem(
-                    stock = it,
-                    clickable = clickable
-                )
-            }
+            StockItem(
+                stock = it,
+                clickable = clickable
+            )
         }
     }
 }
