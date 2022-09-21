@@ -3,4 +3,7 @@
     <string name="app_name">Chứng khoán VN</string>
 
     <string name="stock_screen_title">Danh sách mã CK</string>
+
+    <string name="home_label">Trang chủ</string>
+    <string name="stock_label">Chứng khoán</string>
 </resources>

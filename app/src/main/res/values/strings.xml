@@ -3,6 +3,9 @@
 
     <string name="stock_screen_title">Stock List</string>
 
+    <string name="logo_icon_content_description" translatable="false">Logo icon</string>
+    <string name="home_icon_content_description" translatable="false">Home icon</string>
+    <string name="timeline_icon_content_description" translatable="false">TimeLine icon</string>
     <string name="back_icon_content_description" translatable="false">Back icon</string>
     <string name="search_icon_content_description" translatable="false">Search icon</string>
     <string name="bookmark_icon_content_description" translatable="false">Bookmark icon</string>
@@ -12,4 +15,7 @@
     <string name="bookmark_label" translatable="false">Bookmark</string>
     <string name="un_start_label" translatable="false">Un Start</string>
     <string name="start_label" translatable="false">Start</string>
+
+    <string name="home_label">Home</string>
+    <string name="stock_label">Stock</string>
 </resources>

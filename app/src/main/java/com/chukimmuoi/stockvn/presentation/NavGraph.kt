@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.presentation.navigation
+package com.chukimmuoi.stockvn.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.chukimmuoi.stockvn.presentation.screen.details.DetailsScreen
+import com.chukimmuoi.stockvn.presentation.screen.home.HomeScreen
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
 
 /**
@@ -22,6 +23,7 @@ import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
  */
 @Composable
 fun NavGraph(
+    openDrawer: () -> Unit = {},
     navController: NavHostController = rememberNavController(),
     startDestination: String = Screen.Home.route,
     modifier: Modifier = Modifier
@@ -32,13 +34,16 @@ fun NavGraph(
         modifier = modifier
     ) {
         composable(Screen.Home.route) {
-
+            HomeScreen(
+                openDrawer = openDrawer,
+                modifier = modifier
+            )
         }
 
         composable(Screen.Stock.route) {
             StockScreen(
-                modifier = modifier,
-                navController = navController
+                navController = navController,
+                modifier = modifier
             )
         }
 

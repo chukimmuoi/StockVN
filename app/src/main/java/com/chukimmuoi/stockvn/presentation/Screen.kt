@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.presentation.navigation
+package com.chukimmuoi.stockvn.presentation
 
 /**
  * @author: My Project

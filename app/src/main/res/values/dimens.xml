@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  Navigation  -->
+    <dimen name="padding_content_of_navigation">8dp</dimen>
+    <dimen name="margin_item_of_navigation">16dp</dimen>
+
+    <dimen name="elevation_of_navigation">8dp</dimen>
     <dimen name="elevation_of_top_bar">8dp</dimen>
 
     <!--  Stock Screen  -->

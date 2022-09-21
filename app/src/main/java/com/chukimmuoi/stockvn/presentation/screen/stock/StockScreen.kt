@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.chukimmuoi.stockvn.presentation.navigation.Screen
+import com.chukimmuoi.stockvn.presentation.Screen
 import com.chukimmuoi.stockvn.ui.theme.appContentColor
 import com.chukimmuoi.stockvn.ui.theme.appThemeColor
 
@@ -34,7 +34,7 @@ fun StockScreen(
         topBar = {
             StockTopBar(
                 actionBack = {
-
+                    navController.popBackStack()
                 },
                 actionSearch = {
 

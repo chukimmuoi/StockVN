@@ -11,8 +11,8 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import com.chukimmuoi.stockvn.R
+import com.chukimmuoi.stockvn.presentation.components.preview.StateValue
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 
 /**
@@ -24,6 +24,24 @@ import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
  * @Project: StockVN
  * Created by chukimmuoi on 18/09/2022.
  */
+@Composable
+fun LogoButton(onClick: () -> Unit) {
+    IconButton(onClick = onClick) {
+        Icon(
+            imageVector = Icons.Filled.Timeline,
+            contentDescription = stringResource(id = R.string.logo_icon_content_description)
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewLogoButton() {
+    StockVNTheme {
+        LogoButton({})
+    }
+}
+
 @Composable
 fun BackButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
@@ -88,10 +106,6 @@ fun BookmarkButton(
         }
     }
 }
-
-class StateValue: CollectionPreviewParameterProvider<Boolean>(
-    listOf(true, false)
-)
 
 @Preview
 @Composable
