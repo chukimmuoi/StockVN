@@ -3,13 +3,12 @@ package com.chukimmuoi.stockvn.presentation.screen.details
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.chukimmuoi.stockvn.ui.theme.appContentColor
 import com.chukimmuoi.stockvn.ui.theme.appThemeColor
-import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
 
 /**
  * @author: My Project
@@ -31,8 +30,8 @@ fun DetailsScreen(
     modifier: Modifier = Modifier,
 ) {
 
-    viewModel.getStockData(stock)
-    val dateStockInfo by viewModel.selectedDateStockInfo.collectAsState()
+    viewModel.code = stock
+    val dateStockInfo = viewModel.selectedDateStockInfoPage.collectAsLazyPagingItems()
 
     Scaffold(
         backgroundColor = MaterialTheme.colors.appThemeColor,

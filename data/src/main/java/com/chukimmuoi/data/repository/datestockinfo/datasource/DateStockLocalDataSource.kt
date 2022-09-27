@@ -1,6 +1,9 @@
 package com.chukimmuoi.data.repository.datestockinfo.datasource
 
+import androidx.paging.PagingData
 import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.paging.StockRemoteMediator
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author: My Project
@@ -22,4 +25,9 @@ interface DateStockLocalDataSource {
     suspend fun clear(code: String): Int
 
     suspend fun clear(): Int
+
+    fun getAllDataWithPage(
+        code: String,
+        stockRemoteMediator: StockRemoteMediator
+    ): Flow<PagingData<DateStockInfo>>
 }

@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockRemoteKeys
 
 /**
  * @author: My Project
@@ -15,12 +16,18 @@ import com.chukimmuoi.data.model.Stock
  * Created by chukimmuoi on 28/08/2022.
  */
 @Database(
-    entities = [Stock::class, DateStockInfo::class],
+    entities = [
+        Stock::class,
+        DateStockInfo::class,
+        StockRemoteKeys::class
+    ],
     version = 1,
     exportSchema = true
 )
 abstract class StockDatabase: RoomDatabase() {
 
     abstract fun getStockDao(): StockDao
-    abstract fun getDateStockInfo(): DateStockInfoDao
+    abstract fun getDateStockInfoDao(): DateStockInfoDao
+
+    abstract fun getStockRemoteKeyDao(): StockRemoteKeyDao
 }

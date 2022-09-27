@@ -1,8 +1,16 @@
 package com.chukimmuoi.data.repository.datestockinfo.datasourceimpl
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.chukimmuoi.data.db.DateStockInfoDao
+import com.chukimmuoi.data.db.StockDatabase
 import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.paging.StockRemoteMediator
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDataSource
+import com.chukimmuoi.data.util.Constant
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author: My Project
@@ -14,8 +22,12 @@ import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDat
  * Created by chukimmuoi on 28/08/2022.
  */
 class DateStockLocalDataSourceImpl(
-    private val dateStockInfoDao: DateStockInfoDao
+    val stockDatabase: StockDatabase
 ): DateStockLocalDataSource {
+
+    private val dateStockInfoDao: DateStockInfoDao by lazy {
+        stockDatabase.getDateStockInfoDao()
+    }
 
     override suspend fun save(dateStockInfo: DateStockInfo): Long {
         return dateStockInfoDao.insert(dateStockInfo)
@@ -35,5 +47,19 @@ class DateStockLocalDataSourceImpl(
 
     override suspend fun clear(): Int {
         return dateStockInfoDao.deleteAll()
+    }
+
+    @OptIn(ExperimentalPagingApi::class)
+    override fun getAllDataWithPage(
+        code: String,
+        stockRemoteMediator: StockRemoteMediator
+    ): Flow<PagingData<DateStockInfo>> {
+        val pagingSourceFactory = { dateStockInfoDao.selectAllDataWithPage(code) }
+
+        return Pager(
+            config = PagingConfig(pageSize = Constant.PAGE_SIZE),
+            remoteMediator = stockRemoteMediator,
+            pagingSourceFactory = pagingSourceFactory,
+        ).flow
     }
 }

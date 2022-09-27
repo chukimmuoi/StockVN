@@ -74,6 +74,8 @@ data class DateStockInfo(
     val type: String = ""
 ) {
 
+    fun getPrimaryKeys() = Pair(code, date)
+
     fun getPriceVolatility(): String {
         val value = close - open
         return String.format("%.2f", value)

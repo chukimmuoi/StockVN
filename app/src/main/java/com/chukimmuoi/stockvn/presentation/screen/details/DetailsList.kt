@@ -3,15 +3,13 @@ package com.chukimmuoi.stockvn.presentation.screen.details
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.stockvn.R
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
-import timber.log.Timber
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 
 /**
  * @author: My Project
@@ -24,7 +22,7 @@ import timber.log.Timber
  */
 @Composable
 fun DetailsList(
-    dateStockInfo: List<DateStockInfo>,
+    dateStockInfo: LazyPagingItems<DateStockInfo>,
     clickable: (DateStockInfo) -> Unit,
     modifier: Modifier = Modifier
 ) {

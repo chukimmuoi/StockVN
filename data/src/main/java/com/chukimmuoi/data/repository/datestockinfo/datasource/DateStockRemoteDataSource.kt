@@ -1,6 +1,8 @@
 package com.chukimmuoi.data.repository.datestockinfo.datasource
 
+import com.chukimmuoi.data.db.StockDatabase
 import com.chukimmuoi.data.model.VNDirectResponse
+import com.chukimmuoi.data.paging.StockRemoteMediator
 import retrofit2.Response
 
 /**
@@ -22,4 +24,9 @@ interface DateStockRemoteDataSource {
     ): Response<VNDirectResponse>
 
     suspend fun getAllDateStock(code: String): Response<VNDirectResponse>
+
+    fun getAllDateStockFollowPage(
+        code: String,
+        stockDatabase: StockDatabase
+    ): StockRemoteMediator
 }

@@ -57,6 +57,6 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideDateStockInfoDao(database: StockDatabase): DateStockInfoDao {
-        return database.getDateStockInfo()
+        return database.getDateStockInfoDao()
     }
 }

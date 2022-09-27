@@ -3,16 +3,15 @@ package com.chukimmuoi.stockvn.presentation.screen.details
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.domain.usecase.StockUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 /**
  * @author: My Project
@@ -29,6 +28,14 @@ class DetailsViewModel
     private val app: Application,
     private val stockUseCase: StockUseCase
 ): AndroidViewModel(app) {
+
+    lateinit var selectedDateStockInfoPage: Flow<PagingData<DateStockInfo>>
+
+    var code: String by Delegates.observable("") { _, oldValue, newValue ->
+        if (newValue != oldValue) {
+            selectedDateStockInfoPage = stockUseCase.updateStockDateWithPageUseCase(newValue)
+        }
+    }
 
     private val _selectedDateStockInfo: MutableStateFlow<List<DateStockInfo>> = MutableStateFlow(listOf())
     val selectedDateStockInfo: StateFlow<List<DateStockInfo>> = _selectedDateStockInfo

@@ -1,5 +1,6 @@
 package com.chukimmuoi.data.db
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.chukimmuoi.data.model.DateStockInfo
 
@@ -23,6 +24,9 @@ interface DateStockInfoDao {
 
     @Query("SELECT EXISTS(SELECT * FROM date_stock_info WHERE code = :code)")
     suspend fun isExists(code: String): Boolean
+
+    @Query("SELECT * FROM date_stock_info WHERE code = :code ORDER BY date DESC")
+    fun selectAllDataWithPage(code: String): PagingSource<Int, DateStockInfo>
 
     @Query("DELETE FROM date_stock_info WHERE code = :code")
     suspend fun delete(code: String): Int

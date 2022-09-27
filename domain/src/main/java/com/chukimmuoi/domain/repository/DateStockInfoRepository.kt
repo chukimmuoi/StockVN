@@ -24,4 +24,6 @@ interface DateStockInfoRepository {
     suspend fun clear(code: String): Int
 
     suspend fun clear(): Int
+
+    fun <T> updateAllDataFromServerWithPage(code: String): Flow<T>
 }

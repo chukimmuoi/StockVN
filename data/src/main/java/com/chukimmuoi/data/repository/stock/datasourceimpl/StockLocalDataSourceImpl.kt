@@ -4,6 +4,7 @@ import androidx.paging.*
 import com.chukimmuoi.data.db.StockDao
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
+import com.chukimmuoi.data.util.Constant
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -22,7 +23,7 @@ class StockLocalDataSourceImpl(
     override fun getStock(): Flow<PagingData<Stock>> {
         val pagingSourceFactory = stockDao.getAll()
 
-        return Pager(PagingConfig(pageSize = 50)) { pagingSourceFactory }.flow
+        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) { pagingSourceFactory }.flow
     }
 
     override suspend fun saveStock(stocks: List<Stock>): List<Long> {

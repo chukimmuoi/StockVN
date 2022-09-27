@@ -20,7 +20,7 @@ import retrofit2.http.Query
 interface StockApi {
 
     @GET("stock_prices")
-    suspend fun getAllStockDate(
+    suspend fun getDateStock(
         @Query("sort") sort: String = "date",
         @Query("q") query: String = "code:MWG~date:gte:2000-01-01~date:lte:2022-09-10",
         @Query("size") size: Long = 50L,

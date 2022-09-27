@@ -56,13 +56,23 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun provideUpdateStockDateFlowPageUseCase(
+        dateStockInfoRepository: DateStockInfoRepository
+    ): UpdateStockDateWithPageUseCase {
+        return UpdateStockDateWithPageUseCase(dateStockInfoRepository)
+    }
+
+    @Provides
+    @Singleton
     fun provideStockUseCase(
         getStocksUseCase: GetStocksUseCase,
-        updateStockDateUseCase: UpdateStockDateUseCase
+        updateStockDateUseCase: UpdateStockDateUseCase,
+        updateStockDateWithPageUseCase: UpdateStockDateWithPageUseCase
     ): StockUseCase {
         return StockUseCase(
             getStocksUseCase,
-            updateStockDateUseCase
+            updateStockDateUseCase,
+            updateStockDateWithPageUseCase
         )
     }
 }

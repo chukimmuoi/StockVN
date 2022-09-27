@@ -1,9 +1,11 @@
 package com.chukimmuoi.data.repository.datestockinfo
 
+import com.chukimmuoi.data.db.StockDatabase
 import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockCacheDataSource
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDataSource
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockRemoteDataSource
+import com.chukimmuoi.data.repository.datestockinfo.datasourceimpl.DateStockLocalDataSourceImpl
 import com.chukimmuoi.domain.repository.DateStockInfoRepository
 import kotlinx.coroutines.flow.*
 
@@ -21,6 +23,10 @@ class DateStockInfoRepositoryImpl(
     private val local: DateStockLocalDataSource,
     private val remote: DateStockRemoteDataSource
 ): DateStockInfoRepository {
+
+    private val stockDatabase: StockDatabase by lazy {
+        (local as DateStockLocalDataSourceImpl).stockDatabase
+    }
 
     override suspend fun <T> insert(dateStockInfo: T): Long {
         return local.save(dateStockInfo as DateStockInfo)
@@ -41,6 +47,12 @@ class DateStockInfoRepositoryImpl(
                 inserts(it as List<T>)
                 it
             } as Flow<T>
+    }
+
+    override fun <T> updateAllDataFromServerWithPage(code: String): Flow<T> {
+        val stockRemoteMediator = remote.getAllDateStockFollowPage(code, stockDatabase)
+
+        return local.getAllDataWithPage(code, stockRemoteMediator) as Flow<T>
     }
 
     override suspend fun <T> getQuery(): Flow<T> {

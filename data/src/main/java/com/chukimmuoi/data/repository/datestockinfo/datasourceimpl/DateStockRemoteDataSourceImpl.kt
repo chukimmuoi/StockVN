@@ -1,7 +1,9 @@
 package com.chukimmuoi.data.repository.datestockinfo.datasourceimpl
 
 import com.chukimmuoi.data.api.StockApi
+import com.chukimmuoi.data.db.StockDatabase
 import com.chukimmuoi.data.model.VNDirectResponse
+import com.chukimmuoi.data.paging.StockRemoteMediator
 import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockRemoteDataSource
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -43,7 +45,7 @@ class DateStockRemoteDataSourceImpl(
     ): Response<VNDirectResponse> {
         val query = "code:$code~date:gte:$fromDate~date:lte:$toDate"
 
-        return stockApi.getAllStockDate(
+        return stockApi.getDateStock(
             query = query,
             size = size
         )
@@ -58,5 +60,22 @@ class DateStockRemoteDataSourceImpl(
         val daysBetween = ChronoUnit.DAYS.between(startDate, currentDate)
 
         return getDateStock(code, startDateString, currentDateString, daysBetween)
+    }
+
+    override fun getAllDateStockFollowPage(
+        code: String,
+        stockDatabase: StockDatabase
+    ): StockRemoteMediator {
+        val startDateString = "2000-01-01"
+        val currentDateString = getCurrentDateString()
+
+        val query = "code:$code~date:gte:$startDateString~date:lte:$currentDateString"
+
+        return StockRemoteMediator(
+            code,
+            query,
+            stockApi,
+            stockDatabase
+        )
     }
 }
