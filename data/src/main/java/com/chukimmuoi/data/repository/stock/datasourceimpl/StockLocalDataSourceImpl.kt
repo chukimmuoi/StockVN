@@ -6,6 +6,7 @@ import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
 import com.chukimmuoi.data.util.Constant
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 /**
  * @author: My Project
@@ -21,9 +22,13 @@ class StockLocalDataSourceImpl(
 ): StockLocalDataSource {
 
     override fun getStock(): Flow<PagingData<Stock>> {
-        val pagingSourceFactory = stockDao.getAll()
+        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) { stockDao.getAll() }.flow
+    }
 
-        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) { pagingSourceFactory }.flow
+    override suspend fun updateStock(stock: Stock): Flow<Long> {
+        return flow {
+            emit(stockDao.insertOrUpdate(stock))
+        }
     }
 
     override suspend fun saveStock(stocks: List<Stock>): List<Long> {

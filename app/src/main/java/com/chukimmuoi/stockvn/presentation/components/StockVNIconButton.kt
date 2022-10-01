@@ -5,6 +5,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.onClick
@@ -81,7 +83,7 @@ fun PreviewSearchButton() {
 @Composable
 fun BookmarkButton(
     isBookmarked: Boolean,
-    onClick: () -> Unit,
+    onClick: (Boolean) -> Unit,
     contentAlpha: Float = ContentAlpha.high,
     modifier: Modifier = Modifier
 ) {
@@ -91,7 +93,9 @@ fun BookmarkButton(
     CompositionLocalProvider(LocalContentAlpha provides contentAlpha) {
         IconToggleButton(
             checked = isBookmarked,
-            onCheckedChange = { onClick() },
+            onCheckedChange = {
+                onClick(it)
+            },
             modifier = modifier.semantics {
                 onClick(
                     label = clickLabel,
@@ -118,7 +122,7 @@ fun PreviewBookmarkButton(@PreviewParameter(StateValue::class) state: Boolean) {
 @Composable
 fun StarButton(
     isStared: Boolean,
-    onClick: () -> Unit,
+    onClick: (Boolean) -> Unit,
     contentAlpha: Float = ContentAlpha.high,
     modifier: Modifier = Modifier
 ) {
@@ -128,7 +132,9 @@ fun StarButton(
     CompositionLocalProvider(LocalContentAlpha provides contentAlpha) {
         IconToggleButton(
             checked = isStared,
-            onCheckedChange = { onClick() },
+            onCheckedChange = {
+                onClick(it)
+            },
             modifier = modifier.semantics {
                 onClick(
                     label = clickLabel,

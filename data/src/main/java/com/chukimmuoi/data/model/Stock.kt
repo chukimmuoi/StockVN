@@ -1,6 +1,9 @@
 package com.chukimmuoi.data.model
 
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.chukimmuoi.data.util.toJson
 import com.google.gson.annotations.SerializedName
@@ -22,8 +25,17 @@ data class Stock(
     @SerializedName("exchange")
     val exchange: String = "",
     @SerializedName("nameCompany")
-    val nameCompany: String = ""
+    val nameCompany: String = "",
+    @SerializedName("isBookmarked")
+    var isBookmarked: Boolean = false,
+    @SerializedName("isPurchased")
+    var isPurchased: Boolean = false
 ) {
+    @Ignore
+    val stockIsPurchased = mutableStateOf(isPurchased)
+
+    @Ignore
+    val stockIsBookmarked = mutableStateOf(isBookmarked)
 
     override fun toString(): String {
         return this.toJson()

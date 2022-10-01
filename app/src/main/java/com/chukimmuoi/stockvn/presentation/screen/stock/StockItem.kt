@@ -7,10 +7,12 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -20,6 +22,8 @@ import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameter
 import androidx.compose.ui.unit.sp
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.stockvn.R
+import com.chukimmuoi.stockvn.presentation.components.BookmarkButton
+import com.chukimmuoi.stockvn.presentation.components.StarButton
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 
 /**
@@ -34,15 +38,19 @@ import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 @Composable
 fun StockItem(
     stock: Stock?,
-    clickable: (Stock) -> Unit,
+    clickableGoTo: (Stock) -> Unit,
+    clickableUpdate: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (stock == null) return
 
     val color = listOf(Color.Green, Color.Red, Color.Blue, Color.Magenta).random()
 
+    val stockIsPurchased = rememberSaveable { stock.stockIsPurchased }
+    val stockIsBookmarked = rememberSaveable { stock.stockIsBookmarked }
+
     Card(
-        modifier = modifier.clickable { clickable(stock) },
+        modifier = modifier.clickable { clickableGoTo(stock) },
         elevation = dimensionResource(
             id = R.dimen.elevation_of_card_item
         ),
@@ -70,7 +78,7 @@ fun StockItem(
 
             Column(
                 modifier = modifier
-                    .weight(0.7F)
+                    .weight(0.6F)
             ) {
                 Text(
                     text = stock.nameCompany,
@@ -91,6 +99,32 @@ fun StockItem(
                             id = R.dimen.padding_text_of_card_item
                         )
                     )
+                )
+            }
+
+            if (stockIsPurchased.value) {
+                StarButton(
+                    isStared = true,
+                    onClick = {
+                        stockIsPurchased.value = it
+
+                        clickableUpdate(stock.apply { isPurchased = it })
+                    },
+                    modifier = modifier
+                        .weight(0.1F)
+                        .clearAndSetSemantics {}
+                )
+            } else {
+                BookmarkButton(
+                    isBookmarked = stockIsBookmarked.value,
+                    onClick = {
+                        stockIsBookmarked.value = it
+
+                        clickableUpdate(stock.apply { isBookmarked = it })
+                    },
+                    modifier = modifier
+                        .weight(0.1F)
+                        .clearAndSetSemantics {}
                 )
             }
         }
@@ -134,7 +168,8 @@ fun StockItemPreview(@PreviewParameter(StockProvider::class) stock: Stock) {
     StockVNTheme {
         StockItem(
             stock = stock,
-            clickable = {}
+            clickableGoTo = {},
+            clickableUpdate = {}
         )
     }
 }

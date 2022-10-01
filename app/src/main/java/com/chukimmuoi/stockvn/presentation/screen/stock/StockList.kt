@@ -29,7 +29,8 @@ import kotlinx.coroutines.flow.flowOf
 @Composable
 fun StockList(
     stocks: LazyPagingItems<Stock>,
-    clickable: (Stock) -> Unit,
+    clickableGoTo: (Stock) -> Unit,
+    clickableUpdate: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -50,7 +51,8 @@ fun StockList(
         ) {
             StockItem(
                 stock = it,
-                clickable = clickable
+                clickableGoTo = clickableGoTo,
+                clickableUpdate = clickableUpdate
             )
         }
     }
@@ -87,7 +89,8 @@ fun StockListPreview(
     StockVNTheme {
         StockList(
             stocks = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
-            clickable = {}
+            clickableGoTo = {},
+            clickableUpdate = {}
         )
     }
 }

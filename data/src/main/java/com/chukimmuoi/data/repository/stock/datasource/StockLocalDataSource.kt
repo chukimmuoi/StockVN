@@ -17,6 +17,8 @@ interface StockLocalDataSource {
 
     fun getStock(): Flow<PagingData<Stock>>
 
+    suspend fun updateStock(stock: Stock): Flow<Long>
+
     fun isExists(): Flow<Boolean>
 
     suspend fun saveStock(stocks: List<Stock>): List<Long>

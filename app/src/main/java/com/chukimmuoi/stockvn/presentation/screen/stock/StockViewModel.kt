@@ -9,6 +9,8 @@ import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.domain.usecase.StockUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -29,4 +31,16 @@ class StockViewModel
 
     val allStock:Flow<PagingData<Stock>> =
         stockUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+
+    fun updateStock(stock: Stock) {
+        viewModelScope.launch {
+            stockUseCase.updateStocksUseCase(stock)
+                .catch {
+
+                }
+                .collect {
+                    it
+                }
+        }
+    }
 }

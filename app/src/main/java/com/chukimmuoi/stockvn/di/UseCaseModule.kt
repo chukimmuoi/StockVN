@@ -32,6 +32,14 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun provideUpdateStocksUseCase(
+        stockRepository: StockRepository
+    ): UpdateStockUseCase {
+        return UpdateStockUseCase(stockRepository)
+    }
+
+    @Provides
+    @Singleton
     fun provideImportJsonUseCase(
         stockRepository: StockRepository
     ): ImportJsonUseCase {
@@ -66,11 +74,13 @@ class UseCaseModule {
     @Singleton
     fun provideStockUseCase(
         getStocksUseCase: GetStocksUseCase,
+        updateStockUseCase: UpdateStockUseCase,
         updateStockDateUseCase: UpdateStockDateUseCase,
         updateStockDateWithPageUseCase: UpdateStockDateWithPageUseCase
     ): StockUseCase {
         return StockUseCase(
             getStocksUseCase,
+            updateStockUseCase,
             updateStockDateUseCase,
             updateStockDateWithPageUseCase
         )

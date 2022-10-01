@@ -41,6 +41,13 @@ object Libs {
 
             const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
             const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
+
+            object Material3 {
+                // https://developer.android.com/jetpack/androidx/releases/compose-material3
+                private const val version = "1.0.0-beta03"
+
+                const val material3 = "androidx.compose.material3:material3:$version"
+            }
         }
 
         object Activity {

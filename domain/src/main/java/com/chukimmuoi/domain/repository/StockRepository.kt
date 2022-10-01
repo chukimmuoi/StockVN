@@ -19,6 +19,8 @@ interface StockRepository {
 
     suspend fun <T> insert(stock: T): Long
 
+    suspend fun <T> update(stock: T): Flow<Long>
+
     suspend fun <T> insert(stocks: List<T>): List<Long>
 
     suspend fun <T> saveFavorite(stock: T): Long

@@ -11,6 +11,7 @@ package com.chukimmuoi.domain.usecase
  */
 data class StockUseCase(
     val getStocksUseCase: GetStocksUseCase,
+    val updateStocksUseCase: UpdateStockUseCase,
     val updateStockDateUseCase: UpdateStockDateUseCase,
     val updateStockDateWithPageUseCase: UpdateStockDateWithPageUseCase
 )

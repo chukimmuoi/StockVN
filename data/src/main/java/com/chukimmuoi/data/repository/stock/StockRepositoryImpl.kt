@@ -46,6 +46,11 @@ class StockRepositoryImpl(
         TODO("Not yet implemented")
     }
 
+    override suspend fun <T> update(stock: T): Flow<Long> {
+
+        return local.updateStock(stock as Stock).flowOn(Dispatchers.IO)
+    }
+
     override suspend fun <T> insert(stocks: List<T>): List<Long> {
 
         val savedIds = local.saveStock(stocks as List<Stock>)

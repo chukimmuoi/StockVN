@@ -19,12 +19,12 @@ import kotlinx.coroutines.flow.Flow
 interface StockDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(stock: Stock): Long
+    suspend fun insertOrUpdate(stock: Stock): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserts(stock: List<Stock>): List<Long>
 
-    @Query("SELECT * FROM stock")
+    @Query("SELECT * FROM stock ORDER BY code ASC")
     fun getAll(): PagingSource<Int, Stock>
 
     @Query("SELECT EXISTS(SELECT * FROM stock)")

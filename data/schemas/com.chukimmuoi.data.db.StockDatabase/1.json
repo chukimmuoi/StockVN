@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "aaa22d05eb14a81db79453cd78d25dfe",
+    "identityHash": "23752f843dd2fdaa2b41190809b44ee2",
     "entities": [
       {
         "tableName": "stock",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `exchange` TEXT NOT NULL, `nameCompany` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `exchange` TEXT NOT NULL, `nameCompany` TEXT NOT NULL, `isBookmarked` INTEGER NOT NULL, `isPurchased` INTEGER NOT NULL, PRIMARY KEY(`code`))",
         "fields": [
           {
             "fieldPath": "code",
@@ -24,6 +24,18 @@
             "fieldPath": "nameCompany",
             "columnName": "nameCompany",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBookmarked",
+            "columnName": "isBookmarked",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPurchased",
+            "columnName": "isPurchased",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -244,7 +256,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'aaa22d05eb14a81db79453cd78d25dfe')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '23752f843dd2fdaa2b41190809b44ee2')"
     ]
   }
 }
