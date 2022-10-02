@@ -32,6 +32,22 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun provideGetPurchasedStocksUseCase(
+        stockRepository: StockRepository
+    ): GetPurchasedStocksUseCase {
+        return GetPurchasedStocksUseCase(stockRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetBookmarkedStocksUseCase(
+        stockRepository: StockRepository
+    ): GetBookmarkedStocksUseCase {
+        return GetBookmarkedStocksUseCase(stockRepository)
+    }
+
+    @Provides
+    @Singleton
     fun provideUpdateStocksUseCase(
         stockRepository: StockRepository
     ): UpdateStockUseCase {
@@ -74,12 +90,16 @@ class UseCaseModule {
     @Singleton
     fun provideStockUseCase(
         getStocksUseCase: GetStocksUseCase,
+        getBookmarkedStocksUseCase: GetBookmarkedStocksUseCase,
+        getPurchasedStocksUseCase: GetPurchasedStocksUseCase,
         updateStockUseCase: UpdateStockUseCase,
         updateStockDateUseCase: UpdateStockDateUseCase,
         updateStockDateWithPageUseCase: UpdateStockDateWithPageUseCase
     ): StockUseCase {
         return StockUseCase(
             getStocksUseCase,
+            getBookmarkedStocksUseCase,
+            getPurchasedStocksUseCase,
             updateStockUseCase,
             updateStockDateUseCase,
             updateStockDateWithPageUseCase

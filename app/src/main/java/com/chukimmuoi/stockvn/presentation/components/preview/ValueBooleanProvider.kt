@@ -11,6 +11,6 @@ import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameter
  * @Project: StockVN
  * Created by chukimmuoi on 18/09/2022.
  */
-class StateValue: CollectionPreviewParameterProvider<Boolean>(
+class ValueBooleanProvider: CollectionPreviewParameterProvider<Boolean>(
     listOf(true, false)
 )

@@ -27,6 +27,12 @@ interface StockDao {
     @Query("SELECT * FROM stock ORDER BY code ASC")
     fun getAll(): PagingSource<Int, Stock>
 
+    @Query("SELECT * FROM stock WHERE isBookmarked AND NOT isPurchased ORDER BY code ASC")
+    fun getAllBookmarked(): PagingSource<Int, Stock>
+
+    @Query("SELECT * FROM stock WHERE isPurchased ORDER BY code ASC")
+    fun getAllPurchased(): PagingSource<Int, Stock>
+
     @Query("SELECT EXISTS(SELECT * FROM stock)")
     fun isExists(): Flow<Boolean>
 

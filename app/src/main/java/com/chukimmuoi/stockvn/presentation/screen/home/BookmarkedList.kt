@@ -1,7 +1,8 @@
-package com.chukimmuoi.stockvn.presentation.screen.stock
+package com.chukimmuoi.stockvn.presentation.screen.home
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -24,32 +25,32 @@ import kotlinx.coroutines.flow.flowOf
  * @Email: chukimmuoi@gmail.com
  * @Website: https://github.com/chukimmuoi
  * @Project: StockVN
- * Created by chukimmuoi on 04/09/2022.
+ * Created by chukimmuoi on 01/10/2022.
  */
 @Composable
-fun StockList(
-    stocks: LazyPagingItems<Stock>,
+fun BookmarkedList(
+    stockPages: LazyPagingItems<Stock>,
     clickableGoTo: (Stock) -> Unit,
     clickableUpdate: (Stock) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(
+    LazyRow(
         contentPadding = PaddingValues(
             dimensionResource(
                 id = R.dimen.padding_content_of_list_card
             )
         ),
-        verticalArrangement = Arrangement.spacedBy(
+        horizontalArrangement = Arrangement.spacedBy(
             dimensionResource(
                 id = R.dimen.space_item_of_list_card
             )
         )
     ) {
         items(
-            items = stocks,
+            items = stockPages,
             key = { it.code }
         ) {
-            StockItem(
+            BookmarkedItem(
                 stock = it,
                 clickableGoTo = clickableGoTo,
                 clickableUpdate = clickableUpdate
@@ -60,12 +61,12 @@ fun StockList(
 
 @Preview
 @Composable
-fun StockListPreview(
+fun BookmarkedListPreview(
     @PreviewParameter(StockListProvider::class) stocks: List<Stock>
 ) {
     StockVNTheme {
-        StockList(
-            stocks = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
+        BookmarkedList(
+            stockPages = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
             clickableGoTo = {},
             clickableUpdate = {}
         )

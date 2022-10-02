@@ -16,3 +16,13 @@ class GetStocksUseCase(private val stockRepository: StockRepository) {
 
     operator fun <T> invoke(): Flow<T> = stockRepository.getAllStock()
 }
+
+class GetBookmarkedStocksUseCase(private val stockRepository: StockRepository) {
+
+    operator fun <T> invoke(): Flow<T> = stockRepository.getBookmarked()
+}
+
+class GetPurchasedStocksUseCase(private val stockRepository: StockRepository) {
+
+    operator fun <T> invoke(): Flow<T> = stockRepository.getPurchased()
+}

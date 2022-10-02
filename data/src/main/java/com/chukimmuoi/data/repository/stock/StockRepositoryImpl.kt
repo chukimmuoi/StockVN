@@ -60,28 +60,20 @@ class StockRepositoryImpl(
         return savedIds
     }
 
-    override suspend fun <T> saveFavorite(stock: T): Long {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun <T> saveFavorites(stocks: List<T>): List<Long> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun <T> removeFavorite(stock: T): Long {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun <T> removeFavorites(stocks: List<T>): List<Long> {
-        TODO("Not yet implemented")
-    }
-
     override fun <T> search(keySearch: String): Flow<T> {
         TODO("Not yet implemented")
     }
 
     override fun <T> getAllStock(): Flow<T> {
         return getFromLocal<T>().flowOn(Dispatchers.IO)
+    }
+
+    override fun <T> getBookmarked(): Flow<T> {
+        return local.getBookmarkedStock().flowOn(Dispatchers.IO) as Flow<T>
+    }
+
+    override fun <T> getPurchased(): Flow<T> {
+        return local.getPurchasedStock().flowOn(Dispatchers.IO) as Flow<T>
     }
 
     private fun <T> getFromLocal(): Flow<T> {

@@ -25,6 +25,18 @@ class StockLocalDataSourceImpl(
         return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) { stockDao.getAll() }.flow
     }
 
+    override fun getBookmarkedStock(): Flow<PagingData<Stock>> {
+        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) {
+            stockDao.getAllBookmarked()
+        }.flow
+    }
+
+    override fun getPurchasedStock(): Flow<PagingData<Stock>> {
+        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) {
+            stockDao.getAllPurchased()
+        }.flow
+    }
+
     override suspend fun updateStock(stock: Stock): Flow<Long> {
         return flow {
             emit(stockDao.insertOrUpdate(stock))

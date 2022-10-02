@@ -1,6 +1,5 @@
 package com.chukimmuoi.stockvn.presentation.screen.details
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,13 +18,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.sp
 import com.chukimmuoi.data.model.DateStockInfo
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.stockvn.presentation.components.preview.DateStockInfoProvider
+import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 
 /**
  * @author: My Project
@@ -117,73 +116,7 @@ fun DetailsItem(
     }
 }
 
-class DateStockInfoProvider: CollectionPreviewParameterProvider<DateStockInfo>(
-    listOf(
-        DateStockInfo(
-            code = "DC2",
-            date = "2022-09-16",
-            time = "15:09:03",
-            floor = "HNX",
-            type = "STOCK",
-            basicPrice = 9.4,
-            ceilingPrice = 10.3,
-            floorPrice = 8.5,
-            open = 8.6,
-            high = 9.1,
-            low = 8.5,
-            close = 8.9,
-            average = 8.602,
-            adOpen = 8.6,
-            adHigh = 9.1,
-            adLow = 8.5,
-            adClose = 8.9,
-            adAverage = 8.602,
-            nmVolume = 4206.0,
-            nmValue = 36181600.0,
-            ptVolume = 0.0,
-            ptValue = 0.0,
-            change = -0.5,
-            adChange = -0.5,
-            pctChange = -5.3191
-        ),
-        DateStockInfo(
-            code = "DC2",
-            date = "2022-09-15",
-            time = "15:09:02",
-            floor = "HNX",
-            type = "STOCK",
-            basicPrice = 9.5,
-            ceilingPrice = 10.4,
-            floorPrice = 8.6,
-            open = 9.5,
-            high = 9.5,
-            low = 8.9,
-            close = 9.4,
-            average = 9.13,
-            adOpen = 9.5,
-            adHigh = 9.5,
-            adLow = 8.9,
-            adClose = 9.4,
-            adAverage = 9.13,
-            nmVolume = 2797.0,
-            nmValue = 25497800.0,
-            ptVolume = 0.0,
-            ptValue = 0.0,
-            change = -0.1,
-            adChange = -0.1,
-            pctChange = -1.0526
-        ),
-    )
-)
-
-@Preview(
-    name = "UI_MODE_NIGHT_NO",
-    uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-@Preview(
-    name = "UI_MODE_NIGHT_YES",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
-)
+@ThemesPreviews
 @Composable
 fun StockItemPreview(@PreviewParameter(DateStockInfoProvider::class) dateStockInfo: DateStockInfo) {
     StockVNTheme {

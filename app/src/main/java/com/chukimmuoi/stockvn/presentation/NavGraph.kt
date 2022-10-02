@@ -36,6 +36,7 @@ fun NavGraph(
         composable(Screen.Home.route) {
             HomeScreen(
                 openDrawer = openDrawer,
+                navController = navController,
                 modifier = modifier
             )
         }

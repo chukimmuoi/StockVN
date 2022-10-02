@@ -1,7 +1,6 @@
 package com.chukimmuoi.data.model
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey

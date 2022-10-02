@@ -1,6 +1,7 @@
-package com.chukimmuoi.stockvn.presentation.screen.stock
+package com.chukimmuoi.stockvn.presentation.screen.home
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,11 +25,11 @@ import kotlinx.coroutines.flow.flowOf
  * @Email: chukimmuoi@gmail.com
  * @Website: https://github.com/chukimmuoi
  * @Project: StockVN
- * Created by chukimmuoi on 04/09/2022.
+ * Created by chukimmuoi on 01/10/2022.
  */
 @Composable
-fun StockList(
-    stocks: LazyPagingItems<Stock>,
+fun PurchasedList(
+    stockPages: LazyPagingItems<Stock>,
     clickableGoTo: (Stock) -> Unit,
     clickableUpdate: (Stock) -> Unit,
     modifier: Modifier = Modifier
@@ -46,10 +47,10 @@ fun StockList(
         )
     ) {
         items(
-            items = stocks,
+            items = stockPages,
             key = { it.code }
         ) {
-            StockItem(
+            PurchasedItem(
                 stock = it,
                 clickableGoTo = clickableGoTo,
                 clickableUpdate = clickableUpdate
@@ -60,12 +61,12 @@ fun StockList(
 
 @Preview
 @Composable
-fun StockListPreview(
+fun PurchasedListPreview(
     @PreviewParameter(StockListProvider::class) stocks: List<Stock>
 ) {
     StockVNTheme {
-        StockList(
-            stocks = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
+        PurchasedList(
+            stockPages = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
             clickableGoTo = {},
             clickableUpdate = {}
         )

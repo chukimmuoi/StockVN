@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.chukimmuoi.stockvn.R
-import com.chukimmuoi.stockvn.presentation.components.preview.StateValue
+import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvider
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 
 /**
@@ -106,7 +106,7 @@ fun NavigationIcon(
 @Preview("Navigation (dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewNavigationIcon(
-    @PreviewParameter(StateValue::class) state: Boolean
+    @PreviewParameter(ValueBooleanProvider::class) state: Boolean
 ) {
     StockVNTheme {
         Surface {

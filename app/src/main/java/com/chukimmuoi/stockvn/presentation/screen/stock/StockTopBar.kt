@@ -1,6 +1,5 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -8,11 +7,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.BackButton
 import com.chukimmuoi.stockvn.presentation.components.SearchButton
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 
 /**
  * @author: My Project
@@ -55,14 +54,7 @@ fun StockTopBar(
     )
 }
 
-@Preview(
-    name = "UI_MODE_NIGHT_YES",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
-)
-@Preview(
-    name = "UI_MODE_NIGHT_NO",
-    uiMode = Configuration.UI_MODE_NIGHT_NO
-)
+@ThemesPreviews
 @Composable
 fun StockTopBarPreview() {
     StockVNTheme {

@@ -23,17 +23,13 @@ interface StockRepository {
 
     suspend fun <T> insert(stocks: List<T>): List<Long>
 
-    suspend fun <T> saveFavorite(stock: T): Long
-
-    suspend fun <T> saveFavorites(stocks: List<T>): List<Long>
-
-    suspend fun <T> removeFavorite(stock: T): Long
-
-    suspend fun <T> removeFavorites(stocks: List<T>): List<Long>
-
     fun <T> search(keySearch: String): Flow<T>
 
     fun <T> getAllStock(): Flow<T>
+
+    fun <T> getBookmarked(): Flow<T>
+
+    fun <T> getPurchased(): Flow<T>
 
     suspend fun clear(): Boolean
 }

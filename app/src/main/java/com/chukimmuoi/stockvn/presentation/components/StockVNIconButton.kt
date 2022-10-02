@@ -5,16 +5,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.chukimmuoi.stockvn.R
-import com.chukimmuoi.stockvn.presentation.components.preview.StateValue
+import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvider
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 
 /**
@@ -113,7 +112,7 @@ fun BookmarkButton(
 
 @Preview
 @Composable
-fun PreviewBookmarkButton(@PreviewParameter(StateValue::class) state: Boolean) {
+fun PreviewBookmarkButton(@PreviewParameter(ValueBooleanProvider::class) state: Boolean) {
     StockVNTheme {
         BookmarkButton(state, {})
     }
@@ -144,7 +143,8 @@ fun StarButton(
         ) {
             Icon(
                 imageVector = if (isStared) Icons.Filled.HotelClass else Icons.Filled.StarBorderPurple500,
-                contentDescription = stringResource(R.string.star_icon_content_description)
+                contentDescription = stringResource(R.string.star_icon_content_description),
+                tint = Color(0xFFFFD600)
             )
         }
     }
@@ -152,7 +152,7 @@ fun StarButton(
 
 @Preview
 @Composable
-fun PreviewStartButton(@PreviewParameter(StateValue::class) state: Boolean) {
+fun PreviewStartButton(@PreviewParameter(ValueBooleanProvider::class) state: Boolean) {
     StockVNTheme {
         StarButton(state, {})
     }
