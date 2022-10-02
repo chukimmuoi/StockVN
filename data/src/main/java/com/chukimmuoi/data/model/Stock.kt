@@ -21,10 +21,24 @@ data class Stock(
     @PrimaryKey
     @SerializedName("code")
     val code: String = "",
-    @SerializedName("exchange")
-    val exchange: String = "",
-    @SerializedName("nameCompany")
-    val nameCompany: String = "",
+    @SerializedName("type")
+    val type: String = "",
+    @SerializedName("floor")
+    val floor: String = "",
+    @SerializedName("status")
+    val status: String = "",
+    @SerializedName("companyName")
+    val companyName: String = "",
+    @SerializedName("companyNameEng")
+    val companyNameEng: String = "",
+    @SerializedName("shortName")
+    val shortName: String = "",
+    @SerializedName("listedDate")
+    val listedDate: String = "",
+    @SerializedName("delistedDate")
+    val delistedDate: String = "",
+    @SerializedName("companyId")
+    val companyId: String = "",
     @SerializedName("isBookmarked")
     var isBookmarked: Boolean = false,
     @SerializedName("isPurchased")

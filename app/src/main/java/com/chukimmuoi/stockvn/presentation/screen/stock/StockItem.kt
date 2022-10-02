@@ -80,7 +80,7 @@ fun StockItem(
                     .weight(0.6F)
             ) {
                 Text(
-                    text = stock.nameCompany,
+                    text = stock.companyName,
                     style = MaterialTheme.typography.h6,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
@@ -91,7 +91,7 @@ fun StockItem(
                     ),
                 )
                 Text(
-                    text = stock.exchange,
+                    text = stock.floor,
                     style = MaterialTheme.typography.caption,
                     modifier = modifier.padding(
                         top = dimensionResource(
