@@ -1,7 +1,7 @@
 package com.chukimmuoi.stockvn.presentation.components.preview
 
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 
 /**
  * @author: My Project
@@ -12,9 +12,9 @@ import com.chukimmuoi.data.model.DateStockInfo
  * @Project: StockVN
  * Created by chukimmuoi on 02/10/2022.
  */
-class DateStockInfoProvider: CollectionPreviewParameterProvider<DateStockInfo>(
+class StockPriceProvider: CollectionPreviewParameterProvider<StockPrice>(
     listOf(
-        DateStockInfo(
+        StockPrice(
             code = "DC2",
             date = "2022-09-16",
             time = "15:09:03",
@@ -41,7 +41,7 @@ class DateStockInfoProvider: CollectionPreviewParameterProvider<DateStockInfo>(
             adChange = -0.5,
             pctChange = -5.3191
         ),
-        DateStockInfo(
+        StockPrice(
             code = "DC2",
             date = "2022-09-15",
             time = "15:09:02",

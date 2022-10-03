@@ -1,6 +1,6 @@
 package com.chukimmuoi.stockvn.di
 
-import com.chukimmuoi.domain.repository.DateStockInfoRepository
+import com.chukimmuoi.domain.repository.StockPriceRepository
 import com.chukimmuoi.domain.repository.StockRepository
 import com.chukimmuoi.domain.usecase.*
 import dagger.Module
@@ -72,18 +72,18 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideUpdateStockDateUseCase(
-        dateStockInfoRepository: DateStockInfoRepository
-    ): UpdateStockDateUseCase {
-        return UpdateStockDateUseCase(dateStockInfoRepository)
+    fun provideUpdateStockPriceUseCase(
+        stockPriceRepository: StockPriceRepository
+    ): UpdateStockPriceUseCase {
+        return UpdateStockPriceUseCase(stockPriceRepository)
     }
 
     @Provides
     @Singleton
-    fun provideUpdateStockDateFlowPageUseCase(
-        dateStockInfoRepository: DateStockInfoRepository
-    ): UpdateStockDateWithPageUseCase {
-        return UpdateStockDateWithPageUseCase(dateStockInfoRepository)
+    fun provideUpdateStockPriceFlowPageUseCase(
+        stockPriceRepository: StockPriceRepository
+    ): UpdateStockPriceWithPageUseCase {
+        return UpdateStockPriceWithPageUseCase(stockPriceRepository)
     }
 
     @Provides
@@ -93,16 +93,16 @@ class UseCaseModule {
         getBookmarkedStocksUseCase: GetBookmarkedStocksUseCase,
         getPurchasedStocksUseCase: GetPurchasedStocksUseCase,
         updateStockUseCase: UpdateStockUseCase,
-        updateStockDateUseCase: UpdateStockDateUseCase,
-        updateStockDateWithPageUseCase: UpdateStockDateWithPageUseCase
+        updateStockPriceUseCase: UpdateStockPriceUseCase,
+        updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase
     ): StockUseCase {
         return StockUseCase(
             getStocksUseCase,
             getBookmarkedStocksUseCase,
             getPurchasedStocksUseCase,
             updateStockUseCase,
-            updateStockDateUseCase,
-            updateStockDateWithPageUseCase
+            updateStockPriceUseCase,
+            updateStockPriceWithPageUseCase
         )
     }
 }

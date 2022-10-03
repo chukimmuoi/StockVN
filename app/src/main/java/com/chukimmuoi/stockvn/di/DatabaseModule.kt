@@ -2,7 +2,7 @@ package com.chukimmuoi.stockvn.di
 
 import android.app.Application
 import androidx.room.Room
-import com.chukimmuoi.data.db.DateStockInfoDao
+import com.chukimmuoi.data.db.StockPriceDao
 import com.chukimmuoi.data.db.StockDao
 import com.chukimmuoi.data.db.StockDatabase
 import dagger.Module
@@ -56,7 +56,7 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDateStockInfoDao(database: StockDatabase): DateStockInfoDao {
-        return database.getDateStockInfoDao()
+    fun provideStockPriceDao(database: StockDatabase): StockPriceDao {
+        return database.getStockPriceDao()
     }
 }

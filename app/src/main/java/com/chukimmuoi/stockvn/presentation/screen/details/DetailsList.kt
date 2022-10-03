@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.stockvn.R
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
@@ -22,8 +22,8 @@ import androidx.paging.compose.items
  */
 @Composable
 fun DetailsList(
-    dateStockInfo: LazyPagingItems<DateStockInfo>,
-    clickable: (DateStockInfo) -> Unit,
+    stockPrice: LazyPagingItems<StockPrice>,
+    clickable: (StockPrice) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -39,11 +39,11 @@ fun DetailsList(
         )
     ) {
         items(
-            items = dateStockInfo,
+            items = stockPrice,
             key = { it.date }
         ) {
             DetailsItem(
-                dateStockInfo = it,
+                stockPrice = it,
                 clickable = clickable
             )
         }

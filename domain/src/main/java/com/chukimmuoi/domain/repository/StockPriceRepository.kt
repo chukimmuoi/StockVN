@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.Flow
  * @Project: StockVN
  * Created by chukimmuoi on 28/08/2022.
  */
-interface DateStockInfoRepository {
+interface StockPriceRepository {
 
-    suspend fun <T> insert(dateStockInfo: T): Long
+    suspend fun <T> insert(stockPrice: T): Long
 
-    suspend fun <T> inserts(dateStockInfo: List<T>): List<Long>
+    suspend fun <T> inserts(stockPrices: List<T>): List<Long>
 
     suspend fun <T> updateAllDataFromServer(code: String): Flow<T>
 

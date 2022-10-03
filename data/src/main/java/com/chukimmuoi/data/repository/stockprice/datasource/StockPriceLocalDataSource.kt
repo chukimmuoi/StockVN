@@ -1,7 +1,7 @@
-package com.chukimmuoi.data.repository.datestockinfo.datasource
+package com.chukimmuoi.data.repository.stockprice.datasource
 
 import androidx.paging.PagingData
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.data.paging.StockRemoteMediator
 import kotlinx.coroutines.flow.Flow
 
@@ -14,11 +14,11 @@ import kotlinx.coroutines.flow.Flow
  * @Project: StockVN
  * Created by chukimmuoi on 28/08/2022.
  */
-interface DateStockLocalDataSource {
+interface StockPriceLocalDataSource {
 
-    suspend fun save(dateStockInfo: DateStockInfo): Long
+    suspend fun save(stockPrice: StockPrice): Long
 
-    suspend fun save(dateStockInfo: List<DateStockInfo>): List<Long>
+    suspend fun save(stockPrice: List<StockPrice>): List<Long>
 
     suspend fun isExists(code: String): Boolean
 
@@ -29,5 +29,5 @@ interface DateStockLocalDataSource {
     fun getAllDataWithPage(
         code: String,
         stockRemoteMediator: StockRemoteMediator
-    ): Flow<PagingData<DateStockInfo>>
+    ): Flow<PagingData<StockPrice>>
 }

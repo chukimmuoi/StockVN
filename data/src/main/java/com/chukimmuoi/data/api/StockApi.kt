@@ -1,5 +1,7 @@
 package com.chukimmuoi.data.api
 
+import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.data.model.VNDirectResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -20,10 +22,15 @@ import retrofit2.http.Query
 interface StockApi {
 
     @GET("stock_prices")
-    suspend fun getDateStock(
+    suspend fun getStockPrices(
         @Query("sort") sort: String = "date",
         @Query("q") query: String = "code:MWG~date:gte:2000-01-01~date:lte:2022-09-10",
         @Query("size") size: Long = 50L,
         @Query("page") page: Long = 1L,
-    ): Response<VNDirectResponse>
+    ): Response<VNDirectResponse<StockPrice>>
+
+    @GET("change_prices")
+    suspend fun getChangePrice(
+        @Query("q") query: String = "code:VNINDEX,HNX,UPCOM,VN30,VN30F1M~period:1D",
+    ): Response<VNDirectResponse<ChangePrice>>
 }

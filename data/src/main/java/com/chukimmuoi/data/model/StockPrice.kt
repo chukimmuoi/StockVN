@@ -18,10 +18,10 @@ import java.text.NumberFormat
  * Created by chukimmuoi on 28/08/2022.
  */
 @Entity(
-    tableName = "date_stock_info",
+    tableName = "stock_price",
     primaryKeys = ["code", "date"]
 )
-data class DateStockInfo(
+data class StockPrice(
     @SerializedName("adAverage")
     val adAverage: Double = 0.0,
     @SerializedName("adChange")

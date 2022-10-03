@@ -3,10 +3,10 @@ package com.chukimmuoi.data.paging
 import androidx.paging.*
 import androidx.room.withTransaction
 import com.chukimmuoi.data.api.StockApi
-import com.chukimmuoi.data.db.DateStockInfoDao
+import com.chukimmuoi.data.db.StockPriceDao
 import com.chukimmuoi.data.db.StockDatabase
 import com.chukimmuoi.data.db.StockRemoteKeyDao
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.data.model.StockRemoteKeys
 import retrofit2.HttpException
 import java.io.IOException
@@ -28,9 +28,9 @@ class StockRemoteMediator(
     private val query: String,
     private val stockApi: StockApi,
     private val stockDatabase: StockDatabase
-) : RemoteMediator<Int, DateStockInfo>() {
+) : RemoteMediator<Int, StockPrice>() {
 
-    private val dateStockInfoDao: DateStockInfoDao by lazy { stockDatabase.getDateStockInfoDao() }
+    private val stockPriceDao: StockPriceDao by lazy { stockDatabase.getStockPriceDao() }
 
     private val stockRemoteKeyDao: StockRemoteKeyDao by lazy { stockDatabase.getStockRemoteKeyDao() }
 
@@ -39,7 +39,7 @@ class StockRemoteMediator(
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, DateStockInfo>): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, StockPrice>): MediatorResult {
 
         val page = when (loadType) {
             LoadType.REFRESH -> {
@@ -61,7 +61,7 @@ class StockRemoteMediator(
         }
 
         return try {
-            val response = stockApi.getDateStock(
+            val response = stockApi.getStockPrices(
                 query = query,
                 page = page.toLong(),
                 size = state.config.pageSize.toLong()
@@ -73,7 +73,7 @@ class StockRemoteMediator(
                 responseData?.let {
                     stockDatabase.withTransaction {
                         if (loadType == LoadType.REFRESH) {
-                            dateStockInfoDao.delete(code)
+                            stockPriceDao.delete(code)
                             stockRemoteKeyDao.clearRemoteKeys(code)
                         }
 
@@ -89,7 +89,7 @@ class StockRemoteMediator(
                             )
                         }
                         stockRemoteKeyDao.insertAll(keys)
-                        dateStockInfoDao.inserts(responseData.data)
+                        stockPriceDao.inserts(responseData.data)
                     }
                 }
             }
@@ -104,7 +104,7 @@ class StockRemoteMediator(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, DateStockInfo>
+        state: PagingState<Int, StockPrice>
     ): StockRemoteKeys? {
 
         return state.anchorPosition?.let { position ->
@@ -116,7 +116,7 @@ class StockRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, DateStockInfo>
+        state: PagingState<Int, StockPrice>
     ): StockRemoteKeys? {
 
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.getPrimaryKeys()
@@ -127,7 +127,7 @@ class StockRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForLastItem(
-        state: PagingState<Int, DateStockInfo>
+        state: PagingState<Int, StockPrice>
     ): StockRemoteKeys? {
 
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.getPrimaryKeys()

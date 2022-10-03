@@ -12,11 +12,11 @@ import com.google.gson.annotations.SerializedName
  * @Project: StockVN
  * Created by chukimmuoi on 28/08/2022.
  */
-data class VNDirectResponse(
+data class VNDirectResponse<T>(
     @SerializedName("currentPage")
     val currentPage: Int = 0,
     @SerializedName("data")
-    val `data`: List<DateStockInfo> = listOf(),
+    val `data`: List<T> = listOf(),
     @SerializedName("size")
     val size: Int = 0,
     @SerializedName("totalElements")

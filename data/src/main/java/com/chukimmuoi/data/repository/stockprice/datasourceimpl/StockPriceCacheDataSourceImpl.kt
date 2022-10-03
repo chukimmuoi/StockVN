@@ -1,4 +1,6 @@
-package com.chukimmuoi.data.repository.datestockinfo.datasource
+package com.chukimmuoi.data.repository.stockprice.datasourceimpl
+
+import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceCacheDataSource
 
 /**
  * @author: My Project
@@ -9,6 +11,5 @@ package com.chukimmuoi.data.repository.datestockinfo.datasource
  * @Project: StockVN
  * Created by chukimmuoi on 28/08/2022.
  */
-interface DateStockCacheDataSource {
-
+class StockPriceCacheDataSourceImpl: StockPriceCacheDataSource {
 }

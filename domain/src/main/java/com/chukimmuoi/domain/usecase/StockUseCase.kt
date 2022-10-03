@@ -14,6 +14,6 @@ data class StockUseCase(
     val getBookmarkedStocksUseCase: GetBookmarkedStocksUseCase,
     val getPurchasedStocksUseCase: GetPurchasedStocksUseCase,
     val updateStocksUseCase: UpdateStockUseCase,
-    val updateStockDateUseCase: UpdateStockDateUseCase,
-    val updateStockDateWithPageUseCase: UpdateStockDateWithPageUseCase
+    val updateStockPriceUseCase: UpdateStockPriceUseCase,
+    val updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase
 )

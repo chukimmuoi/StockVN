@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "20a16fa9616abf6b687de29d1b50e14a",
+    "identityHash": "87d35dea79ada52e33ed4f86be09ae5f",
     "entities": [
       {
         "tableName": "stock",
@@ -91,7 +91,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "date_stock_info",
+        "tableName": "stock_price",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`adAverage` REAL NOT NULL, `adChange` REAL NOT NULL, `adClose` REAL NOT NULL, `adHigh` REAL NOT NULL, `adLow` REAL NOT NULL, `adOpen` REAL NOT NULL, `average` REAL NOT NULL, `basicPrice` REAL NOT NULL, `ceilingPrice` REAL NOT NULL, `change` REAL NOT NULL, `close` REAL NOT NULL, `code` TEXT NOT NULL, `date` TEXT NOT NULL, `floor` TEXT NOT NULL, `floorPrice` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `nmValue` REAL NOT NULL, `nmVolume` REAL NOT NULL, `open` REAL NOT NULL, `pctChange` REAL NOT NULL, `ptValue` REAL NOT NULL, `ptVolume` REAL NOT NULL, `time` TEXT NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`code`, `date`))",
         "fields": [
           {
@@ -298,7 +298,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '20a16fa9616abf6b687de29d1b50e14a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '87d35dea79ada52e33ed4f86be09ae5f')"
     ]
   }
 }

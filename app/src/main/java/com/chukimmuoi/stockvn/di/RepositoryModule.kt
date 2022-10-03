@@ -1,14 +1,14 @@
 package com.chukimmuoi.stockvn.di
 
 import android.app.Application
-import com.chukimmuoi.data.repository.datestockinfo.DateStockInfoRepositoryImpl
-import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockCacheDataSource
-import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDataSource
-import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockRemoteDataSource
+import com.chukimmuoi.data.repository.stockprice.StockPriceRepositoryImpl
+import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceCacheDataSource
+import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceLocalDataSource
+import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceRemoteDataSource
 import com.chukimmuoi.data.repository.stock.StockRepositoryImpl
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
-import com.chukimmuoi.domain.repository.DateStockInfoRepository
+import com.chukimmuoi.domain.repository.StockPriceRepository
 import com.chukimmuoi.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
@@ -46,16 +46,16 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDateStockInfoRepository(
-        dateStockCacheDataSource: DateStockCacheDataSource,
-        dateStockLocalDataSource: DateStockLocalDataSource,
-        dateStockRemoteDataSource: DateStockRemoteDataSource
-    ): DateStockInfoRepository {
+    fun provideStockPriceRepository(
+        stockPriceCacheDataSource: StockPriceCacheDataSource,
+        stockPriceLocalDataSource: StockPriceLocalDataSource,
+        stockPriceRemoteDataSource: StockPriceRemoteDataSource
+    ): StockPriceRepository {
 
-        return DateStockInfoRepositoryImpl(
-            dateStockCacheDataSource,
-            dateStockLocalDataSource,
-            dateStockRemoteDataSource
+        return StockPriceRepositoryImpl(
+            stockPriceCacheDataSource,
+            stockPriceLocalDataSource,
+            stockPriceRemoteDataSource
         )
     }
 }

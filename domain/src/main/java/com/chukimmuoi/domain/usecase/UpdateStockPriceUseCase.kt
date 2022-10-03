@@ -1,6 +1,6 @@
 package com.chukimmuoi.domain.usecase
 
-import com.chukimmuoi.domain.repository.DateStockInfoRepository
+import com.chukimmuoi.domain.repository.StockPriceRepository
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
  * @Project: StockVN
  * Created by chukimmuoi on 10/09/2022.
  */
-class UpdateStockDateUseCase(private val dateStockInfoRepository: DateStockInfoRepository) {
+class UpdateStockPriceUseCase(private val stockPriceRepository: StockPriceRepository) {
 
-    suspend operator fun <T> invoke(code: String): Flow<T> = dateStockInfoRepository.updateAllDataFromServer(code)
+    suspend operator fun <T> invoke(code: String): Flow<T> = stockPriceRepository.updateAllDataFromServer(code)
 }

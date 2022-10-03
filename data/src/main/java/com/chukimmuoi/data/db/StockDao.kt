@@ -3,7 +3,7 @@ package com.chukimmuoi.data.db
 import androidx.paging.PagingSource
 import androidx.room.*
 import com.chukimmuoi.data.model.Stock
-import com.chukimmuoi.data.model.StockWithDateInfo
+import com.chukimmuoi.data.model.StockWithStockPrice
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -44,5 +44,5 @@ interface StockDao {
 
     @Transaction
     @Query("SELECT * FROM stock")
-    fun getStockWithDateInfo(): Flow<List<StockWithDateInfo>>
+    fun getStockWithStockPrice(): Flow<List<StockWithStockPrice>>
 }

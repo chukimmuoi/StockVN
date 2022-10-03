@@ -12,12 +12,12 @@ import androidx.room.Relation
  * @Project: StockVN
  * Created by chukimmuoi on 03/09/2022.
  */
-data class StockWithDateInfo(
+data class StockWithStockPrice(
     @Embedded
     val stock: Stock,
     @Relation(
         parentColumn = "code",
         entityColumn = "code"
     )
-    val dateStockInfo: List<DateStockInfo>
+    val stockPrice: List<StockPrice>
 )

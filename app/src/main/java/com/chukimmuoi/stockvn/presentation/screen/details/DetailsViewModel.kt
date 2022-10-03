@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.domain.usecase.StockUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,26 +29,26 @@ class DetailsViewModel
     private val stockUseCase: StockUseCase
 ): AndroidViewModel(app) {
 
-    lateinit var selectedDateStockInfoPage: Flow<PagingData<DateStockInfo>>
+    lateinit var selectedStockPricePage: Flow<PagingData<StockPrice>>
 
     var code: String by Delegates.observable("") { _, oldValue, newValue ->
         if (newValue != oldValue) {
-            selectedDateStockInfoPage = stockUseCase.updateStockDateWithPageUseCase(newValue)
+            selectedStockPricePage = stockUseCase.updateStockPriceWithPageUseCase(newValue)
         }
     }
 
-    private val _selectedDateStockInfo: MutableStateFlow<List<DateStockInfo>> = MutableStateFlow(listOf())
-    val selectedDateStockInfo: StateFlow<List<DateStockInfo>> = _selectedDateStockInfo
+    private val _selectedStockPrice: MutableStateFlow<List<StockPrice>> = MutableStateFlow(listOf())
+    val selectedStockPrice: StateFlow<List<StockPrice>> = _selectedStockPrice
 
     fun getStockData(code: String) {
         viewModelScope.launch {
-            stockUseCase.updateStockDateUseCase<List<DateStockInfo>>(code)
+            stockUseCase.updateStockPriceUseCase<List<StockPrice>>(code)
                 .flowOn(Dispatchers.IO)
                 .catch { e ->
                     e.printStackTrace()
                 }
                 .collect {
-                    _selectedDateStockInfo.value = it
+                    _selectedStockPrice.value = it
                 }
         }
     }

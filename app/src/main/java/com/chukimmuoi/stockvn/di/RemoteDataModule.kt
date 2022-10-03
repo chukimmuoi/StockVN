@@ -1,8 +1,8 @@
 package com.chukimmuoi.stockvn.di
 
 import com.chukimmuoi.data.api.StockApi
-import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockRemoteDataSource
-import com.chukimmuoi.data.repository.datestockinfo.datasourceimpl.DateStockRemoteDataSourceImpl
+import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceRemoteDataSource
+import com.chukimmuoi.data.repository.stockprice.datasourceimpl.StockPriceRemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +26,7 @@ class RemoteDataModule {
     @Singleton
     fun provideStockRemoteDataSource(
         stockApi: StockApi
-    ): DateStockRemoteDataSource {
-        return DateStockRemoteDataSourceImpl(stockApi)
+    ): StockPriceRemoteDataSource {
+        return StockPriceRemoteDataSourceImpl(stockApi)
     }
 }

@@ -2,7 +2,7 @@ package com.chukimmuoi.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.data.model.StockRemoteKeys
 
@@ -18,7 +18,7 @@ import com.chukimmuoi.data.model.StockRemoteKeys
 @Database(
     entities = [
         Stock::class,
-        DateStockInfo::class,
+        StockPrice::class,
         StockRemoteKeys::class
     ],
     version = 1,
@@ -27,7 +27,7 @@ import com.chukimmuoi.data.model.StockRemoteKeys
 abstract class StockDatabase: RoomDatabase() {
 
     abstract fun getStockDao(): StockDao
-    abstract fun getDateStockInfoDao(): DateStockInfoDao
+    abstract fun getStockPriceDao(): StockPriceDao
 
     abstract fun getStockRemoteKeyDao(): StockRemoteKeyDao
 }

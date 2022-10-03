@@ -1,6 +1,7 @@
-package com.chukimmuoi.data.repository.datestockinfo.datasource
+package com.chukimmuoi.data.repository.stockprice.datasource
 
 import com.chukimmuoi.data.db.StockDatabase
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.data.model.VNDirectResponse
 import com.chukimmuoi.data.paging.StockRemoteMediator
 import retrofit2.Response
@@ -14,18 +15,18 @@ import retrofit2.Response
  * @Project: StockVN
  * Created by chukimmuoi on 28/08/2022.
  */
-interface DateStockRemoteDataSource {
+interface StockPriceRemoteDataSource {
 
-    suspend fun getDateStock(
+    suspend fun getStockPrices(
         code: String,
         fromDate: String,
         toDate: String,
         size: Long
-    ): Response<VNDirectResponse>
+    ): Response<VNDirectResponse<StockPrice>>
 
-    suspend fun getAllDateStock(code: String): Response<VNDirectResponse>
+    suspend fun getAllStockPrices(code: String): Response<VNDirectResponse<StockPrice>>
 
-    fun getAllDateStockFollowPage(
+    fun getAllStockPricesFollowPage(
         code: String,
         stockDatabase: StockDatabase
     ): StockRemoteMediator

@@ -2,8 +2,8 @@ package com.chukimmuoi.stockvn.di
 
 import com.chukimmuoi.data.db.StockDao
 import com.chukimmuoi.data.db.StockDatabase
-import com.chukimmuoi.data.repository.datestockinfo.datasource.DateStockLocalDataSource
-import com.chukimmuoi.data.repository.datestockinfo.datasourceimpl.DateStockLocalDataSourceImpl
+import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceLocalDataSource
+import com.chukimmuoi.data.repository.stockprice.datasourceimpl.StockPriceLocalDataSourceImpl
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
 import com.chukimmuoi.data.repository.stock.datasourceimpl.StockLocalDataSourceImpl
 import dagger.Module
@@ -35,9 +35,9 @@ class LocalDataModule {
 
     @Provides
     @Singleton
-    fun provideDateStockLocalDataSource(
+    fun provideStockPriceLocalDataSource(
         stockDatabase: StockDatabase
-    ): DateStockLocalDataSource {
-        return DateStockLocalDataSourceImpl(stockDatabase)
+    ): StockPriceLocalDataSource {
+        return StockPriceLocalDataSourceImpl(stockDatabase)
     }
 }

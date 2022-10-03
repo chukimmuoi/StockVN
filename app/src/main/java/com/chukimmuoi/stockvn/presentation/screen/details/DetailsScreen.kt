@@ -31,7 +31,7 @@ fun DetailsScreen(
 ) {
 
     viewModel.code = stock
-    val dateStockInfo = viewModel.selectedDateStockInfoPage.collectAsLazyPagingItems()
+    val stockPrice = viewModel.selectedStockPricePage.collectAsLazyPagingItems()
 
     Scaffold(
         backgroundColor = MaterialTheme.colors.appThemeColor,
@@ -47,7 +47,7 @@ fun DetailsScreen(
         },
         content = {
             DetailsList(
-                dateStockInfo = dateStockInfo,
+                stockPrice = stockPrice,
                 clickable = {
 
                 }

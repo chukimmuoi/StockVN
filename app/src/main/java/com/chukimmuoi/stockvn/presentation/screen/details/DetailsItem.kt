@@ -20,10 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
-import com.chukimmuoi.data.model.DateStockInfo
+import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
-import com.chukimmuoi.stockvn.presentation.components.preview.DateStockInfoProvider
+import com.chukimmuoi.stockvn.presentation.components.preview.StockPriceProvider
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 
 /**
@@ -37,13 +37,13 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
  */
 @Composable
 fun DetailsItem(
-    dateStockInfo: DateStockInfo?,
-    clickable: (DateStockInfo) -> Unit,
+    stockPrice: StockPrice?,
+    clickable: (StockPrice) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (dateStockInfo == null) return
+    if (stockPrice == null) return
 
-    val stateIcon = dateStockInfo.handlerSateIcon(
+    val stateIcon = stockPrice.handlerSateIcon(
         upAction = {
             Icons.Filled.ArrowDropUp
         },
@@ -55,10 +55,10 @@ fun DetailsItem(
         }
     )
 
-    val stateColor = dateStockInfo.handlerSateColor()
+    val stateColor = stockPrice.handlerSateColor()
 
     Card(
-        modifier = modifier.clickable { clickable(dateStockInfo) },
+        modifier = modifier.clickable { clickable(stockPrice) },
         elevation = dimensionResource(
             id = R.dimen.elevation_of_card_item
         ),
@@ -75,7 +75,7 @@ fun DetailsItem(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = dateStockInfo.close.toString(),
+                text = stockPrice.close.toString(),
                 style = TextStyle(
                     color = stateColor,
                     fontSize = 22.sp,
@@ -92,21 +92,21 @@ fun DetailsItem(
                     colorFilter = ColorFilter.tint(stateColor),
                     contentDescription = "State Icon")
                 Text(
-                    text = dateStockInfo.getPriceVolatility(),
+                    text = stockPrice.getPriceVolatility(),
                     style = TextStyle(
                         color = stateColor
                     ),
                 )
             }
             Text(
-                text = dateStockInfo.date,
+                text = stockPrice.date,
                 style = TextStyle(
                     textAlign = TextAlign.Right
                 ),
                 modifier = modifier.weight(0.25F)
             )
             Text(
-                text = dateStockInfo.getVolume(),
+                text = stockPrice.getVolume(),
                 style = TextStyle(
                     textAlign = TextAlign.Right
                 ),
@@ -118,10 +118,10 @@ fun DetailsItem(
 
 @ThemesPreviews
 @Composable
-fun StockItemPreview(@PreviewParameter(DateStockInfoProvider::class) dateStockInfo: DateStockInfo) {
+fun StockItemPreview(@PreviewParameter(StockPriceProvider::class) stockPrice: StockPrice) {
     StockVNTheme {
         DetailsItem(
-            dateStockInfo = dateStockInfo,
+            stockPrice = stockPrice,
             clickable = {}
         )
     }
