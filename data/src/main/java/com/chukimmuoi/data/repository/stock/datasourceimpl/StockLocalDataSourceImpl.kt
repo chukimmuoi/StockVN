@@ -21,8 +21,8 @@ class StockLocalDataSourceImpl(
     private val stockDao: StockDao
 ): StockLocalDataSource {
 
-    override fun getStock(): Flow<PagingData<Stock>> {
-        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) { stockDao.getAll() }.flow
+    override fun getStock(floor: String): Flow<PagingData<Stock>> {
+        return Pager(PagingConfig(pageSize = Constant.PAGE_SIZE)) { stockDao.getAllOrFloor(floor) }.flow
     }
 
     override fun getBookmarkedStock(): Flow<PagingData<Stock>> {

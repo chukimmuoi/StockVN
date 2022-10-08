@@ -51,14 +51,18 @@ fun HomeScreen(
                 ChangePriceList(
                     changePrices = changePrices,
                     clickableGoTo = {
-                        navController.navigate(route = Screen.Stock.route)
+                        navController.navigate(
+                            route = Screen.Stock.passFloorCode(it.getCodeCustom())
+                        )
                     },
                     modifier = modifier
                 )
                 BookmarkedList(
                     stockPages = bookmarkedStocks,
                     clickableGoTo = {
-                        navController.navigate(route = Screen.StockPrices.passStockCode(it.code))
+                        navController.navigate(
+                            route = Screen.StockPrices.passStockCode(it.code)
+                        )
                     },
                     clickableUpdate = {
                         viewModel.updateStock(it)
@@ -67,7 +71,9 @@ fun HomeScreen(
                 PurchasedList(
                     stockPages = purchasedStocks,
                     clickableGoTo = {
-                        navController.navigate(route = Screen.StockPrices.passStockCode(it.code))
+                        navController.navigate(
+                            route = Screen.StockPrices.passStockCode(it.code)
+                        )
                     },
                     clickableUpdate = {
                         viewModel.updateStock(it)

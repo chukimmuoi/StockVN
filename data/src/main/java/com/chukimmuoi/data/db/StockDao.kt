@@ -24,8 +24,8 @@ interface StockDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserts(stock: List<Stock>): List<Long>
 
-    @Query("SELECT * FROM stock ORDER BY code ASC")
-    fun getAll(): PagingSource<Int, Stock>
+    @Query("SELECT * FROM stock WHERE floor = :floor OR indexCode = :floor ORDER BY code ASC")
+    fun getAllOrFloor(floor: String): PagingSource<Int, Stock>
 
     @Query("SELECT * FROM stock WHERE isBookmarked AND NOT isPurchased ORDER BY code ASC")
     fun getAllBookmarked(): PagingSource<Int, Stock>

@@ -26,13 +26,14 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 fun StockTopBar(
     actionBack: () -> Unit,
     actionSearch: (String) -> Unit,
+    title: String,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
         backgroundColor = MaterialTheme.colors.primaryVariant,
         title = {
             Text(
-                text = stringResource(R.string.stock_screen_title),
+                text = title.ifEmpty { stringResource(R.string.stock_screen_title) },
                 fontWeight = FontWeight.Bold,
                 modifier = modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.h5
@@ -64,7 +65,8 @@ fun StockTopBarPreview() {
             },
             actionSearch = {
 
-            }
+            },
+            title = ""
         )
     }
 }

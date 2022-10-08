@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 /**
  * @author: My Project
@@ -29,8 +30,13 @@ class StockViewModel
     private val mainUseCase: MainUseCase
 ): AndroidViewModel(app) {
 
-    val allStock:Flow<PagingData<Stock>> =
-        mainUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+    lateinit var allStock:Flow<PagingData<Stock>>
+
+    var floor: String by Delegates.observable("") { _, oldValue, newValue ->
+        if (newValue != oldValue || newValue.isEmpty()) {
+            allStock = mainUseCase.getStocksUseCase<PagingData<Stock>>(floor = newValue).cachedIn(viewModelScope)
+        }
+    }
 
     fun updateStock(stock: Stock) {
         viewModelScope.launch {

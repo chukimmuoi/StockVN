@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface StockLocalDataSource {
 
-    fun getStock(): Flow<PagingData<Stock>>
+    fun getStock(floor: String): Flow<PagingData<Stock>>
 
     fun getBookmarkedStock(): Flow<PagingData<Stock>>
 

@@ -31,7 +31,9 @@ class StockVNNavigationActions(navController: NavHostController) {
     }
 
     val navigateToStock: () -> Unit = {
-        navController.navigate(Screen.Stock.route) {
+        navController.navigate(
+            route = Screen.Stock.passFloorCode()
+        ) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

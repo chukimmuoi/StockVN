@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0eb7b22227a9dbd490124a419bbd243a",
+    "identityHash": "ec3c977e1a4af7d2126bdf297f629ef7",
     "entities": [
       {
         "tableName": "stock",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `type` TEXT NOT NULL, `floor` TEXT NOT NULL, `status` TEXT NOT NULL, `companyName` TEXT NOT NULL, `companyNameEng` TEXT NOT NULL, `shortName` TEXT NOT NULL, `listedDate` TEXT NOT NULL, `delistedDate` TEXT NOT NULL, `companyId` TEXT NOT NULL, `isBookmarked` INTEGER NOT NULL, `isPurchased` INTEGER NOT NULL, PRIMARY KEY(`code`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `type` TEXT NOT NULL, `floor` TEXT NOT NULL, `status` TEXT NOT NULL, `companyName` TEXT NOT NULL, `companyNameEng` TEXT NOT NULL, `shortName` TEXT NOT NULL, `listedDate` TEXT NOT NULL, `delistedDate` TEXT NOT NULL, `companyId` TEXT NOT NULL, `isBookmarked` INTEGER NOT NULL, `isPurchased` INTEGER NOT NULL, `indexCode` TEXT NOT NULL, `isin` TEXT NOT NULL, PRIMARY KEY(`code`))",
         "fields": [
           {
             "fieldPath": "code",
@@ -78,6 +78,18 @@
             "fieldPath": "isPurchased",
             "columnName": "isPurchased",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "indexCode",
+            "columnName": "indexCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isin",
+            "columnName": "isin",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -296,8 +308,14 @@
       },
       {
         "tableName": "change_price",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bopPrice` REAL NOT NULL, `change` REAL NOT NULL, `changePct` REAL NOT NULL, `code` TEXT NOT NULL, `lastUpdated` TEXT NOT NULL, `name` TEXT NOT NULL, `period` TEXT NOT NULL, `price` REAL NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `bopPrice` REAL NOT NULL, `change` REAL NOT NULL, `changePct` REAL NOT NULL, `lastUpdated` TEXT NOT NULL, `name` TEXT NOT NULL, `period` TEXT NOT NULL, `price` REAL NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`code`))",
         "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
           {
             "fieldPath": "bopPrice",
             "columnName": "bopPrice",
@@ -314,12 +332,6 @@
             "fieldPath": "changePct",
             "columnName": "changePct",
             "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "code",
-            "columnName": "code",
-            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -366,7 +378,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0eb7b22227a9dbd490124a419bbd243a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ec3c977e1a4af7d2126bdf297f629ef7')"
     ]
   }
 }

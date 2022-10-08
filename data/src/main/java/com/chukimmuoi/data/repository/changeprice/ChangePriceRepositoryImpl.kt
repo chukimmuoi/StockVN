@@ -23,16 +23,6 @@ class ChangePriceRepositoryImpl(
     private val remote: ChangePriceRemoteDataSource
 ): ChangePriceRepository {
 
-    companion object {
-        const val VNINDEX_VALUE = "VNINDEX"
-        const val HNX_VALUE = "HNX"
-        const val UPCOM_VALUE = "UPCOM"
-        const val VN30_VALUE = "VN30"
-        const val VN30F1M_VALUE = "VN30F1M"
-
-        const val TIME_VALUE = "1D"
-    }
-
     override suspend fun <T> getChangePrice(): Flow<T> {
         return getChangePriceOnline()
             .flatMapConcat {
@@ -49,8 +39,13 @@ class ChangePriceRepositoryImpl(
         return flow {
             emit(
                 remote.getChangePrices(
-                    VNINDEX_VALUE, HNX_VALUE, UPCOM_VALUE, VN30_VALUE, VN30F1M_VALUE,
-                    time = TIME_VALUE
+                    ChangePrice.VNINDEX_VALUE,
+                    ChangePrice.HNX_VALUE,
+                    ChangePrice.UPCOM_VALUE,
+                    ChangePrice.VN30_VALUE,
+                    ChangePrice.VN30F1M_VALUE,
+                    ChangePrice.HNX30_VALUE,
+                    time = ChangePrice.TIME_VALUE
                 )
             )
         }.map {

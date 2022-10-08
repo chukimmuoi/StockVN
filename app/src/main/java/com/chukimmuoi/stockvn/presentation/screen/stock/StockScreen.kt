@@ -24,8 +24,10 @@ import com.chukimmuoi.stockvn.ui.theme.appThemeColor
 fun StockScreen(
     viewModel: StockViewModel = hiltViewModel(),
     navController: NavHostController,
+    floor: String = Screen.ALL_FLOOR_STOCK,
     modifier: Modifier = Modifier
 ) {
+    viewModel.floor = floor
     val stocks = viewModel.allStock.collectAsLazyPagingItems()
 
     Scaffold(
@@ -39,6 +41,7 @@ fun StockScreen(
                 actionSearch = {
 
                 },
+                title = floor,
                 modifier = modifier
             )
         },

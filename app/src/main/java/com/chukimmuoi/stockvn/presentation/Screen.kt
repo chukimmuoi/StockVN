@@ -12,14 +12,18 @@ package com.chukimmuoi.stockvn.presentation
 sealed class Screen(val route: String) {
 
     companion object {
+        const val ALL_FLOOR_STOCK = ""
         const val CODE = "code"
+        const val FLOOR = "floor"
     }
 
-    object Home : Screen("home_screen")
+    object Home: Screen("home_screen")
 
-    object Stock : Screen("stock_screen")
+    object Stock: Screen("stock_screen?$FLOOR={floor}") {
+        fun passFloorCode(floor: String = ALL_FLOOR_STOCK) = "stock_screen?$FLOOR=$floor"
+    }
 
-    object StockPrices : Screen("stock_price_screen/{$CODE}") {
+    object StockPrices: Screen("stock_price_screen/{$CODE}") {
         fun passStockCode(code: String) = "stock_price_screen/$code"
     }
 }

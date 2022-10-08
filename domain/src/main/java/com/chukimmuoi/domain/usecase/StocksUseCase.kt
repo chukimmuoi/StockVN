@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
  */
 class GetStocksUseCase(private val stockRepository: StockRepository) {
 
-    operator fun <T> invoke(): Flow<T> = stockRepository.getAllStock()
+    operator fun <T> invoke(floor: String): Flow<T> = stockRepository.getAllStock(floor)
 }
 
 class GetBookmarkedStocksUseCase(private val stockRepository: StockRepository) {

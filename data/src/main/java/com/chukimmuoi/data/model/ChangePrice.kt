@@ -29,6 +29,18 @@ data class ChangePrice(
     @SerializedName("type")
     val type: String = ""
 ) {
+    companion object {
+        const val VNINDEX_VALUE = "VNINDEX"
+        const val HOSE_VALUE = "HOSE"
+        const val HNX_VALUE = "HNX"
+        const val UPCOM_VALUE = "UPCOM"
+        const val VN30_VALUE = "VN30"
+        const val VN30F1M_VALUE = "VN30F1M"
+        const val HNX30_VALUE = "HNX30"
+
+        const val TIME_VALUE = "1D"
+    }
+
     fun priceDisplay(): String {
         return String.format("%.1f", price)
     }
@@ -67,5 +79,14 @@ data class ChangePrice(
         }
 
         return color
+    }
+
+    fun getCodeCustom(): String {
+
+        return when(code) {
+            VNINDEX_VALUE -> HOSE_VALUE
+            VN30F1M_VALUE -> VN30_VALUE
+            else -> code
+        }
     }
 }

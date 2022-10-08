@@ -42,7 +42,11 @@ data class Stock(
     @SerializedName("isBookmarked")
     var isBookmarked: Boolean = false,
     @SerializedName("isPurchased")
-    var isPurchased: Boolean = false
+    var isPurchased: Boolean = false,
+    @SerializedName("indexCode")
+    val indexCode: String = "",
+    @SerializedName("isin")
+    val isin: String = ""
 ) {
     @Ignore
     val stockIsPurchased = mutableStateOf(isPurchased)

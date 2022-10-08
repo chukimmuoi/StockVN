@@ -64,8 +64,8 @@ class StockRepositoryImpl(
         TODO("Not yet implemented")
     }
 
-    override fun <T> getAllStock(): Flow<T> {
-        return getFromLocal<T>().flowOn(Dispatchers.IO)
+    override fun <T> getAllStock(floor: String): Flow<T> {
+        return getFromLocal<T>(floor).flowOn(Dispatchers.IO)
     }
 
     override fun <T> getBookmarked(): Flow<T> {
@@ -76,16 +76,16 @@ class StockRepositoryImpl(
         return local.getPurchasedStock().flowOn(Dispatchers.IO) as Flow<T>
     }
 
-    private fun <T> getFromLocal(): Flow<T> {
+    private fun <T> getFromLocal(floor: String): Flow<T> {
         return local.isExists().flatMapConcat { isExists ->
             if (isExists) {
-                val stocks = local.getStock()
+                val stocks = local.getStock(floor)
                 return@flatMapConcat stocks as Flow<T>
             } else {
                 val stocksImportFileName = "StockCode.json"
 
                 if (importFromJson(stocksImportFileName)) {
-                    return@flatMapConcat getFromLocal()
+                    return@flatMapConcat getFromLocal(floor)
                 } else {
                     return@flatMapConcat flowOf()
                 }

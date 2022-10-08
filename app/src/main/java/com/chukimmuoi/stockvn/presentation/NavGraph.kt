@@ -41,11 +41,22 @@ fun NavGraph(
             )
         }
 
-        composable(Screen.Stock.route) {
-            StockScreen(
-                navController = navController,
-                modifier = modifier
+        composable(
+            Screen.Stock.route,
+            arguments = listOf(
+                navArgument(Screen.FLOOR) {
+                    type = NavType.StringType
+                    defaultValue = Screen.ALL_FLOOR_STOCK
+                }
             )
+        ) {
+            it.arguments?.getString(Screen.FLOOR)?.let {
+                StockScreen(
+                    navController = navController,
+                    floor = it,
+                    modifier = modifier
+                )
+            }
         }
 
         composable(

@@ -25,7 +25,7 @@ interface StockRepository {
 
     fun <T> search(keySearch: String): Flow<T>
 
-    fun <T> getAllStock(): Flow<T>
+    fun <T> getAllStock(floor: String): Flow<T>
 
     fun <T> getBookmarked(): Flow<T>
 
