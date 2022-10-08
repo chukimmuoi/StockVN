@@ -26,3 +26,8 @@ class GetPurchasedStocksUseCase(private val stockRepository: StockRepository) {
 
     operator fun <T> invoke(): Flow<T> = stockRepository.getPurchased()
 }
+
+class UpdateStockUseCase(private val stockRepository: StockRepository) {
+
+    suspend operator fun <T> invoke(stock: T): Flow<Long> = stockRepository.update(stock)
+}

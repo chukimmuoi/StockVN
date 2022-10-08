@@ -1,11 +1,11 @@
-package com.chukimmuoi.stockvn.presentation.screen.details
+package com.chukimmuoi.stockvn.presentation.screen.stockprice
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.chukimmuoi.data.model.StockPrice
-import com.chukimmuoi.domain.usecase.StockUseCase
+import com.chukimmuoi.domain.usecase.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -23,26 +23,26 @@ import kotlin.properties.Delegates
  * Created by chukimmuoi on 17/09/2022.
  */
 @HiltViewModel
-class DetailsViewModel
+class StockPriceViewModel
 @Inject constructor(
     private val app: Application,
-    private val stockUseCase: StockUseCase
+    private val mainUseCase: MainUseCase
 ): AndroidViewModel(app) {
 
     lateinit var selectedStockPricePage: Flow<PagingData<StockPrice>>
 
     var code: String by Delegates.observable("") { _, oldValue, newValue ->
         if (newValue != oldValue) {
-            selectedStockPricePage = stockUseCase.updateStockPriceWithPageUseCase(newValue)
+            selectedStockPricePage = mainUseCase.updateStockPriceWithPageUseCase(newValue)
         }
     }
 
     private val _selectedStockPrice: MutableStateFlow<List<StockPrice>> = MutableStateFlow(listOf())
     val selectedStockPrice: StateFlow<List<StockPrice>> = _selectedStockPrice
 
-    fun getStockData(code: String) {
+    fun getStockPriceData(code: String) {
         viewModelScope.launch {
-            stockUseCase.updateStockPriceUseCase<List<StockPrice>>(code)
+            mainUseCase.updateStockPriceUseCase<List<StockPrice>>(code)
                 .flowOn(Dispatchers.IO)
                 .catch { e ->
                     e.printStackTrace()

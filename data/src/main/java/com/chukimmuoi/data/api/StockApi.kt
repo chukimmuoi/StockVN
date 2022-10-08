@@ -30,7 +30,7 @@ interface StockApi {
     ): Response<VNDirectResponse<StockPrice>>
 
     @GET("change_prices")
-    suspend fun getChangePrice(
+    suspend fun getChangePrices(
         @Query("q") query: String = "code:VNINDEX,HNX,UPCOM,VN30,VN30F1M~period:1D",
     ): Response<VNDirectResponse<ChangePrice>>
 }

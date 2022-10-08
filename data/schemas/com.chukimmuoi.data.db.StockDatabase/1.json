@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "87d35dea79ada52e33ed4f86be09ae5f",
+    "identityHash": "0eb7b22227a9dbd490124a419bbd243a",
     "entities": [
       {
         "tableName": "stock",
@@ -293,12 +293,80 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "change_price",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bopPrice` REAL NOT NULL, `change` REAL NOT NULL, `changePct` REAL NOT NULL, `code` TEXT NOT NULL, `lastUpdated` TEXT NOT NULL, `name` TEXT NOT NULL, `period` TEXT NOT NULL, `price` REAL NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "fields": [
+          {
+            "fieldPath": "bopPrice",
+            "columnName": "bopPrice",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "change",
+            "columnName": "change",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changePct",
+            "columnName": "changePct",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "lastUpdated",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "period",
+            "columnName": "period",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '87d35dea79ada52e33ed4f86be09ae5f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0eb7b22227a9dbd490124a419bbd243a')"
     ]
   }
 }

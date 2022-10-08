@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -31,6 +33,8 @@ fun HomeScreen(
     val bookmarkedStocks = viewModel.bookmarkedStocks.collectAsLazyPagingItems()
     val purchasedStocks = viewModel.purchasedStocks.collectAsLazyPagingItems()
 
+    val changePrices by viewModel.changePrice.collectAsState()
+
     Scaffold(
         backgroundColor = MaterialTheme.colors.appThemeColor,
         contentColor = MaterialTheme.colors.appContentColor,
@@ -44,10 +48,17 @@ fun HomeScreen(
         },
         content = {
             Column {
+                ChangePriceList(
+                    changePrices = changePrices,
+                    clickableGoTo = {
+                        navController.navigate(route = Screen.Stock.route)
+                    },
+                    modifier = modifier
+                )
                 BookmarkedList(
                     stockPages = bookmarkedStocks,
                     clickableGoTo = {
-                        navController.navigate(route = Screen.StockDetails.passStockCode(it.code))
+                        navController.navigate(route = Screen.StockPrices.passStockCode(it.code))
                     },
                     clickableUpdate = {
                         viewModel.updateStock(it)
@@ -56,7 +67,7 @@ fun HomeScreen(
                 PurchasedList(
                     stockPages = purchasedStocks,
                     clickableGoTo = {
-                        navController.navigate(route = Screen.StockDetails.passStockCode(it.code))
+                        navController.navigate(route = Screen.StockPrices.passStockCode(it.code))
                     },
                     clickableUpdate = {
                         viewModel.updateStock(it)

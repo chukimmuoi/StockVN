@@ -2,6 +2,8 @@ package com.chukimmuoi.stockvn.di
 
 import com.chukimmuoi.data.db.StockDao
 import com.chukimmuoi.data.db.StockDatabase
+import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceLocalDataSource
+import com.chukimmuoi.data.repository.changeprice.datasourceimpl.ChangePriceLocalDataSourceImpl
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceLocalDataSource
 import com.chukimmuoi.data.repository.stockprice.datasourceimpl.StockPriceLocalDataSourceImpl
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
@@ -39,5 +41,13 @@ class LocalDataModule {
         stockDatabase: StockDatabase
     ): StockPriceLocalDataSource {
         return StockPriceLocalDataSourceImpl(stockDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideChangePriceLocalDataSource(
+        stockDatabase: StockDatabase
+    ): ChangePriceLocalDataSource {
+        return ChangePriceLocalDataSourceImpl(stockDatabase)
     }
 }

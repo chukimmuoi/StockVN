@@ -1,17 +1,23 @@
 package com.chukimmuoi.data.model
 
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "change_price")
 data class ChangePrice(
+    @PrimaryKey
+    @SerializedName("code")
+    val code: String = "",
     @SerializedName("bopPrice")
     val bopPrice: Double = 0.0,
     @SerializedName("change")
     val change: Double = 0.0,
     @SerializedName("changePct")
     val changePct: Double = 0.0,
-    @SerializedName("code")
-    val code: String = "",
     @SerializedName("lastUpdated")
     val lastUpdated: String = "",
     @SerializedName("name")
@@ -22,4 +28,44 @@ data class ChangePrice(
     val price: Double = 0.0,
     @SerializedName("type")
     val type: String = ""
-)
+) {
+    fun priceDisplay(): String {
+        return String.format("%.1f", price)
+    }
+
+    fun changeDisplay(): String {
+        return String.format("%.2f", change)
+    }
+
+    fun changePercentDisplay(): String {
+        return "${String.format("%.1f", changePct)}%"
+    }
+
+    fun handlerSateIcon(
+        upAction: () -> ImageVector,
+        downAction: () -> ImageVector,
+        unchanged: () -> ImageVector
+    ): ImageVector {
+        val value = price - bopPrice
+
+        return if (value > 0) {
+            upAction()
+        } else if (value < 0){
+            downAction()
+        } else {
+            unchanged()
+        }
+    }
+
+    fun handlerSateColor(): Color {
+        val value = price - bopPrice
+
+        val color = when {
+            value < 0 -> Color.Red
+            value > 0 -> Color.Green
+            else -> Color.Gray
+        }
+
+        return color
+    }
+}

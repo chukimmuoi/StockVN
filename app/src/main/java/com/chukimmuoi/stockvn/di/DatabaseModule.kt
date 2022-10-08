@@ -2,6 +2,7 @@ package com.chukimmuoi.stockvn.di
 
 import android.app.Application
 import androidx.room.Room
+import com.chukimmuoi.data.db.ChangePriceDao
 import com.chukimmuoi.data.db.StockPriceDao
 import com.chukimmuoi.data.db.StockDao
 import com.chukimmuoi.data.db.StockDatabase
@@ -58,5 +59,11 @@ class DatabaseModule {
     @Singleton
     fun provideStockPriceDao(database: StockDatabase): StockPriceDao {
         return database.getStockPriceDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideChangePriceDao(database: StockDatabase): ChangePriceDao {
+        return database.getChangePriceDao()
     }
 }

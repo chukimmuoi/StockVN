@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.chukimmuoi.stockvn.presentation.screen.details.DetailsScreen
+import com.chukimmuoi.stockvn.presentation.screen.stockprice.StockPriceScreen
 import com.chukimmuoi.stockvn.presentation.screen.home.HomeScreen
 import com.chukimmuoi.stockvn.presentation.screen.stock.StockScreen
 
@@ -49,11 +49,11 @@ fun NavGraph(
         }
 
         composable(
-            Screen.StockDetails.route,
+            Screen.StockPrices.route,
             arguments = listOf(navArgument(Screen.CODE) { type = NavType.StringType })
         ) {
             it.arguments?.getString(Screen.CODE)?.let {
-                DetailsScreen(
+                StockPriceScreen(
                     stock = it,
                     navController = navController,
                     modifier = modifier

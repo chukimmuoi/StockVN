@@ -1,5 +1,7 @@
 package com.chukimmuoi.stockvn.di
 
+import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceCacheDataSource
+import com.chukimmuoi.data.repository.changeprice.datasourceimpl.ChangePriceCacheDataSourceImpl
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceCacheDataSource
 import com.chukimmuoi.data.repository.stockprice.datasourceimpl.StockPriceCacheDataSourceImpl
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
@@ -33,5 +35,11 @@ class CacheDataModule {
     @Singleton
     fun provideStockPriceCacheDataSource(): StockPriceCacheDataSource {
         return StockPriceCacheDataSourceImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideChangePriceCacheDataSource(): ChangePriceCacheDataSource {
+        return ChangePriceCacheDataSourceImpl()
     }
 }

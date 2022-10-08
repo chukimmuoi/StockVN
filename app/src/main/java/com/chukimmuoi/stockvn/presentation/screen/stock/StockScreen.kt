@@ -46,7 +46,7 @@ fun StockScreen(
             StockList(
                 stocks = stocks,
                 clickableGoTo = {
-                    navController.navigate(route = Screen.StockDetails.passStockCode(it.code))
+                    navController.navigate(route = Screen.StockPrices.passStockCode(it.code))
                 },
                 clickableUpdate = {
                     viewModel.updateStock(it)

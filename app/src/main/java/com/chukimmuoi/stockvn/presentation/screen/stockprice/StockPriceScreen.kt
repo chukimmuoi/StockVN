@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.presentation.screen.details
+package com.chukimmuoi.stockvn.presentation.screen.stockprice
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -23,10 +23,10 @@ import androidx.paging.compose.collectAsLazyPagingItems
  * @see [compose-navigation](https://developer.android.com/jetpack/compose/navigation)
  * */
 @Composable
-fun DetailsScreen(
+fun StockPriceScreen(
     stock: String,
     navController: NavController,
-    viewModel: DetailsViewModel = hiltViewModel(),
+    viewModel: StockPriceViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
 ) {
 
@@ -37,7 +37,7 @@ fun DetailsScreen(
         backgroundColor = MaterialTheme.colors.appThemeColor,
         contentColor = MaterialTheme.colors.appContentColor,
         topBar = {
-            DetailTopBar(
+            StockPriceTopBar(
                 stock = stock,
                 actionBack = {
                     navController.popBackStack()
@@ -46,7 +46,7 @@ fun DetailsScreen(
             )
         },
         content = {
-            DetailsList(
+            StockPriceList(
                 stockPrice = stockPrice,
                 clickable = {
 

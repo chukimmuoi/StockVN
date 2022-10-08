@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.presentation.screen.details
+package com.chukimmuoi.stockvn.presentation.screen.stockprice
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -36,7 +36,7 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
  * Created by chukimmuoi on 17/09/2022.
  */
 @Composable
-fun DetailsItem(
+fun StockPriceItem(
     stockPrice: StockPrice?,
     clickable: (StockPrice) -> Unit,
     modifier: Modifier = Modifier
@@ -120,7 +120,7 @@ fun DetailsItem(
 @Composable
 fun StockItemPreview(@PreviewParameter(StockPriceProvider::class) stockPrice: StockPrice) {
     StockVNTheme {
-        DetailsItem(
+        StockPriceItem(
             stockPrice = stockPrice,
             clickable = {}
         )

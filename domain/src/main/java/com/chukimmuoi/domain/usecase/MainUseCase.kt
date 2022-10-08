@@ -9,11 +9,12 @@ package com.chukimmuoi.domain.usecase
  * @Project: StockVN
  * Created by chukimmuoi on 10/09/2022.
  */
-data class StockUseCase(
+data class MainUseCase(
     val getStocksUseCase: GetStocksUseCase,
     val getBookmarkedStocksUseCase: GetBookmarkedStocksUseCase,
     val getPurchasedStocksUseCase: GetPurchasedStocksUseCase,
     val updateStocksUseCase: UpdateStockUseCase,
     val updateStockPriceUseCase: UpdateStockPriceUseCase,
-    val updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase
+    val updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase,
+    val getChangePriceUseCase: GetChangePriceUseCase
 )

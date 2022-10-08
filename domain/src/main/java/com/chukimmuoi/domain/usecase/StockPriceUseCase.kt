@@ -10,8 +10,13 @@ import kotlinx.coroutines.flow.Flow
  * @Email: chukimmuoi@gmail.com
  * @Website: https://github.com/chukimmuoi
  * @Project: StockVN
- * Created by chukimmuoi on 10/09/2022.
+ * Created by chukimmuoi on 04/10/2022.
  */
+class UpdateStockPriceUseCase(private val stockPriceRepository: StockPriceRepository) {
+
+    suspend operator fun <T> invoke(code: String): Flow<T> = stockPriceRepository.updateAllDataFromServer(code)
+}
+
 class UpdateStockPriceWithPageUseCase(private val stockPriceRepository: StockPriceRepository) {
 
     operator fun <T> invoke(code: String): Flow<T> = stockPriceRepository.updateAllDataFromServerWithPage(code)

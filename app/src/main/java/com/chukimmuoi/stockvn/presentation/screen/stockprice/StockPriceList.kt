@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.presentation.screen.details
+package com.chukimmuoi.stockvn.presentation.screen.stockprice
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,7 +21,7 @@ import androidx.paging.compose.items
  * Created by chukimmuoi on 17/09/2022.
  */
 @Composable
-fun DetailsList(
+fun StockPriceList(
     stockPrice: LazyPagingItems<StockPrice>,
     clickable: (StockPrice) -> Unit,
     modifier: Modifier = Modifier
@@ -42,7 +42,7 @@ fun DetailsList(
             items = stockPrice,
             key = { it.date }
         ) {
-            DetailsItem(
+            StockPriceItem(
                 stockPrice = it,
                 clickable = clickable
             )

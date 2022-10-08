@@ -9,8 +9,13 @@ import com.chukimmuoi.domain.repository.StockRepository
  * @Email: chukimmuoi@gmail.com
  * @Website: https://github.com/chukimmuoi
  * @Project: StockVN
- * Created by chukimmuoi on 28/08/2022.
+ * Created by chukimmuoi on 04/10/2022.
  */
+class ImportCsvUseCase(private val stockRepository: StockRepository) {
+
+    suspend operator fun invoke(fileName: String) = stockRepository.importFromCsv(fileName)
+}
+
 class ImportJsonUseCase(private val stockRepository: StockRepository) {
 
     suspend operator fun invoke(fileName: String) = stockRepository.importFromJson(fileName)

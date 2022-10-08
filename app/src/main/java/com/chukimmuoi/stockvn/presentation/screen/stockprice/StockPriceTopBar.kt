@@ -1,4 +1,4 @@
-package com.chukimmuoi.stockvn.presentation.screen.details
+package com.chukimmuoi.stockvn.presentation.screen.stockprice
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
@@ -19,7 +19,7 @@ import com.chukimmuoi.stockvn.presentation.components.BackButton
  * Created by chukimmuoi on 17/09/2022.
  */
 @Composable
-fun DetailTopBar(
+fun StockPriceTopBar(
     stock: String,
     actionBack: () -> Unit,
     modifier: Modifier = Modifier

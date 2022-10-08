@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.chukimmuoi.data.model.Stock
-import com.chukimmuoi.domain.usecase.StockUseCase
+import com.chukimmuoi.domain.usecase.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -26,15 +26,15 @@ import javax.inject.Inject
 class StockViewModel
 @Inject constructor(
     private val app: Application,
-    private val stockUseCase: StockUseCase
+    private val mainUseCase: MainUseCase
 ): AndroidViewModel(app) {
 
     val allStock:Flow<PagingData<Stock>> =
-        stockUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+        mainUseCase.getStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
 
     fun updateStock(stock: Stock) {
         viewModelScope.launch {
-            stockUseCase.updateStocksUseCase(stock)
+            mainUseCase.updateStocksUseCase(stock)
                 .catch {
 
                 }

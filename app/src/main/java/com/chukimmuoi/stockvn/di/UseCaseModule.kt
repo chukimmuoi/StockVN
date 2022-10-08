@@ -1,5 +1,6 @@
 package com.chukimmuoi.stockvn.di
 
+import com.chukimmuoi.domain.repository.ChangePriceRepository
 import com.chukimmuoi.domain.repository.StockPriceRepository
 import com.chukimmuoi.domain.repository.StockRepository
 import com.chukimmuoi.domain.usecase.*
@@ -88,21 +89,31 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideStockUseCase(
+    fun provideGetChangePriceUseCase(
+        changePriceRepository: ChangePriceRepository
+    ): GetChangePriceUseCase {
+        return GetChangePriceUseCase(changePriceRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMainUseCase(
         getStocksUseCase: GetStocksUseCase,
         getBookmarkedStocksUseCase: GetBookmarkedStocksUseCase,
         getPurchasedStocksUseCase: GetPurchasedStocksUseCase,
         updateStockUseCase: UpdateStockUseCase,
         updateStockPriceUseCase: UpdateStockPriceUseCase,
-        updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase
-    ): StockUseCase {
-        return StockUseCase(
+        updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase,
+        getChangePriceUseCase: GetChangePriceUseCase
+    ): MainUseCase {
+        return MainUseCase(
             getStocksUseCase,
             getBookmarkedStocksUseCase,
             getPurchasedStocksUseCase,
             updateStockUseCase,
             updateStockPriceUseCase,
-            updateStockPriceWithPageUseCase
+            updateStockPriceWithPageUseCase,
+            getChangePriceUseCase
         )
     }
 }
