@@ -29,6 +29,16 @@ interface StockApi {
         @Query("page") page: Long = 1L,
     ): Response<VNDirectResponse<StockPrice>>
 
+    @GET("stock_prices")
+    suspend fun getStockPricesInOneDay(
+        @Query("sort") sort: String = "date",
+        @Query("q") query: String = "code:~date:gte:2022-09-10~date:lte:2022-09-10",
+        @Query("size") size: Long = 9999L,
+        @Query("page") page: Long = 1L,
+    ): Response<VNDirectResponse<StockPrice>>
+
+
+
     @GET("change_prices")
     suspend fun getChangePrices(
         @Query("q") query: String = "code:VNINDEX,HNX,UPCOM,VN30,VN30F1M,HNX30~period:1D",

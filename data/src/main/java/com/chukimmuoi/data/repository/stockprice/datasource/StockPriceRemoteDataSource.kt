@@ -24,6 +24,12 @@ interface StockPriceRemoteDataSource {
         size: Long
     ): Response<VNDirectResponse<StockPrice>>
 
+    suspend fun getStockPricesInOneDay(
+        date: String,
+    ): Response<VNDirectResponse<StockPrice>>
+
+    suspend fun getStockPricesInCurrentDay(): Response<VNDirectResponse<StockPrice>>
+
     suspend fun getAllStockPrices(code: String): Response<VNDirectResponse<StockPrice>>
 
     fun getAllStockPricesFollowPage(

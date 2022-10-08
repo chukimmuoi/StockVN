@@ -52,6 +52,22 @@ class StockPriceRemoteDataSourceImpl(
         )
     }
 
+    override suspend fun getStockPricesInOneDay(
+        date: String
+    ): Response<VNDirectResponse<StockPrice>> {
+        val query = "code:~date:gte:$date~date:lte:$date"
+
+        return stockApi.getStockPricesInOneDay(
+            query = query
+        )
+    }
+
+    override suspend fun getStockPricesInCurrentDay(): Response<VNDirectResponse<StockPrice>> {
+        val currentDateString = getCurrentDateString()
+
+        return getStockPricesInOneDay(currentDateString)
+    }
+
     override suspend fun getAllStockPrices(code: String): Response<VNDirectResponse<StockPrice>> {
         val startDateString = "2000-01-01"
         val currentDateString = getCurrentDateString()

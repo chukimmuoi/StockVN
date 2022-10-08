@@ -27,7 +27,7 @@ class ChangePriceRepositoryImpl(
         return getChangePriceOnline()
             .flatMapConcat {
                 if (it.isEmpty()) {
-                    getChangePriceOnline()
+                    getChangePriceOffline()
                 } else {
                     flowOf(it)
                 }
