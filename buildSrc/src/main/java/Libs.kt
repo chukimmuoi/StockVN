@@ -111,6 +111,15 @@ object Libs {
             const val navigationCompose = "androidx.navigation:navigation-compose:$version"
 
         }
+
+        object Work {
+            private const val version = "2.7.1"
+
+            const val workRuntime = "androidx.work:work-runtime:$version"
+            const val workRuntimeKtx = "androidx.work:work-runtime-ktx:$version"
+
+
+        }
     }
 
     object Google {

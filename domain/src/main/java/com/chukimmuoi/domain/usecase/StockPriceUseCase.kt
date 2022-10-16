@@ -21,3 +21,8 @@ class UpdateStockPriceWithPageUseCase(private val stockPriceRepository: StockPri
 
     operator fun <T> invoke(code: String): Flow<T> = stockPriceRepository.updateAllDataFromServerWithPage(code)
 }
+
+class GetStockPriceInCurrentDayUseCase(private val stockPriceRepository: StockPriceRepository) {
+
+    suspend operator fun <T> invoke(): Flow<T> = stockPriceRepository.getStockPriceInCurrentDay()
+}

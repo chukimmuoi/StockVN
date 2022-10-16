@@ -79,4 +79,7 @@ dependencies {
     implementation(Libs.Google.Dagger.hiltNavigationCompose)
 
     implementation(Libs.AndroidX.Navigation.navigationCompose)
+
+    implementation(Libs.AndroidX.Work.workRuntime)
+    implementation(Libs.AndroidX.Work.workRuntimeKtx)
 }

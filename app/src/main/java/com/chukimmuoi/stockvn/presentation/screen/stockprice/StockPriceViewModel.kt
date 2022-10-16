@@ -7,7 +7,6 @@ import androidx.paging.PagingData
 import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.domain.usecase.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -43,7 +42,6 @@ class StockPriceViewModel
     fun getStockPriceData(code: String) {
         viewModelScope.launch {
             mainUseCase.updateStockPriceUseCase<List<StockPrice>>(code)
-                .flowOn(Dispatchers.IO)
                 .catch { e ->
                     e.printStackTrace()
                 }

@@ -2,12 +2,16 @@ package com.chukimmuoi.stockvn.presentation.screen.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.work.*
 import com.chukimmuoi.data.model.ChangePrice
 import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.util.currentDate
 import com.chukimmuoi.domain.usecase.MainUseCase
+import com.chukimmuoi.stockvn.presentation.screen.stockprice.work.StockPriceWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +19,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -35,6 +41,7 @@ class HomeViewModel
 
     init {
         getChangePrice()
+        getStockPriceInCurrentDay()
     }
 
     val bookmarkedStocks: Flow<PagingData<Stock>> =
@@ -68,6 +75,66 @@ class HomeViewModel
                     Timber.e("$it")
                     _changePrices.value = it
                 }
+        }
+    }
+
+    private fun getStockPriceInCurrentDay() {
+        viewModelScope.launch {
+            val data = workDataOf(
+                StockPriceWorker.CURRENT_DAY_KEY to Date().currentDate()
+            )
+
+            val constraints = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.UNMETERED)
+                .setRequiresBatteryNotLow(true)
+                .setRequiresCharging(false)
+                .setRequiresStorageNotLow(false)
+                .setRequiresDeviceIdle(false)
+                .build()
+
+            val stockPriceWorkRequest =
+                PeriodicWorkRequestBuilder<StockPriceWorker>(
+                    1, TimeUnit.HOURS,
+                    5, TimeUnit.MINUTES
+                )
+                    .setInitialDelay(0L, TimeUnit.MILLISECONDS)
+                    .addTag(StockPriceWorker.TAG_NAME_VALUE)
+                    .setInputData(data)
+                    .setConstraints(constraints)
+                    // Use case retry. When use setBackoffCriteria not use setRequiresDeviceIdle(true)
+                    .setBackoffCriteria(
+                        BackoffPolicy.EXPONENTIAL,
+                        PeriodicWorkRequest.MIN_BACKOFF_MILLIS,
+                        TimeUnit.MILLISECONDS
+                    )
+                    .build()
+
+        WorkManager.getInstance(app.applicationContext).enqueueUniquePeriodicWork(
+            StockPriceWorker.UNIQUE_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            stockPriceWorkRequest
+        )
+
+        WorkManager
+            .getInstance(app.applicationContext)
+            .getWorkInfoByIdLiveData(stockPriceWorkRequest.id)
+            .asFlow()
+            .catch { e ->
+                e.printStackTrace()
+            }
+            .collect {
+                Timber.i("Get Stock Price In Current Day - Work Info: $it")
+                if (it != null) {
+                    val progress = it.progress
+                    val progressValue = progress.getInt(StockPriceWorker.PROGRESS_KEY, 0)
+                    Timber.i("Get Stock Price In Current Day - Progress Value: $progressValue")
+
+                    if (it.state == WorkInfo.State.ENQUEUED) {
+                        val outputData = it.outputData.getString(StockPriceWorker.RESULT_DATA_KEY)
+                        Timber.i("Get Stock Price In Current Day - Output Data: $outputData")
+                    }
+                }
+            }
         }
     }
 }

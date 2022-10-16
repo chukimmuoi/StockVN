@@ -26,4 +26,6 @@ interface StockPriceRepository {
     suspend fun clear(): Int
 
     fun <T> updateAllDataFromServerWithPage(code: String): Flow<T>
+
+    suspend fun <T> getStockPriceInCurrentDay(): Flow<T>
 }
