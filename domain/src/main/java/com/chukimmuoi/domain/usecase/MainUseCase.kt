@@ -16,5 +16,6 @@ data class MainUseCase(
     val updateStocksUseCase: UpdateStockUseCase,
     val updateStockPriceUseCase: UpdateStockPriceUseCase,
     val updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase,
-    val getChangePriceUseCase: GetChangePriceUseCase
+    val getChangePriceUseCase: GetChangePriceUseCase,
+    val getStockPriceInCurrentDayUseCase: GetStockPriceInCurrentDayUseCase,
 )

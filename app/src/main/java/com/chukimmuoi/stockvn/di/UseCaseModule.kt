@@ -97,6 +97,14 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun provideGetStockPriceInCurrentDayUseCase(
+        stockPriceRepository: StockPriceRepository
+    ): GetStockPriceInCurrentDayUseCase {
+        return GetStockPriceInCurrentDayUseCase(stockPriceRepository)
+    }
+
+    @Provides
+    @Singleton
     fun provideMainUseCase(
         getStocksUseCase: GetStocksUseCase,
         getBookmarkedStocksUseCase: GetBookmarkedStocksUseCase,
@@ -104,7 +112,8 @@ class UseCaseModule {
         updateStockUseCase: UpdateStockUseCase,
         updateStockPriceUseCase: UpdateStockPriceUseCase,
         updateStockPriceWithPageUseCase: UpdateStockPriceWithPageUseCase,
-        getChangePriceUseCase: GetChangePriceUseCase
+        getChangePriceUseCase: GetChangePriceUseCase,
+        getStockPriceInCurrentDayUseCase: GetStockPriceInCurrentDayUseCase
     ): MainUseCase {
         return MainUseCase(
             getStocksUseCase,
@@ -113,7 +122,8 @@ class UseCaseModule {
             updateStockUseCase,
             updateStockPriceUseCase,
             updateStockPriceWithPageUseCase,
-            getChangePriceUseCase
+            getChangePriceUseCase,
+            getStockPriceInCurrentDayUseCase
         )
     }
 }

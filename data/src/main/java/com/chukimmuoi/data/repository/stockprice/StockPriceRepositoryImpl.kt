@@ -7,6 +7,7 @@ import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceLocalDataS
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceRemoteDataSource
 import com.chukimmuoi.data.repository.stockprice.datasourceimpl.StockPriceLocalDataSourceImpl
 import com.chukimmuoi.domain.repository.StockPriceRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
 /**
@@ -38,7 +39,7 @@ class StockPriceRepositoryImpl(
 
     override suspend fun <T> updateAllDataFromServer(code: String): Flow<T> {
 
-        return flow { emit(remote.getAllStockPrices(code)) }
+        return remote.getAllStockPrices(code)
             .map { it.body() }
             .map { it?.data }
             .map {
@@ -46,7 +47,8 @@ class StockPriceRepositoryImpl(
 
                 inserts(it as List<T>)
                 it
-            } as Flow<T>
+            }
+            .flowOn(Dispatchers.IO) as Flow<T>
     }
 
     override fun <T> updateAllDataFromServerWithPage(code: String): Flow<T> {
@@ -65,5 +67,18 @@ class StockPriceRepositoryImpl(
 
     override suspend fun clear(): Int {
         return local.clear()
+    }
+
+    override suspend fun <T> getStockPriceInCurrentDay(): Flow<T> {
+        return remote.getStockPricesInCurrentDay()
+            .map { it.body() }
+            .map { it?.data }
+            .map {
+                if (it.isNullOrEmpty().not()) {
+                    inserts(it as List<T>)
+                }
+                it
+            }
+            .flowOn(Dispatchers.IO) as Flow<T>
     }
 }
