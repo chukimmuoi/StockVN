@@ -144,6 +144,26 @@ object Libs {
             const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:$version"
             const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
         }
+
+        object Gms {
+            const val version = "4.3.13"
+
+            const val googleServices = "com.google.gms.google-services"
+        }
+
+        object Firebase {
+            private const val version = "31.0.0"
+
+            // Import the Firebase BoM
+            const val fireBaseBOM = "com.google.firebase:firebase-bom:$version"
+
+            // TODO: Add the dependencies for Firebase products you want to use
+            // When using the BoM, don't specify versions in Firebase dependencies
+            const val fireAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx"
+
+            // Add the dependencies for any other desired Firebase products
+            // https://firebase.google.com/docs/android/setup#available-libraries
+        }
     }
 
     object Junit {

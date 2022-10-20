@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "481964336631",
+    "project_id": "stockvn-7ac5e",
+    "storage_bucket": "stockvn-7ac5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481964336631:android:625e6692f42412509f7af2",
+        "android_client_info": {
+          "package_name": "com.chukimmuoi.stockvn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481964336631-pch5v316vngitkp2ke2kl1j7lko18mdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUjfIsdkXKiXNj87zozc08gFparFPdbbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481964336631-pch5v316vngitkp2ke2kl1j7lko18mdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
