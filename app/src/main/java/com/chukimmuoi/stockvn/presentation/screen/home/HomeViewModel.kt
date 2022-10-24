@@ -88,24 +88,24 @@ class HomeViewModel
             .setRequiresBatteryNotLow(true)
             .setRequiresCharging(false)
             .setRequiresStorageNotLow(false)
-            .setRequiresDeviceIdle(false)
+            .setRequiresDeviceIdle(true)
             .build()
 
         val stockPriceWorkRequest =
             PeriodicWorkRequestBuilder<StockPriceWorker>(
-                15, TimeUnit.MINUTES,
-                5, TimeUnit.MINUTES
+                1, TimeUnit.HOURS,
+                15, TimeUnit.MINUTES
             )
                 .setInitialDelay(0L, TimeUnit.MILLISECONDS)
                 .addTag(StockPriceWorker.TAG_NAME_VALUE)
                 .setInputData(data)
                 .setConstraints(constraints)
                 // Use case retry. When use setBackoffCriteria not use setRequiresDeviceIdle(true)
-                .setBackoffCriteria(
-                    BackoffPolicy.EXPONENTIAL,
-                    PeriodicWorkRequest.MIN_BACKOFF_MILLIS,
-                    TimeUnit.MILLISECONDS
-                )
+                //.setBackoffCriteria(
+                //    BackoffPolicy.EXPONENTIAL,
+                //    PeriodicWorkRequest.MIN_BACKOFF_MILLIS,
+                //    TimeUnit.MILLISECONDS
+                //)
                 .build()
 
         WorkManager.getInstance(app.applicationContext).enqueueUniquePeriodicWork(
