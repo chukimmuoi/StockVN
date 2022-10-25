@@ -1,0 +1,63 @@
+name: GitHub Release with APKs
+
+## Events: là các hoạt động cụ thể kích hoạt quy trình làm việc. Xác định chúng bằng key "on"
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build app
+        run: ./gradlew assembleRelease
+
+      - name: Create Release
+        # ID used to access action output
+        id: create_release
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      ## Artifacts: là các tệp như APK, ảnh chụp màn hình, báo cáo thử nghiệm, nhật ký, v.v. mà quy trình làm việc tạo ra.
+      ## Bạn có thể tải lên và tải xuống các phần mềm bằng cách sử dụng các actions/upload-artifact@v2 và actions/download-artifact@v2.
+      - name: Upload app
+        uses: actions/upload-artifact@master
+        with:
+          name: release.apk
+          path: ${{steps.create_release.outputs.signedReleaseFile}}
+
+      - name: Upload mapping
+        uses: actions/upload-artifact@master
+        with:
+          name: mapping.txt
+          path: app/build/outputs/mapping/release/mapping.txt
+
+  deploy-firebase:
+    needs: [build]
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 30
+
+    steps:
+      - name: Download apk
+        uses: actions/download-artifact@master
+        with:
+          name: release.apk
+
+      - name: Upload apk to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: stock-test
+          file: app-release-unsigned-signed.apk
