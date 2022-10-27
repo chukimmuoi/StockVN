@@ -1,0 +1,59 @@
+name: Build
+
+## Events: là các hoạt động cụ thể kích hoạt quy trình làm việc. Xác định chúng bằng key "on"
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+## Jobs: là một tập hợp các bước thực thi trên một phiên bản mới của môi trường ảo.
+## Bạn có thể có nhiều công việc và chạy chúng tuần tự hoặc song song bằng cách xác định các quy tắc phụ thuộc của chúng.
+jobs:
+  unit_tests:
+    ## Runners: là các máy thực thi các "Jobs" được xác định trong workflow.
+    ## GitHub lưu trữ các trình chạy Linux, Windows và macOS với phần mềm thường dùng đã được cài đặt sẵn.
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 60
+
+    steps:
+      ## Actions: là các khối xây dựng di động nhỏ nhất của workflow, mà bạn bao gồm dưới dạng một bước.
+      ## Cách phổ biến là action/checkout@v2, bạn sử dụng để checkout kho lưu trữ hiện tại vào hệ thống tệp của người chạy.
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Unit tests
+        run: ./gradlew test
+
+  android_tests:
+    runs-on: [macOS-latest]
+    timeout-minutes: 55
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        ## Sử dụng actions/setup-java@v1 để thiết lập một phiên bản Java cụ thể trong trình chạy.
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      ## Tạo máy ảo Android.
+      - name: Run instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86
+          target: default
+          profile: Nexus 6
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          emulator-build: 7425822
+          script: ./gradlew connectedAndroidTest --stacktrace
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v1
+        with:
+          name: test-reports
+          path: app/build/reports
