@@ -50,7 +50,9 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           emulator-build: 7425822
-          script: ./gradlew connectedAndroidTest --stacktrace
+          script: | 
+            adb root 
+            ./gradlew connectedAndroidTest -x :macrobenchmark:connectedBenchmarkAndroidTest --stacktrace
 
       - name: Upload test reports
         uses: actions/upload-artifact@v1

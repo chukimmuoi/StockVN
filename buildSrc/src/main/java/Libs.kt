@@ -11,6 +11,7 @@ object Libs {
     // Setting
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
+    const val androidTest = "com.android.test"
     const val kotlinAndroid = "org.jetbrains.kotlin.android"
 
     object Coroutines {
@@ -31,8 +32,9 @@ object Libs {
         const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
 
         object Compose {
+            // https://developer.android.com/jetpack/androidx/releases/compose
+            const val version = "1.3.0"
 
-            const val version = "1.2.0-beta02"
             const val ui = "androidx.compose.ui:ui:$version"
             const val material = "androidx.compose.material:material:$version"
             const val materialIconExtended = "androidx.compose.material:material-icons-extended:$version"
@@ -117,8 +119,13 @@ object Libs {
 
             const val workRuntime = "androidx.work:work-runtime:$version"
             const val workRuntimeKtx = "androidx.work:work-runtime-ktx:$version"
+        }
 
+        object ProfileInstaller {
+            // https://developer.android.com/jetpack/androidx/releases/profileinstaller
+            private const val version = "1.2.0"
 
+            const val profileInstaller = "androidx.profileinstaller:profileinstaller:$version"
         }
     }
 
@@ -137,7 +144,7 @@ object Libs {
         object Dagger {
             // https://developer.android.com/training/dependency-injection/hilt-android#kts
             // https://dagger.dev/hilt/gradle-setup
-            const val version = "2.43.2"
+            const val version = "2.44"
 
             const val hiltAndroidGradlePlugin = "com.google.dagger.hilt.android"
             const val hiltAndroid = "com.google.dagger:hilt-android:$version"

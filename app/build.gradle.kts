@@ -28,6 +28,12 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        create("benchmark") {
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+            proguardFiles("baseline-profiles-rules.pro")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -86,4 +92,6 @@ dependencies {
 
     implementation(platform(Libs.Google.Firebase.fireBaseBOM))
     implementation(Libs.Google.Firebase.fireAnalyticsKtx)
+
+    implementation(Libs.AndroidX.ProfileInstaller.profileInstaller)
 }

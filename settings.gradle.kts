@@ -16,3 +16,4 @@ rootProject.name = "StockVN"
 include(":app")
 include(":data")
 include(":domain")
+include(":macrobenchmark")
