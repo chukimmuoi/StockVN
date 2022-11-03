@@ -46,7 +46,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.versionUse
     }
     packagingOptions {
         resources {
@@ -61,6 +61,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation(Libs.AndroidX.coreKtx)
+    implementation(platform(Libs.AndroidX.Compose.composeBOM))
     implementation(Libs.AndroidX.Compose.ui)
     implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.AndroidX.Compose.materialIconExtended)

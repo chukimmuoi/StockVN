@@ -33,16 +33,18 @@ object Libs {
 
         object Compose {
             // https://developer.android.com/jetpack/androidx/releases/compose
-            const val version = "1.3.0"
+            const val versionUse = "1.3.0"
+            private const val version = "2022.10.00"
 
-            const val ui = "androidx.compose.ui:ui:$version"
-            const val material = "androidx.compose.material:material:$version"
-            const val materialIconExtended = "androidx.compose.material:material-icons-extended:$version"
-            const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
-            const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+            const val composeBOM = "androidx.compose:compose-bom:$version"
+            const val ui = "androidx.compose.ui:ui"
+            const val material = "androidx.compose.material:material"
+            const val materialIconExtended = "androidx.compose.material:material-icons-extended"
+            const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
+            const val uiTooling = "androidx.compose.ui:ui-tooling"
 
-            const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
-            const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
+            const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$versionUse"
+            const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$versionUse"
 
             object Material3 {
                 // https://developer.android.com/jetpack/androidx/releases/compose-material3

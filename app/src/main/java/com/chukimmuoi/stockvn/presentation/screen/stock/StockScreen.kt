@@ -1,5 +1,6 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -53,7 +54,8 @@ fun StockScreen(
                 },
                 clickableUpdate = {
                     viewModel.updateStock(it)
-                }
+                },
+                modifier = modifier.padding(it)
             )
         }
     )
