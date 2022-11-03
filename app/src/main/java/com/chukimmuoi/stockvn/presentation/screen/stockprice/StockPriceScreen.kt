@@ -1,5 +1,6 @@
 package com.chukimmuoi.stockvn.presentation.screen.stockprice
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -50,7 +51,8 @@ fun StockPriceScreen(
                 stockPrice = stockPrice,
                 clickable = {
 
-                }
+                },
+                modifier = modifier.padding(it)
             )
         }
     )

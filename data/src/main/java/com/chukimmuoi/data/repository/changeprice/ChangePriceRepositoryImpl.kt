@@ -31,7 +31,11 @@ class ChangePriceRepositoryImpl(
                 } else {
                     flowOf(it)
                 }
-            }.flowOn(Dispatchers.IO) as Flow<T>
+            }
+            .map {
+                it.sortedBy { it.code }
+            }
+            .flowOn(Dispatchers.IO) as Flow<T>
     }
 
     private fun getChangePriceOnline(): Flow<List<ChangePrice>> {

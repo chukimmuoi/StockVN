@@ -1,6 +1,7 @@
 package com.chukimmuoi.stockvn.presentation.screen.home
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -47,7 +48,9 @@ fun HomeScreen(
             )
         },
         content = {
-            Column {
+            Column(
+                modifier = modifier.padding(it),
+            ) {
                 ChangePriceList(
                     changePrices = changePrices,
                     clickableGoTo = {
