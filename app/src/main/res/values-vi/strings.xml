@@ -6,4 +6,7 @@
 
     <string name="home_label">Trang chủ</string>
     <string name="stock_label">Chứng khoán</string>
+
+    <string name="sync">Đồng bộ</string>
+    <string name="sync_notification_channel_description">Tác vụ nền cho StockVN</string>
 </resources>

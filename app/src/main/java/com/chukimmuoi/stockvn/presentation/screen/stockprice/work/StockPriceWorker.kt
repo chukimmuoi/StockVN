@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.*
 import com.chukimmuoi.data.model.StockPrice
 import com.chukimmuoi.domain.usecase.MainUseCase
+import com.chukimmuoi.stockvn.presentation.screen.stockprice.notification.syncWorkNotification
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.withContext
@@ -19,7 +20,7 @@ import timber.log.Timber
  * Created by chukimmuoi on 15/10/2022.
  */
 class StockPriceWorker(
-    context: Context,
+    private val context: Context,
     workerParameters: WorkerParameters,
     private val mainUseCase: MainUseCase
 ): CoroutineWorker(context, workerParameters) {
@@ -43,6 +44,8 @@ class StockPriceWorker(
     }
 
     override suspend fun doWork(): Result {
+        context.syncWorkNotification()
+
         return withContext(Dispatchers.IO) {
             try {
                 val currentDayData = inputData.getString(CURRENT_DAY_KEY) ?: return@withContext Result.failure()

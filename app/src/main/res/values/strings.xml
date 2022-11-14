@@ -18,4 +18,7 @@
 
     <string name="home_label">Home</string>
     <string name="stock_label">Stock</string>
+
+    <string name="sync">Sync</string>
+    <string name="sync_notification_channel_description">Background tasks for StockVN</string>
 </resources>

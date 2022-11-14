@@ -108,11 +108,13 @@ class HomeViewModel
                 //)
                 .build()
 
-        WorkManager.getInstance(app.applicationContext).enqueueUniquePeriodicWork(
-            StockPriceWorker.UNIQUE_NAME,
-            ExistingPeriodicWorkPolicy.KEEP,
-            stockPriceWorkRequest
-        )
+        WorkManager.getInstance(app.applicationContext).apply {
+            enqueueUniquePeriodicWork(
+                StockPriceWorker.UNIQUE_NAME,
+                ExistingPeriodicWorkPolicy.KEEP,
+                stockPriceWorkRequest
+            )
+        }
 
         viewModelScope.launch {
             WorkManager

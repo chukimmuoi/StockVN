@@ -25,6 +25,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // https://www.youtube.com/watch?v=LQFataWfTXI&list=PLWz5rJ2EKKc_L3n1j4ajHjJ6QccFUvW1u&index=18
     testOptions {
         managedDevices {
             devices {
