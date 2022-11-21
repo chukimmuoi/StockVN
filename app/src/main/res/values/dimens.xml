@@ -13,4 +13,8 @@
     <dimen name="padding_text_of_card_item">4dp</dimen>
     <dimen name="padding_content_of_list_card">8dp</dimen>
     <dimen name="space_item_of_list_card">8dp</dimen>
+
+    <!--  Items  -->
+    <!--  Card  -->
+    <dimen name="rounded_corner_shape_card_item">16dp</dimen>
 </resources>

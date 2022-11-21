@@ -1,8 +1,9 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
  * @Project: StockVN
  * Created by chukimmuoi on 04/09/2022.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockItem(
     stock: Stock?,
@@ -46,79 +48,85 @@ fun StockItem(
     val stockIsBookmarked = remember { stock.stockIsBookmarked }
 
     Card(
-        modifier = modifier.clickable { clickableGoTo(stock) },
-    ) {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(
-                    dimensionResource(
-                        id = R.dimen.padding_content_of_card_item
-                    )
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = stock.code,
-                color = color,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = modifier
-                    .weight(0.3F)
+        onClick = { clickableGoTo(stock) },
+        shape = RoundedCornerShape(
+            dimensionResource(
+                id = R.dimen.rounded_corner_shape_card_item
             )
-
-            Column(
+        ),
+        content = {
+            Row(
                 modifier = modifier
-                    .weight(0.6F)
-            ) {
-                Text(
-                    text = stock.companyName,
-                    style = MaterialTheme.typography.bodyLarge,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = modifier.padding(
-                        bottom = dimensionResource(
-                            id = R.dimen.padding_text_of_card_item
+                    .fillMaxWidth()
+                    .padding(
+                        dimensionResource(
+                            id = R.dimen.padding_content_of_card_item
                         )
                     ),
-                )
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
                 Text(
-                    text = stock.floor,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = modifier.padding(
-                        top = dimensionResource(
-                            id = R.dimen.padding_text_of_card_item
+                    text = stock.code,
+                    color = color,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = modifier
+                        .weight(0.3F)
+                )
+
+                Column(
+                    modifier = modifier
+                        .weight(0.6F)
+                ) {
+                    Text(
+                        text = stock.companyName,
+                        style = MaterialTheme.typography.bodyLarge,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = modifier.padding(
+                            bottom = dimensionResource(
+                                id = R.dimen.padding_text_of_card_item
+                            )
+                        ),
+                    )
+                    Text(
+                        text = stock.floor,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = modifier.padding(
+                            top = dimensionResource(
+                                id = R.dimen.padding_text_of_card_item
+                            )
                         )
                     )
-                )
-            }
+                }
 
-            if (stockIsPurchased.value) {
-                StarButton(
-                    isStared = true,
-                    onClick = {
-                        stockIsPurchased.value = it
+                if (stockIsPurchased.value) {
+                    StarButton(
+                        isStared = true,
+                        onClick = {
+                            stockIsPurchased.value = it
 
-                        clickableUpdate(stock.apply { isPurchased = it })
-                    },
-                    modifier = modifier
-                        .weight(0.1F)
-                        .clearAndSetSemantics {}
-                )
-            } else {
-                BookmarkButton(
-                    isBookmarked = stockIsBookmarked.value,
-                    onClick = {
-                        stockIsBookmarked.value = it
+                            clickableUpdate(stock.apply { isPurchased = it })
+                        },
+                        modifier = modifier
+                            .weight(0.1F)
+                            .clearAndSetSemantics {}
+                    )
+                } else {
+                    BookmarkButton(
+                        isBookmarked = stockIsBookmarked.value,
+                        onClick = {
+                            stockIsBookmarked.value = it
 
-                        clickableUpdate(stock.apply { isBookmarked = it })
-                    },
-                    modifier = modifier
-                        .weight(0.1F)
-                        .clearAndSetSemantics {}
-                )
+                            clickableUpdate(stock.apply { isBookmarked = it })
+                        },
+                        modifier = modifier
+                            .weight(0.1F)
+                            .clearAndSetSemantics {}
+                    )
+                }
             }
         }
-    }
+    )
 }
 
 @ThemesPreviews

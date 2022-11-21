@@ -1,17 +1,16 @@
 package com.chukimmuoi.stockvn.presentation.screen.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.UnfoldMore
-import androidx.compose.material3.Card
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +34,7 @@ import com.chukimmuoi.core.designsystem.theme.StockVNTheme
  * @Project: StockVN
  * Created by chukimmuoi on 05/10/2022.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChangePriceItem(
     changePrice: ChangePrice,
@@ -55,53 +55,58 @@ fun ChangePriceItem(
     val stateColor = changePrice.handlerSateColor()
 
     Card(
-        modifier = modifier.clickable {
-            clickableGoTo(changePrice)
-        }
-    ) {
-        Column(
-            modifier = modifier.padding(
-                dimensionResource(
-                    id = R.dimen.padding_content_of_card_item
-                )
-            ),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = changePrice.code,
-                color = stateColor,
-                fontWeight = FontWeight.Bold
+        onClick = { clickableGoTo(changePrice) },
+        modifier = modifier,
+        shape = RoundedCornerShape(
+            dimensionResource(
+                id = R.dimen.rounded_corner_shape_card_item
             )
-            Text(
-                text = changePrice.priceDisplay(),
-                color = stateColor,
-                fontWeight = FontWeight.Bold
-            )
-            Row {
-                Row(
-                    modifier = modifier.weight(0.5F)
-                ) {
-                    Image(
-                        imageVector = stateIcon,
-                        colorFilter = ColorFilter.tint(stateColor),
-                        contentDescription = "State Icon"
+        ),
+        content = {
+            Column(
+                modifier = modifier.padding(
+                    dimensionResource(
+                        id = R.dimen.padding_content_of_card_item
                     )
+                ),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = changePrice.code,
+                    color = stateColor,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = changePrice.priceDisplay(),
+                    color = stateColor,
+                    fontWeight = FontWeight.Bold
+                )
+                Row {
+                    Row(
+                        modifier = modifier.weight(0.5F)
+                    ) {
+                        Image(
+                            imageVector = stateIcon,
+                            colorFilter = ColorFilter.tint(stateColor),
+                            contentDescription = "State Icon"
+                        )
+                        Text(
+                            text = changePrice.changeDisplay(),
+                            color = stateColor,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                     Text(
-                        text = changePrice.changeDisplay(),
+                        text = changePrice.changePercentDisplay(),
                         color = stateColor,
+                        modifier = modifier.weight(0.5F),
                         textAlign = TextAlign.Center
                     )
                 }
-                Text(
-                    text = changePrice.changePercentDisplay(),
-                    color = stateColor,
-                    modifier = modifier.weight(0.5F),
-                    textAlign = TextAlign.Center
-                )
             }
         }
-    }
+    )
 }
 
 @ThemesPreviews

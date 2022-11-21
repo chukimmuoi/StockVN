@@ -1,8 +1,9 @@
 package com.chukimmuoi.stockvn.presentation.screen.home
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +34,7 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
  * @Project: StockVN
  * Created by chukimmuoi on 01/10/2022.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PurchasedItem(
     stock: Stock?,
@@ -47,43 +49,47 @@ fun PurchasedItem(
     var stockIsPurchased by remember { stock.stockIsPurchased }
 
     Card(
-        modifier = modifier
-            .clickable { clickableGoTo(stock) }
-            .fillMaxWidth()
-        ,
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(
-                    dimensionResource(
-                        id = R.dimen.padding_content_of_card_item
-                    )
-                )
-        ) {
-            Text(
-                text = stock.code,
-                style = TextStyle(
-                    color = color,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                ),
+        onClick = { clickableGoTo(stock) },
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(
+            dimensionResource(
+                id = R.dimen.rounded_corner_shape_card_item
+            )
+        ),
+        content = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = modifier
-            )
+                    .fillMaxWidth()
+                    .padding(
+                        dimensionResource(
+                            id = R.dimen.padding_content_of_card_item
+                        )
+                    )
+            ) {
+                Text(
+                    text = stock.code,
+                    style = TextStyle(
+                        color = color,
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                    ),
+                    modifier = modifier
+                )
 
-            StarButton(
-                isStared = stockIsPurchased,
-                onClick = {
-                    stockIsPurchased = it
+                StarButton(
+                    isStared = stockIsPurchased,
+                    onClick = {
+                        stockIsPurchased = it
 
-                    clickableUpdate(stock.apply { isPurchased = it })
-                },
-                modifier = modifier.clearAndSetSemantics {}
-            )
+                        clickableUpdate(stock.apply { isPurchased = it })
+                    },
+                    modifier = modifier.clearAndSetSemantics {}
+                )
+            }
         }
-    }
+    )
 }
 
 @ThemesPreviews
