@@ -1,11 +1,13 @@
 package com.chukimmuoi.stockvn.presentation.navigation
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Timeline
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,7 +16,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import androidx.compose.ui.unit.dp
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.Screen
 
@@ -36,7 +39,10 @@ fun AppDrawer(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .requiredWidth(360.dp)
+            .background(MaterialTheme.colorScheme.inverseOnSurface)
+            .fillMaxSize()
     ) {
         StockVNLogo(
             modifier = modifier.padding(
@@ -45,7 +51,7 @@ fun AppDrawer(
                 )
             )
         )
-        Divider(color = MaterialTheme.colors.onSurface.copy(alpha = .2f))
+        Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = .2f))
         DrawerItem(
             icon = Icons.Filled.Home,
             label = stringResource(id = R.string.home_label),
@@ -88,8 +94,8 @@ private fun StockVNLogo(
         )
         Text(
             text = stringResource(id = R.string.app_name),
-            style = MaterialTheme.typography.h5,
-            color = MaterialTheme.colors.onSurface // Color.Black
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
@@ -111,7 +117,7 @@ private fun DrawerItem(
     action: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val colors = MaterialTheme.colors
+    val colors = MaterialTheme.colorScheme
     val textIconColor = if (isSelected) {
         colors.primary
     } else {
@@ -161,7 +167,7 @@ private fun DrawerItem(
                 )
                 Text(
                     text = label,
-                    style = MaterialTheme.typography.body2,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = textIconColor
                 )
             }

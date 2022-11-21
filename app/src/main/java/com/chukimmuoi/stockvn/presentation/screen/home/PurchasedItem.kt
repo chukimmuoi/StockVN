@@ -2,8 +2,8 @@ package com.chukimmuoi.stockvn.presentation.screen.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.StarButton
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.presentation.components.preview.StockProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -51,9 +51,6 @@ fun PurchasedItem(
             .clickable { clickableGoTo(stock) }
             .fillMaxWidth()
         ,
-        elevation = dimensionResource(
-            id = R.dimen.elevation_of_card_item
-        ),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

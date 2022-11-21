@@ -4,16 +4,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.presentation.navigation.AppDrawer
 import com.chukimmuoi.stockvn.presentation.navigation.StockVNNavigationActions
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 import kotlinx.coroutines.launch
-import com.chukimmuoi.stockvn.R
 
 /**
  * @author: My Project
@@ -24,13 +23,14 @@ import com.chukimmuoi.stockvn.R
  * @Project: StockVN
  * Created by chukimmuoi on 19/09/2022.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockApp() {
     StockVNTheme {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
+            color = MaterialTheme.colorScheme.background
         ) {
             val coroutineScope = rememberCoroutineScope() // Open/Close Drawer
 
@@ -43,7 +43,7 @@ fun StockApp() {
 
             val drawerState = rememberDrawerState(DrawerValue.Closed) // State Open/Close of Drawer
 
-            ModalDrawer(
+            ModalNavigationDrawer(
                 drawerContent = {
                     AppDrawer(
                         currentRoute = currentRoute,
@@ -57,7 +57,6 @@ fun StockApp() {
                 },
                 drawerState = drawerState,
                 gesturesEnabled = true,
-                drawerElevation = dimensionResource(id = R.dimen.elevation_of_navigation)
             ) {
                 NavGraph(
                     openDrawer = {

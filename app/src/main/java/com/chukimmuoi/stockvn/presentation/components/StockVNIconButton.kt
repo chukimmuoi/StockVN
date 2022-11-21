@@ -3,6 +3,7 @@ package com.chukimmuoi.stockvn.presentation.components
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -12,9 +13,9 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvider
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
 
 /**
  * @author: My Project
@@ -83,13 +84,13 @@ fun PreviewSearchButton() {
 fun BookmarkButton(
     isBookmarked: Boolean,
     onClick: (Boolean) -> Unit,
-    contentAlpha: Float = ContentAlpha.high,
+    colorScheme: Color = MaterialTheme.colorScheme.onSurface,
     modifier: Modifier = Modifier
 ) {
     val clickLabel = stringResource(
         if (isBookmarked) R.string.un_bookmark_label else R.string.bookmark_label
     )
-    CompositionLocalProvider(LocalContentAlpha provides contentAlpha) {
+    CompositionLocalProvider(LocalContentColor provides colorScheme) {
         IconToggleButton(
             checked = isBookmarked,
             onCheckedChange = {
@@ -122,13 +123,13 @@ fun PreviewBookmarkButton(@PreviewParameter(ValueBooleanProvider::class) state: 
 fun StarButton(
     isStared: Boolean,
     onClick: (Boolean) -> Unit,
-    contentAlpha: Float = ContentAlpha.high,
+    colorScheme: Color = MaterialTheme.colorScheme.onSurface,
     modifier: Modifier = Modifier
 ) {
     val clickLabel = stringResource(
         if (isStared) R.string.un_start_label else R.string.start_label
     )
-    CompositionLocalProvider(LocalContentAlpha provides contentAlpha) {
+    CompositionLocalProvider(LocalContentColor provides colorScheme) {
         IconToggleButton(
             checked = isStared,
             onCheckedChange = {

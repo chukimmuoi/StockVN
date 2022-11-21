@@ -2,9 +2,9 @@ package com.chukimmuoi.stockvn.presentation.screen.stock
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -12,16 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.sp
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.BookmarkButton
 import com.chukimmuoi.stockvn.presentation.components.StarButton
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.presentation.components.preview.StockProvider
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 
@@ -50,9 +47,6 @@ fun StockItem(
 
     Card(
         modifier = modifier.clickable { clickableGoTo(stock) },
-        elevation = dimensionResource(
-            id = R.dimen.elevation_of_card_item
-        ),
     ) {
         Row(
             modifier = modifier
@@ -66,11 +60,8 @@ fun StockItem(
         ) {
             Text(
                 text = stock.code,
-                style = TextStyle(
-                    color = color,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                ),
+                color = color,
+                style = MaterialTheme.typography.titleLarge,
                 modifier = modifier
                     .weight(0.3F)
             )
@@ -81,7 +72,7 @@ fun StockItem(
             ) {
                 Text(
                     text = stock.companyName,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.bodyLarge,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     modifier = modifier.padding(
@@ -92,7 +83,7 @@ fun StockItem(
                 )
                 Text(
                     text = stock.floor,
-                    style = MaterialTheme.typography.caption,
+                    style = MaterialTheme.typography.bodyMedium,
                     modifier = modifier.padding(
                         top = dimensionResource(
                             id = R.dimen.padding_text_of_card_item

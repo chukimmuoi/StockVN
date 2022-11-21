@@ -38,7 +38,6 @@ object Libs {
 
             const val composeBOM = "androidx.compose:compose-bom:$version"
             const val ui = "androidx.compose.ui:ui"
-            const val material = "androidx.compose.material:material"
             const val materialIconExtended = "androidx.compose.material:material-icons-extended"
             const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
             const val uiTooling = "androidx.compose.ui:ui-tooling"
@@ -48,9 +47,10 @@ object Libs {
 
             object Material3 {
                 // https://developer.android.com/jetpack/androidx/releases/compose-material3
-                private const val version = "1.0.0-beta03"
+                private const val version = "1.1.0-alpha02"
 
                 const val material3 = "androidx.compose.material3:material3:$version"
+                const val material3WindowSize = "androidx.compose.material3:material3-window-size-class:$version"
             }
         }
 

@@ -3,11 +3,11 @@ package com.chukimmuoi.stockvn.presentation.navigation
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Timeline
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvider
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 
 /**
  * @author: My Project
@@ -40,7 +40,7 @@ import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
  * */
 @Composable
 fun StockVNIcon(
-    tintColor: Color = MaterialTheme.colors.primary,
+    tintColor: Color = MaterialTheme.colorScheme.primary,
     modifier: Modifier = Modifier
 ) {
     Image(
@@ -87,9 +87,9 @@ fun NavigationIcon(
     }
 
     val iconTintColor = tintColor ?: if (isSelected) {
-        MaterialTheme.colors.primary
+        MaterialTheme.colorScheme.primary
     } else {
-        MaterialTheme.colors.onSurface.copy(alpha = imageAlpha)
+        MaterialTheme.colorScheme.onSurface.copy(alpha = imageAlpha)
     }
 
     Image(

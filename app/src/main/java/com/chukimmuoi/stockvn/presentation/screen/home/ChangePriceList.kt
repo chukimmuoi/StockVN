@@ -13,7 +13,7 @@ import com.chukimmuoi.data.model.ChangePrice
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 import com.chukimmuoi.stockvn.presentation.components.preview.ChangePriceListProvider
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 
 /**
  * @author: My Project

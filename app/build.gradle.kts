@@ -59,11 +59,11 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":domain"))
     implementation(project(":data"))
+    implementation(project(":core:designsystem"))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(platform(Libs.AndroidX.Compose.composeBOM))
     implementation(Libs.AndroidX.Compose.ui)
-    implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.AndroidX.Compose.materialIconExtended)
     implementation(Libs.AndroidX.Compose.uiToolingPreview)
     implementation(Libs.AndroidX.Lifecycle.runtimeKTX)

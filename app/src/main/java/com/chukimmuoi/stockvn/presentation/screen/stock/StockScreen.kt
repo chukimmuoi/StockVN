@@ -1,16 +1,15 @@
 package com.chukimmuoi.stockvn.presentation.screen.stock
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.chukimmuoi.stockvn.presentation.Screen
-import com.chukimmuoi.stockvn.ui.theme.appContentColor
-import com.chukimmuoi.stockvn.ui.theme.appThemeColor
 
 /**
  * @author: My Project
@@ -21,6 +20,7 @@ import com.chukimmuoi.stockvn.ui.theme.appThemeColor
  * @Project: StockVN
  * Created by chukimmuoi on 04/09/2022.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockScreen(
     viewModel: StockViewModel = hiltViewModel(),
@@ -32,8 +32,8 @@ fun StockScreen(
     val stocks = viewModel.allStock.collectAsLazyPagingItems()
 
     Scaffold(
-        backgroundColor = MaterialTheme.colors.appThemeColor,
-        contentColor = MaterialTheme.colors.appContentColor,
+        containerColor = MaterialTheme.colorScheme.background,
+        contentColor = MaterialTheme.colorScheme.onBackground,
         topBar = {
             StockTopBar(
                 actionBack = {

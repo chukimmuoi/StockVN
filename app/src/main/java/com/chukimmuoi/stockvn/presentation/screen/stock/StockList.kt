@@ -13,7 +13,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.chukimmuoi.data.model.Stock
 import com.chukimmuoi.stockvn.R
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.presentation.components.preview.StockListProvider
 import kotlinx.coroutines.flow.flowOf
 
@@ -34,6 +34,7 @@ fun StockList(
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
+        modifier = modifier,
         contentPadding = PaddingValues(
             dimensionResource(
                 id = R.dimen.padding_content_of_list_card

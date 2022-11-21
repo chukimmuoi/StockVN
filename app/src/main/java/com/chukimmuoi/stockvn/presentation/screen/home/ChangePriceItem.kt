@@ -6,12 +6,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.UnfoldMore
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +24,7 @@ import com.chukimmuoi.data.model.ChangePrice
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 import com.chukimmuoi.stockvn.presentation.components.preview.ChangePriceProvider
-import com.chukimmuoi.stockvn.ui.theme.StockVNTheme
+import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 
 /**
  * @author: My Project
@@ -55,9 +55,6 @@ fun ChangePriceItem(
     val stateColor = changePrice.handlerSateColor()
 
     Card(
-        elevation = dimensionResource(
-            id = R.dimen.elevation_of_card_item
-        ),
         modifier = modifier.clickable {
             clickableGoTo(changePrice)
         }
