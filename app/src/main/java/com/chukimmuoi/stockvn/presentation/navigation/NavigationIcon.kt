@@ -3,9 +3,6 @@ package com.chukimmuoi.stockvn.presentation.navigation
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Timeline
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -18,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.chukimmuoi.core.designsystem.icon.StockIcons
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvider
 import com.chukimmuoi.core.designsystem.theme.StockVNTheme
@@ -44,7 +42,7 @@ fun StockVNIcon(
     modifier: Modifier = Modifier
 ) {
     Image(
-        imageVector = Icons.Filled.Timeline, // Set image
+        imageVector = StockIcons.Timeline, // Set image
         contentDescription = stringResource(id = R.string.timeline_icon_content_description),
         colorFilter = ColorFilter.tint(tintColor), // Set color for image
         modifier = modifier.size(48.dp),
@@ -111,7 +109,7 @@ fun PreviewNavigationIcon(
     StockVNTheme {
         Surface {
             NavigationIcon(
-                icon = Icons.Filled.Home,
+                icon = StockIcons.Home,
                 isSelected = state
             )
         }

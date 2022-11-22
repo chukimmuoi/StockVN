@@ -1,7 +1,6 @@
 package com.chukimmuoi.stockvn.presentation.components
 
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -13,6 +12,7 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.chukimmuoi.core.designsystem.icon.StockIcons
 import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvider
@@ -30,7 +30,7 @@ import com.chukimmuoi.stockvn.presentation.components.preview.ValueBooleanProvid
 fun LogoButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            imageVector = Icons.Filled.Timeline,
+            imageVector = StockIcons.Timeline,
             contentDescription = stringResource(id = R.string.logo_icon_content_description)
         )
     }
@@ -48,7 +48,7 @@ fun PreviewLogoButton() {
 fun BackButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            imageVector = Icons.Filled.ArrowBack,
+            imageVector = StockIcons.ArrowBack,
             contentDescription = stringResource(id = R.string.back_icon_content_description)
         )
     }
@@ -66,7 +66,7 @@ fun PreviewBackButton() {
 fun SearchButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            imageVector = Icons.Filled.Search,
+            imageVector = StockIcons.Search,
             contentDescription = stringResource(id = R.string.search_icon_content_description)
         )
     }
@@ -104,7 +104,7 @@ fun BookmarkButton(
             }
         ) {
             Icon(
-                imageVector = if (isBookmarked) Icons.Filled.Bookmark else Icons.Filled.BookmarkBorder,
+                imageVector = if (isBookmarked) StockIcons.Bookmark else StockIcons.BookmarkBorder,
                 contentDescription = stringResource(R.string.bookmark_icon_content_description)
             )
         }
@@ -143,7 +143,7 @@ fun StarButton(
             }
         ) {
             Icon(
-                imageVector = if (isStared) Icons.Filled.HotelClass else Icons.Filled.StarBorderPurple500,
+                imageVector = if (isStared) StockIcons.HotelClass else StockIcons.StarBorderPurple500,
                 contentDescription = stringResource(R.string.star_icon_content_description),
                 tint = Color(0xFFFFD600)
             )

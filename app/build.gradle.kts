@@ -62,10 +62,6 @@ dependencies {
     implementation(project(":core:designsystem"))
 
     implementation(Libs.AndroidX.coreKtx)
-    implementation(platform(Libs.AndroidX.Compose.composeBOM))
-    implementation(Libs.AndroidX.Compose.ui)
-    implementation(Libs.AndroidX.Compose.materialIconExtended)
-    implementation(Libs.AndroidX.Compose.uiToolingPreview)
     implementation(Libs.AndroidX.Lifecycle.runtimeKTX)
     implementation(Libs.AndroidX.Activity.activityCompose)
 
@@ -75,7 +71,6 @@ dependencies {
     androidTestImplementation(Libs.AndroidX.Test.Espresso.espressoCore)
     androidTestImplementation(Libs.AndroidX.Compose.uiTestJunit4)
 
-    debugImplementation(Libs.AndroidX.Compose.uiTooling)
     debugImplementation(Libs.AndroidX.Compose.uiTestManifest)
 
     implementation(Libs.AndroidX.Lifecycle.liveDataKTX)
