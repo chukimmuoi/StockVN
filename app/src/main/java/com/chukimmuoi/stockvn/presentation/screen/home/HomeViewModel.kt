@@ -93,8 +93,8 @@ class HomeViewModel
 
         val stockPriceWorkRequest =
             PeriodicWorkRequestBuilder<StockPriceWorker>(
-                1, TimeUnit.HOURS,
-                15, TimeUnit.MINUTES
+                15, TimeUnit.MINUTES,
+                5, TimeUnit.MINUTES
             )
                 .setInitialDelay(0L, TimeUnit.MILLISECONDS)
                 .addTag(StockPriceWorker.TAG_NAME_VALUE)
