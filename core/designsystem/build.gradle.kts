@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.chukimmuoi.core.designsystem"
-    compileSdk = 32
+    compileSdk = Versions.compileSdk
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 32
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
