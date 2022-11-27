@@ -92,10 +92,10 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun StockVNTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    useDynamicColor: Boolean = true,
+    useDynamicTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = getColorScheme(useDarkTheme, useDynamicColor)
+    val colorScheme = getColorScheme(useDarkTheme, useDynamicTheme)
 
     updateStatusBarColor(useDarkTheme, colorScheme)
 
@@ -122,10 +122,10 @@ fun StockVNTheme(
 @Composable
 private fun getColorScheme(
     useDarkTheme: Boolean,
-    useDynamicColor: Boolean
+    useDynamicTheme: Boolean
 ): ColorScheme {
     return when {
-        isUseDynamicTheming(useDynamicColor) -> {
+        isUseDynamicTheming(useDynamicTheme) -> {
             val context = LocalContext.current
             if (useDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
@@ -134,7 +134,7 @@ private fun getColorScheme(
     }
 }
 
-private fun isUseDynamicTheming(useDynamicColor: Boolean) = useDynamicColor && supportsDynamicTheming()
+private fun isUseDynamicTheming(useDynamicTheme: Boolean) = useDynamicTheme && supportsDynamicTheming()
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
 private fun supportsDynamicTheming() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
