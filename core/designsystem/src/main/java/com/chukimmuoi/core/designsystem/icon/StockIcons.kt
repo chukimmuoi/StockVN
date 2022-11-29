@@ -23,6 +23,7 @@ object StockIcons {
     val Home = Icons.Rounded.Home
     val HotelClass = Icons.Rounded.HotelClass
     val StarBorderPurple500 = Icons.Rounded.StarBorderPurple500
+    val Check = Icons.Rounded.Check
 }
 
 /**
