@@ -24,6 +24,8 @@ object StockIcons {
     val HotelClass = Icons.Rounded.HotelClass
     val StarBorderPurple500 = Icons.Rounded.StarBorderPurple500
     val Check = Icons.Rounded.Check
+    val ArrowDropDown = Icons.Rounded.ArrowDropDown
+    val ArrowDropUp = Icons.Rounded.ArrowDropUp
 }
 
 /**
