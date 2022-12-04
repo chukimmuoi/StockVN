@@ -2,6 +2,7 @@ package com.chukimmuoi.core.designsystem.icon
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -26,6 +27,7 @@ object StockIcons {
     val Check = Icons.Rounded.Check
     val ArrowDropDown = Icons.Rounded.ArrowDropDown
     val ArrowDropUp = Icons.Rounded.ArrowDropUp
+    val MoreVert = Icons.Default.MoreVert
 }
 
 /**
