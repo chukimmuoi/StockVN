@@ -28,6 +28,8 @@ object StockIcons {
     val ArrowDropDown = Icons.Rounded.ArrowDropDown
     val ArrowDropUp = Icons.Rounded.ArrowDropUp
     val MoreVert = Icons.Default.MoreVert
+    val ViewDay = Icons.Rounded.ViewDay
+    val ShortText = Icons.Rounded.ShortText
 }
 
 /**
