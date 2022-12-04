@@ -13,6 +13,7 @@ object Libs {
     const val androidLibrary = "com.android.library"
     const val androidTest = "com.android.test"
     const val kotlinAndroid = "org.jetbrains.kotlin.android"
+    const val kotlinJVM = "org.jetbrains.kotlin.jvm"
 
     object Coroutines {
 
@@ -201,6 +202,14 @@ object Libs {
             private const val version = "5.0.1"
 
             const val timber = "com.jakewharton.timber:timber:$version"
+        }
+    }
+
+    object Jetbrains {
+        object KotlinX {
+            private const val version = "0.4.0"
+
+            const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:$version"
         }
     }
 }
