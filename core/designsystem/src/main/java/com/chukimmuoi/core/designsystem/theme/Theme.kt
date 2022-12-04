@@ -3,6 +3,7 @@ package com.chukimmuoi.core.designsystem.theme
 import android.app.Activity
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -23,8 +24,8 @@ import androidx.core.view.WindowCompat
  * @Project: StockVN
  * Created by chukimmuoi on 18/11/2022.
  */
-
-private val LightColors = lightColorScheme(
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -56,8 +57,8 @@ private val LightColors = lightColorScheme(
     scrim = md_theme_light_scrim,
 )
 
-
-private val DarkColors = darkColorScheme(
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+val DarkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
     primaryContainer = md_theme_dark_primaryContainer,

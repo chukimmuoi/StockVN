@@ -45,12 +45,16 @@ android {
 
 dependencies {
 
-    implementation(Libs.AndroidX.coreKtx)
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    api(Libs.AndroidX.coreKtx)
+
+    api(Libs.AndroidX.appcompat)
+    api(Libs.Google.Android.material)
+    testApi(Libs.Junit.junit)
+    androidTestApi(Libs.AndroidX.Test.Ext.junit)
+    androidTestApi(Libs.AndroidX.Test.Espresso.espressoCore)
+
+    androidTestApi(Libs.AndroidX.Compose.uiTestJunit4)
+    debugApi(Libs.AndroidX.Compose.uiTestManifest)
 
     api(platform(Libs.AndroidX.Compose.composeBOM))
     api(Libs.AndroidX.Compose.ui)

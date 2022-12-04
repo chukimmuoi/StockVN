@@ -28,7 +28,7 @@ object Libs {
         private const val coreKtxVersion = "1.7.0"
         const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
 
-        private const val appcompatVersion =  "1.5.0"
+        private const val appcompatVersion =  "1.5.1"
         const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
 
         object Compose {
@@ -89,12 +89,12 @@ object Libs {
 
         object Test {
             object Ext {
-                private const val version = "1.1.3"
+                private const val version = "1.1.4"
                 const val junit = "androidx.test.ext:junit:$version"
             }
 
             object Espresso {
-                private const val version = "3.4.0"
+                private const val version = "3.5.0"
                 const val espressoCore = "androidx.test.espresso:espresso-core:$version"
             }
         }
@@ -135,7 +135,7 @@ object Libs {
 
         object Android {
 
-            private const val version = "1.6.1"
+            private const val version = "1.7.0"
             const val material = "com.google.android.material:material:$version"
         }
 
