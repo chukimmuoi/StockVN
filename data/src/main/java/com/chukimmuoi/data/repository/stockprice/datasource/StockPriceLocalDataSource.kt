@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.stockprice.datasource
 
 import androidx.paging.PagingData
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.data.paging.StockRemoteMediator
 import kotlinx.coroutines.flow.Flow
 
@@ -16,9 +16,9 @@ import kotlinx.coroutines.flow.Flow
  */
 interface StockPriceLocalDataSource {
 
-    suspend fun save(stockPrice: StockPrice): Long
+    suspend fun save(stockPriceEntity: StockPriceEntity): Long
 
-    suspend fun save(stockPrice: List<StockPrice>): List<Long>
+    suspend fun save(stockPriceEntity: List<StockPriceEntity>): List<Long>
 
     suspend fun isExists(code: String): Boolean
 
@@ -29,5 +29,5 @@ interface StockPriceLocalDataSource {
     fun getAllDataWithPage(
         code: String,
         stockRemoteMediator: StockRemoteMediator
-    ): Flow<PagingData<StockPrice>>
+    ): Flow<PagingData<StockPriceEntity>>
 }

@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.StarButton
 import com.chukimmuoi.core.designsystem.theme.StockVNTheme
@@ -37,19 +37,19 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PurchasedItem(
-    stock: Stock?,
-    clickableGoTo: (Stock) -> Unit,
-    clickableUpdate: (Stock) -> Unit,
+    stockEntity: StockEntity?,
+    clickableGoTo: (StockEntity) -> Unit,
+    clickableUpdate: (StockEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (stock == null) return
+    if (stockEntity == null) return
 
     val color = listOf(Color.Green, Color.Red, Color.Blue, Color.Magenta).random()
 
-    var stockIsPurchased by remember { stock.stockIsPurchased }
+    var stockIsPurchased by remember { stockEntity.stockIsPurchased }
 
     Card(
-        onClick = { clickableGoTo(stock) },
+        onClick = { clickableGoTo(stockEntity) },
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(
             dimensionResource(
@@ -69,7 +69,7 @@ fun PurchasedItem(
                     )
             ) {
                 Text(
-                    text = stock.code,
+                    text = stockEntity.code,
                     style = TextStyle(
                         color = color,
                         fontSize = 22.sp,
@@ -83,7 +83,7 @@ fun PurchasedItem(
                     onClick = {
                         stockIsPurchased = it
 
-                        clickableUpdate(stock.apply { isPurchased = it })
+                        clickableUpdate(stockEntity.apply { isPurchased = it })
                     },
                     modifier = modifier.clearAndSetSemantics {}
                 )
@@ -94,10 +94,10 @@ fun PurchasedItem(
 
 @ThemesPreviews
 @Composable
-fun PurchasedItemPreview(@PreviewParameter(StockProvider::class) stock: Stock) {
+fun PurchasedItemPreview(@PreviewParameter(StockProvider::class) stockEntity: StockEntity) {
     StockVNTheme {
         PurchasedItem(
-            stock = stock,
+            stockEntity = stockEntity,
             clickableGoTo = {},
             clickableUpdate = {}
         )

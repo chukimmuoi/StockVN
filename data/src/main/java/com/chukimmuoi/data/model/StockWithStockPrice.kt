@@ -14,10 +14,10 @@ import androidx.room.Relation
  */
 data class StockWithStockPrice(
     @Embedded
-    val stock: Stock,
+    val stockEntity: StockEntity,
     @Relation(
         parentColumn = "code",
         entityColumn = "code"
     )
-    val stockPrice: List<StockPrice>
+    val stockPriceEntity: List<StockPriceEntity>
 )

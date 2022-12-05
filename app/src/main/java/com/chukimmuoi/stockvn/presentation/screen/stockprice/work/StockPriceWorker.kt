@@ -2,7 +2,7 @@ package com.chukimmuoi.stockvn.presentation.screen.stockprice.work
 
 import android.content.Context
 import androidx.work.*
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.domain.usecase.MainUseCase
 import com.chukimmuoi.stockvn.presentation.screen.stockprice.notification.syncWorkNotification
 import kotlinx.coroutines.Dispatchers
@@ -54,7 +54,7 @@ class StockPriceWorker(
                 val firstUpdate = workDataOf(PROGRESS_KEY to 0)
                 setProgress(firstUpdate)
 
-                mainUseCase.getStockPriceInCurrentDayUseCase<List<StockPrice>>()
+                mainUseCase.getStockPriceInCurrentDayUseCase<List<StockPriceEntity>>()
                     .catch { e ->
                         e.printStackTrace()
                     }

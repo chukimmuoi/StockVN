@@ -6,7 +6,7 @@ import com.chukimmuoi.data.api.StockApi
 import com.chukimmuoi.data.db.StockPriceDao
 import com.chukimmuoi.data.db.StockDatabase
 import com.chukimmuoi.data.db.StockRemoteKeyDao
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.data.model.StockRemoteKeys
 import retrofit2.HttpException
 import java.io.IOException
@@ -28,7 +28,7 @@ class StockRemoteMediator(
     private val query: String,
     private val stockApi: StockApi,
     private val stockDatabase: StockDatabase
-) : RemoteMediator<Int, StockPrice>() {
+) : RemoteMediator<Int, StockPriceEntity>() {
 
     private val stockPriceDao: StockPriceDao by lazy { stockDatabase.getStockPriceDao() }
 
@@ -39,7 +39,7 @@ class StockRemoteMediator(
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, StockPrice>): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, StockPriceEntity>): MediatorResult {
 
         val page = when (loadType) {
             LoadType.REFRESH -> {
@@ -104,7 +104,7 @@ class StockRemoteMediator(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, StockPrice>
+        state: PagingState<Int, StockPriceEntity>
     ): StockRemoteKeys? {
 
         return state.anchorPosition?.let { position ->
@@ -116,7 +116,7 @@ class StockRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, StockPrice>
+        state: PagingState<Int, StockPriceEntity>
     ): StockRemoteKeys? {
 
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.getPrimaryKeys()
@@ -127,7 +127,7 @@ class StockRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForLastItem(
-        state: PagingState<Int, StockPrice>
+        state: PagingState<Int, StockPriceEntity>
     ): StockRemoteKeys? {
 
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.getPrimaryKeys()

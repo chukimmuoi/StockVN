@@ -2,9 +2,9 @@ package com.chukimmuoi.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.chukimmuoi.data.model.ChangePrice
-import com.chukimmuoi.data.model.StockPrice
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.ChangePriceEntity
+import com.chukimmuoi.data.model.StockPriceEntity
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.data.model.StockRemoteKeys
 
 /**
@@ -18,10 +18,10 @@ import com.chukimmuoi.data.model.StockRemoteKeys
  */
 @Database(
     entities = [
-        Stock::class,
-        StockPrice::class,
+        StockEntity::class,
+        StockPriceEntity::class,
         StockRemoteKeys::class,
-        ChangePrice::class
+        ChangePriceEntity::class
     ],
     version = 1,
     exportSchema = true

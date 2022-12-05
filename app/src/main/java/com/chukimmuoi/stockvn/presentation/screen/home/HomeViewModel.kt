@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.work.*
-import com.chukimmuoi.data.model.ChangePrice
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.ChangePriceEntity
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.data.util.currentDate
 import com.chukimmuoi.domain.usecase.MainUseCase
 import com.chukimmuoi.stockvn.presentation.screen.stockprice.work.StockPriceWorker
@@ -41,18 +41,18 @@ class HomeViewModel
         getStockPriceInCurrentDay()
     }
 
-    val bookmarkedStocks: Flow<PagingData<Stock>> =
-        mainUseCase.getBookmarkedStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+    val bookmarkedStocks: Flow<PagingData<StockEntity>> =
+        mainUseCase.getBookmarkedStocksUseCase<PagingData<StockEntity>>().cachedIn(viewModelScope)
 
-    val purchasedStocks: Flow<PagingData<Stock>> =
-        mainUseCase.getPurchasedStocksUseCase<PagingData<Stock>>().cachedIn(viewModelScope)
+    val purchasedStocks: Flow<PagingData<StockEntity>> =
+        mainUseCase.getPurchasedStocksUseCase<PagingData<StockEntity>>().cachedIn(viewModelScope)
 
-    private val _changePrices: MutableStateFlow<List<ChangePrice>> = MutableStateFlow(listOf())
-    val changePrice: StateFlow<List<ChangePrice>> = _changePrices
+    private val _changePricesEntity: MutableStateFlow<List<ChangePriceEntity>> = MutableStateFlow(listOf())
+    val changePriceEntity: StateFlow<List<ChangePriceEntity>> = _changePricesEntity
 
-    fun updateStock(stock: Stock) {
+    fun updateStock(stockEntity: StockEntity) {
         viewModelScope.launch {
-            mainUseCase.updateStocksUseCase(stock)
+            mainUseCase.updateStocksUseCase(stockEntity)
                 .catch {
 
                 }
@@ -64,13 +64,13 @@ class HomeViewModel
 
     private fun getChangePrice() {
         viewModelScope.launch {
-            mainUseCase.getChangePriceUseCase<List<ChangePrice>>()
+            mainUseCase.getChangePriceUseCase<List<ChangePriceEntity>>()
                 .catch {
 
                 }
                 .collect {
                     Timber.e("$it")
-                    _changePrices.value = it
+                    _changePricesEntity.value = it
                 }
         }
     }

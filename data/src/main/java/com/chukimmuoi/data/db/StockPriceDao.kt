@@ -2,7 +2,7 @@ package com.chukimmuoi.data.db
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 
 /**
  * @author: My Project
@@ -17,16 +17,16 @@ import com.chukimmuoi.data.model.StockPrice
 interface StockPriceDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(stockPrice: StockPrice): Long
+    suspend fun insert(stockPriceEntity: StockPriceEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun inserts(stockPrice: List<StockPrice>): List<Long>
+    suspend fun inserts(stockPriceEntity: List<StockPriceEntity>): List<Long>
 
     @Query("SELECT EXISTS(SELECT * FROM stock_price WHERE code = :code)")
     suspend fun isExists(code: String): Boolean
 
     @Query("SELECT * FROM stock_price WHERE code = :code ORDER BY date DESC")
-    fun selectAllDataWithPage(code: String): PagingSource<Int, StockPrice>
+    fun selectAllDataWithPage(code: String): PagingSource<Int, StockPriceEntity>
 
     @Query("DELETE FROM stock_price WHERE code = :code")
     suspend fun delete(code: String): Int

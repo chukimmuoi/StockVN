@@ -2,7 +2,7 @@ package com.chukimmuoi.data.repository.stockprice.datasourceimpl
 
 import com.chukimmuoi.data.api.StockApi
 import com.chukimmuoi.data.db.StockDatabase
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.data.model.VNDirectResponse
 import com.chukimmuoi.data.paging.StockRemoteMediator
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceRemoteDataSource
@@ -32,7 +32,7 @@ class StockPriceRemoteDataSourceImpl(
         fromDate: String,
         toDate: String,
         size: Long
-    ): Flow<Response<VNDirectResponse<StockPrice>>> {
+    ): Flow<Response<VNDirectResponse<StockPriceEntity>>> {
         val query = "code:$code~date:gte:$fromDate~date:lte:$toDate"
 
         return flow {
@@ -47,7 +47,7 @@ class StockPriceRemoteDataSourceImpl(
 
     override suspend fun getStockPricesInOneDay(
         date: String
-    ): Flow<Response<VNDirectResponse<StockPrice>>> {
+    ): Flow<Response<VNDirectResponse<StockPriceEntity>>> {
         val query = "code:~date:gte:$date~date:lte:$date"
 
         return flow {
@@ -59,13 +59,13 @@ class StockPriceRemoteDataSourceImpl(
         }
     }
 
-    override suspend fun getStockPricesInCurrentDay(): Flow<Response<VNDirectResponse<StockPrice>>> {
+    override suspend fun getStockPricesInCurrentDay(): Flow<Response<VNDirectResponse<StockPriceEntity>>> {
         val currentDateString = Date().currentDate()
 
         return getStockPricesInOneDay(currentDateString)
     }
 
-    override suspend fun getAllStockPrices(code: String): Flow<Response<VNDirectResponse<StockPrice>>> {
+    override suspend fun getAllStockPrices(code: String): Flow<Response<VNDirectResponse<StockPriceEntity>>> {
         val startDateString = "2000-01-01"
         val currentDateString = Date().currentDate()
 

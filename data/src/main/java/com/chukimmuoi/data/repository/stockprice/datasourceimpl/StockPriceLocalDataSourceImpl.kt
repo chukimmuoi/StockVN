@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.chukimmuoi.data.db.StockPriceDao
 import com.chukimmuoi.data.db.StockDatabase
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.data.paging.StockRemoteMediator
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceLocalDataSource
 import com.chukimmuoi.data.util.Constant
@@ -29,12 +29,12 @@ class StockPriceLocalDataSourceImpl(
         stockDatabase.getStockPriceDao()
     }
 
-    override suspend fun save(stockPrice: StockPrice): Long {
-        return stockPriceDao.insert(stockPrice)
+    override suspend fun save(stockPriceEntity: StockPriceEntity): Long {
+        return stockPriceDao.insert(stockPriceEntity)
     }
 
-    override suspend fun save(stockPrice: List<StockPrice>): List<Long> {
-        return stockPriceDao.inserts(stockPrice)
+    override suspend fun save(stockPriceEntity: List<StockPriceEntity>): List<Long> {
+        return stockPriceDao.inserts(stockPriceEntity)
     }
 
     override suspend fun isExists(code: String): Boolean {
@@ -53,7 +53,7 @@ class StockPriceLocalDataSourceImpl(
     override fun getAllDataWithPage(
         code: String,
         stockRemoteMediator: StockRemoteMediator
-    ): Flow<PagingData<StockPrice>> {
+    ): Flow<PagingData<StockPriceEntity>> {
         val pagingSourceFactory = { stockPriceDao.selectAllDataWithPage(code) }
 
         return Pager(

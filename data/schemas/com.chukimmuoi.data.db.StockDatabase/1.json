@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ec3c977e1a4af7d2126bdf297f629ef7",
+    "identityHash": "8ee57d3e11db88ee5162272fb2b2b5b2",
     "entities": [
       {
         "tableName": "stock",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `type` TEXT NOT NULL, `floor` TEXT NOT NULL, `status` TEXT NOT NULL, `companyName` TEXT NOT NULL, `companyNameEng` TEXT NOT NULL, `shortName` TEXT NOT NULL, `listedDate` TEXT NOT NULL, `delistedDate` TEXT NOT NULL, `companyId` TEXT NOT NULL, `isBookmarked` INTEGER NOT NULL, `isPurchased` INTEGER NOT NULL, `indexCode` TEXT NOT NULL, `isin` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `type` TEXT NOT NULL, `floor` TEXT NOT NULL, `status` TEXT NOT NULL, `companyName` TEXT NOT NULL, `companyNameEng` TEXT NOT NULL, `shortName` TEXT NOT NULL, `listedDate` TEXT NOT NULL, `deListedDate` TEXT NOT NULL, `companyId` TEXT NOT NULL, `isBookmarked` INTEGER NOT NULL, `isPurchased` INTEGER NOT NULL, `indexCode` TEXT NOT NULL, `isIn` TEXT NOT NULL, PRIMARY KEY(`code`))",
         "fields": [
           {
             "fieldPath": "code",
@@ -57,8 +57,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "delistedDate",
-            "columnName": "delistedDate",
+            "fieldPath": "deListedDate",
+            "columnName": "deListedDate",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -87,8 +87,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "isin",
-            "columnName": "isin",
+            "fieldPath": "isIn",
+            "columnName": "isIn",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -378,7 +378,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ec3c977e1a4af7d2126bdf297f629ef7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8ee57d3e11db88ee5162272fb2b2b5b2')"
     ]
   }
 }

@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.stockprice.datasource
 
 import com.chukimmuoi.data.db.StockDatabase
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.data.model.VNDirectResponse
 import com.chukimmuoi.data.paging.StockRemoteMediator
 import kotlinx.coroutines.flow.Flow
@@ -23,15 +23,15 @@ interface StockPriceRemoteDataSource {
         fromDate: String,
         toDate: String,
         size: Long
-    ): Flow<Response<VNDirectResponse<StockPrice>>>
+    ): Flow<Response<VNDirectResponse<StockPriceEntity>>>
 
     suspend fun getStockPricesInOneDay(
         date: String,
-    ): Flow<Response<VNDirectResponse<StockPrice>>>
+    ): Flow<Response<VNDirectResponse<StockPriceEntity>>>
 
-    suspend fun getStockPricesInCurrentDay(): Flow<Response<VNDirectResponse<StockPrice>>>
+    suspend fun getStockPricesInCurrentDay(): Flow<Response<VNDirectResponse<StockPriceEntity>>>
 
-    suspend fun getAllStockPrices(code: String): Flow<Response<VNDirectResponse<StockPrice>>>
+    suspend fun getAllStockPrices(code: String): Flow<Response<VNDirectResponse<StockPriceEntity>>>
 
     fun getAllStockPricesFollowPage(
         code: String,

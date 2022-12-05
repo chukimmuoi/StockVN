@@ -12,7 +12,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.presentation.components.preview.StockListProvider
@@ -29,9 +29,9 @@ import kotlinx.coroutines.flow.flowOf
  */
 @Composable
 fun PurchasedList(
-    stockPages: LazyPagingItems<Stock>,
-    clickableGoTo: (Stock) -> Unit,
-    clickableUpdate: (Stock) -> Unit,
+    stockEntityPages: LazyPagingItems<StockEntity>,
+    clickableGoTo: (StockEntity) -> Unit,
+    clickableUpdate: (StockEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -47,11 +47,11 @@ fun PurchasedList(
         )
     ) {
         items(
-            items = stockPages,
+            items = stockEntityPages,
             key = { it.code }
         ) {
             PurchasedItem(
-                stock = it,
+                stockEntity = it,
                 clickableGoTo = clickableGoTo,
                 clickableUpdate = clickableUpdate
             )
@@ -62,11 +62,11 @@ fun PurchasedList(
 @Preview
 @Composable
 fun PurchasedListPreview(
-    @PreviewParameter(StockListProvider::class) stocks: List<Stock>
+    @PreviewParameter(StockListProvider::class) stockEntities: List<StockEntity>
 ) {
     StockVNTheme {
         PurchasedList(
-            stockPages = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
+            stockEntityPages = flowOf(PagingData.from(stockEntities)).collectAsLazyPagingItems(),
             clickableGoTo = {},
             clickableUpdate = {}
         )

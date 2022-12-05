@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.domain.usecase.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -30,17 +30,17 @@ class StockViewModel
     private val mainUseCase: MainUseCase
 ): AndroidViewModel(app) {
 
-    lateinit var allStock:Flow<PagingData<Stock>>
+    lateinit var allStockEntity:Flow<PagingData<StockEntity>>
 
     var floor: String by Delegates.observable("") { _, oldValue, newValue ->
         if (newValue != oldValue || newValue.isEmpty()) {
-            allStock = mainUseCase.getStocksUseCase<PagingData<Stock>>(floor = newValue).cachedIn(viewModelScope)
+            allStockEntity = mainUseCase.getStocksUseCase<PagingData<StockEntity>>(floor = newValue).cachedIn(viewModelScope)
         }
     }
 
-    fun updateStock(stock: Stock) {
+    fun updateStock(stockEntity: StockEntity) {
         viewModelScope.launch {
-            mainUseCase.updateStocksUseCase(stock)
+            mainUseCase.updateStocksUseCase(stockEntity)
                 .catch {
 
                 }

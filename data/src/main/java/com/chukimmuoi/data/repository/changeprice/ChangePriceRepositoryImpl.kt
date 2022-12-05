@@ -1,6 +1,6 @@
 package com.chukimmuoi.data.repository.changeprice
 
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceCacheDataSource
 import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceLocalDataSource
 import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceRemoteDataSource
@@ -38,18 +38,18 @@ class ChangePriceRepositoryImpl(
             .flowOn(Dispatchers.IO) as Flow<T>
     }
 
-    private fun getChangePriceOnline(): Flow<List<ChangePrice>> {
+    private fun getChangePriceOnline(): Flow<List<ChangePriceEntity>> {
 
         return flow {
             emit(
                 remote.getChangePrices(
-                    ChangePrice.VNINDEX_VALUE,
-                    ChangePrice.HNX_VALUE,
-                    ChangePrice.UPCOM_VALUE,
-                    ChangePrice.VN30_VALUE,
-                    ChangePrice.VN30F1M_VALUE,
-                    ChangePrice.HNX30_VALUE,
-                    time = ChangePrice.TIME_VALUE
+                    ChangePriceEntity.VNINDEX_VALUE,
+                    ChangePriceEntity.HNX_VALUE,
+                    ChangePriceEntity.UPCOM_VALUE,
+                    ChangePriceEntity.VN30_VALUE,
+                    ChangePriceEntity.VN30F1M_VALUE,
+                    ChangePriceEntity.HNX30_VALUE,
+                    time = ChangePriceEntity.TIME_VALUE
                 )
             )
         }.map {
@@ -63,7 +63,7 @@ class ChangePriceRepositoryImpl(
         }
     }
 
-    private fun getChangePriceOffline(): Flow<List<ChangePrice>> {
+    private fun getChangePriceOffline(): Flow<List<ChangePriceEntity>> {
 
         return local.getChangePrices()
     }

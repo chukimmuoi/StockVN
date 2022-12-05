@@ -1,7 +1,7 @@
 package com.chukimmuoi.stockvn.presentation.components.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 
 /**
  * @author: My Project
@@ -12,11 +12,11 @@ import com.chukimmuoi.data.model.ChangePrice
  * @Project: StockVN
  * Created by chukimmuoi on 08/10/2022.
  */
-class ChangePriceListProvider: PreviewParameterProvider<List<ChangePrice>> {
-    override val values: Sequence<List<ChangePrice>>
+class ChangePriceListProvider: PreviewParameterProvider<List<ChangePriceEntity>> {
+    override val values: Sequence<List<ChangePriceEntity>>
         get() = sequenceOf(
             listOf(
-                ChangePrice(
+                ChangePriceEntity(
                     code = "HNX",
                     name = "HNX",
                     type = "INDEX",
@@ -27,7 +27,7 @@ class ChangePriceListProvider: PreviewParameterProvider<List<ChangePrice>> {
                     changePct = 2.7625559251765535,
                     lastUpdated = "2022-10-05 15:10"
                 ),
-                ChangePrice(
+                ChangePriceEntity(
                     code = "UPCOM",
                     name = "UPCOM",
                     type = "INDEX",
@@ -38,7 +38,7 @@ class ChangePriceListProvider: PreviewParameterProvider<List<ChangePrice>> {
                     changePct = 1.7130830061640872,
                     lastUpdated = "2022-10-05 15:10"
                 ),
-                ChangePrice(
+                ChangePriceEntity(
                     code = "VNINDEX",
                     name = "VNINDEX",
                     type = "INDEX",
@@ -49,7 +49,7 @@ class ChangePriceListProvider: PreviewParameterProvider<List<ChangePrice>> {
                     changePct = 2.4226909306769064,
                     lastUpdated = "2022-10-05 15:10"
                 ),
-                ChangePrice(
+                ChangePriceEntity(
                     code = "VN30",
                     name = "VN30",
                     type = "INDEX",
@@ -60,7 +60,7 @@ class ChangePriceListProvider: PreviewParameterProvider<List<ChangePrice>> {
                     changePct = 1.7909849506249316,
                     lastUpdated = "2022-10-05 15:10"
                 ),
-                ChangePrice(
+                ChangePriceEntity(
                     code = "VN30F1M",
                     name = "Hợp đồng tương lai chỉ số VN30 tháng gần nhất",
                     type = "FU",

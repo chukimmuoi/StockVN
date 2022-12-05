@@ -34,7 +34,7 @@ fun HomeScreen(
     val bookmarkedStocks = viewModel.bookmarkedStocks.collectAsLazyPagingItems()
     val purchasedStocks = viewModel.purchasedStocks.collectAsLazyPagingItems()
 
-    val changePrices by viewModel.changePrice.collectAsState()
+    val changePrices by viewModel.changePriceEntity.collectAsState()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -52,7 +52,7 @@ fun HomeScreen(
                 modifier = modifier.padding(it),
             ) {
                 ChangePriceList(
-                    changePrices = changePrices,
+                    changePriceEntities = changePrices,
                     clickableGoTo = {
                         navController.navigate(
                             route = Screen.Stock.passFloorCode(it.getCodeCustom())
@@ -61,7 +61,7 @@ fun HomeScreen(
                     modifier = modifier
                 )
                 BookmarkedList(
-                    stockPages = bookmarkedStocks,
+                    stockEntityPages = bookmarkedStocks,
                     clickableGoTo = {
                         navController.navigate(
                             route = Screen.StockPrices.passStockCode(it.code)
@@ -72,7 +72,7 @@ fun HomeScreen(
                     }
                 )
                 PurchasedList(
-                    stockPages = purchasedStocks,
+                    stockEntityPages = purchasedStocks,
                     clickableGoTo = {
                         navController.navigate(
                             route = Screen.StockPrices.passStockCode(it.code)

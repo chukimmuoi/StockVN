@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.stockprice
 
 import com.chukimmuoi.data.db.StockDatabase
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceCacheDataSource
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceLocalDataSource
 import com.chukimmuoi.data.repository.stockprice.datasource.StockPriceRemoteDataSource
@@ -30,11 +30,11 @@ class StockPriceRepositoryImpl(
     }
 
     override suspend fun <T> insert(stockPrice: T): Long {
-        return local.save(stockPrice as StockPrice)
+        return local.save(stockPrice as StockPriceEntity)
     }
 
     override suspend fun <T> inserts(stockPrices: List<T>): List<Long> {
-        return local.save(stockPrices as List<StockPrice>)
+        return local.save(stockPrices as List<StockPriceEntity>)
     }
 
     override suspend fun <T> updateAllDataFromServer(code: String): Flow<T> {

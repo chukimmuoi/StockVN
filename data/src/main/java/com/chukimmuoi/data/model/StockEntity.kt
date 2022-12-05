@@ -17,7 +17,7 @@ import com.google.gson.annotations.SerializedName
  * Created by chukimmuoi on 28/08/2022.
  */
 @Entity(tableName = "stock")
-data class Stock(
+data class StockEntity(
     @PrimaryKey
     @SerializedName("code")
     val code: String = "",
@@ -36,7 +36,7 @@ data class Stock(
     @SerializedName("listedDate")
     val listedDate: String = "",
     @SerializedName("delistedDate")
-    val delistedDate: String = "",
+    val deListedDate: String = "",
     @SerializedName("companyId")
     val companyId: String = "",
     @SerializedName("isBookmarked")
@@ -46,7 +46,7 @@ data class Stock(
     @SerializedName("indexCode")
     val indexCode: String = "",
     @SerializedName("isin")
-    val isin: String = ""
+    val isIn: String = ""
 ) {
     @Ignore
     val stockIsPurchased = mutableStateOf(isPurchased)

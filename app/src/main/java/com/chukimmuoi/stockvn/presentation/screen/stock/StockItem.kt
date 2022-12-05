@@ -15,7 +15,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.BookmarkButton
 import com.chukimmuoi.stockvn.presentation.components.StarButton
@@ -35,20 +35,20 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockItem(
-    stock: Stock?,
-    clickableGoTo: (Stock) -> Unit,
-    clickableUpdate: (Stock) -> Unit,
+    stockEntity: StockEntity?,
+    clickableGoTo: (StockEntity) -> Unit,
+    clickableUpdate: (StockEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (stock == null) return
+    if (stockEntity == null) return
 
     val color = listOf(Color.Green, Color.Red, Color.Blue, Color.Magenta).random()
 
-    val stockIsPurchased = remember { stock.stockIsPurchased }
-    val stockIsBookmarked = remember { stock.stockIsBookmarked }
+    val stockIsPurchased = remember { stockEntity.stockIsPurchased }
+    val stockIsBookmarked = remember { stockEntity.stockIsBookmarked }
 
     Card(
-        onClick = { clickableGoTo(stock) },
+        onClick = { clickableGoTo(stockEntity) },
         shape = RoundedCornerShape(
             dimensionResource(
                 id = R.dimen.rounded_corner_shape_card_item
@@ -66,7 +66,7 @@ fun StockItem(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = stock.code,
+                    text = stockEntity.code,
                     color = color,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = modifier
@@ -78,7 +78,7 @@ fun StockItem(
                         .weight(0.6F)
                 ) {
                     Text(
-                        text = stock.companyName,
+                        text = stockEntity.companyName,
                         style = MaterialTheme.typography.bodyLarge,
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis,
@@ -89,7 +89,7 @@ fun StockItem(
                         ),
                     )
                     Text(
-                        text = stock.floor,
+                        text = stockEntity.floor,
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = modifier.padding(
                             top = dimensionResource(
@@ -105,7 +105,7 @@ fun StockItem(
                         onClick = {
                             stockIsPurchased.value = it
 
-                            clickableUpdate(stock.apply { isPurchased = it })
+                            clickableUpdate(stockEntity.apply { isPurchased = it })
                         },
                         modifier = modifier
                             .weight(0.1F)
@@ -117,7 +117,7 @@ fun StockItem(
                         onClick = {
                             stockIsBookmarked.value = it
 
-                            clickableUpdate(stock.apply { isBookmarked = it })
+                            clickableUpdate(stockEntity.apply { isBookmarked = it })
                         },
                         modifier = modifier
                             .weight(0.1F)
@@ -131,10 +131,10 @@ fun StockItem(
 
 @ThemesPreviews
 @Composable
-fun StockItemPreview(@PreviewParameter(StockProvider::class) stock: Stock) {
+fun StockItemPreview(@PreviewParameter(StockProvider::class) stockEntity: StockEntity) {
     StockVNTheme {
         StockItem(
-            stock = stock,
+            stockEntity = stockEntity,
             clickableGoTo = {},
             clickableUpdate = {}
         )

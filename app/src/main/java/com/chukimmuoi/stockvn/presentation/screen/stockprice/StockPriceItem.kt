@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
-import com.chukimmuoi.data.model.StockPrice
+import com.chukimmuoi.data.model.StockPriceEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 import com.chukimmuoi.stockvn.presentation.components.preview.StockPriceProvider
@@ -39,13 +39,13 @@ import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockPriceItem(
-    stockPrice: StockPrice?,
-    clickable: (StockPrice) -> Unit,
+    stockPriceEntity: StockPriceEntity?,
+    clickable: (StockPriceEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (stockPrice == null) return
+    if (stockPriceEntity == null) return
 
-    val stateIcon = stockPrice.handlerSateIcon(
+    val stateIcon = stockPriceEntity.handlerSateIcon(
         upAction = {
             Icons.Filled.ArrowDropUp
         },
@@ -57,10 +57,10 @@ fun StockPriceItem(
         }
     )
 
-    val stateColor = stockPrice.handlerSateColor()
+    val stateColor = stockPriceEntity.handlerSateColor()
 
     Card(
-        onClick = { clickable(stockPrice) },
+        onClick = { clickable(stockPriceEntity) },
         shape = RoundedCornerShape(
             dimensionResource(
                 id = R.dimen.rounded_corner_shape_card_item
@@ -79,7 +79,7 @@ fun StockPriceItem(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = stockPrice.close.toString(),
+                    text = stockPriceEntity.close.toString(),
                     style = TextStyle(
                         color = stateColor,
                         fontSize = 22.sp,
@@ -96,21 +96,21 @@ fun StockPriceItem(
                         colorFilter = ColorFilter.tint(stateColor),
                         contentDescription = "State Icon")
                     Text(
-                        text = stockPrice.getPriceVolatility(),
+                        text = stockPriceEntity.getPriceVolatility(),
                         style = TextStyle(
                             color = stateColor
                         ),
                     )
                 }
                 Text(
-                    text = stockPrice.date,
+                    text = stockPriceEntity.date,
                     style = TextStyle(
                         textAlign = TextAlign.Right
                     ),
                     modifier = modifier.weight(0.25F)
                 )
                 Text(
-                    text = stockPrice.getVolume(),
+                    text = stockPriceEntity.getVolume(),
                     style = TextStyle(
                         textAlign = TextAlign.Right
                     ),
@@ -123,10 +123,10 @@ fun StockPriceItem(
 
 @ThemesPreviews
 @Composable
-fun StockItemPreview(@PreviewParameter(StockPriceProvider::class) stockPrice: StockPrice) {
+fun StockItemPreview(@PreviewParameter(StockPriceProvider::class) stockPriceEntity: StockPriceEntity) {
     StockVNTheme {
         StockPriceItem(
-            stockPrice = stockPrice,
+            stockPriceEntity = stockPriceEntity,
             clickable = {}
         )
     }

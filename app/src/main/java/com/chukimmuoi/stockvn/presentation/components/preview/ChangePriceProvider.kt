@@ -1,7 +1,7 @@
 package com.chukimmuoi.stockvn.presentation.components.preview
 
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 
 /**
  * @author: My Project
@@ -12,10 +12,10 @@ import com.chukimmuoi.data.model.ChangePrice
  * @Project: StockVN
  * Created by chukimmuoi on 05/10/2022.
  */
-class ChangePriceProvider : CollectionPreviewParameterProvider<ChangePrice>(
+class ChangePriceProvider : CollectionPreviewParameterProvider<ChangePriceEntity>(
 
     listOf(
-        ChangePrice(
+        ChangePriceEntity(
             code = "VNINDEX",
             name = "VNINDEX",
             type = "INDEX",
@@ -26,7 +26,7 @@ class ChangePriceProvider : CollectionPreviewParameterProvider<ChangePrice>(
             changePct = 2.4226909306769064,
             lastUpdated = "2022-10-05 15:10"
         ),
-        ChangePrice(
+        ChangePriceEntity(
             code = "VN30",
             name = "VN30",
             type = "INDEX",

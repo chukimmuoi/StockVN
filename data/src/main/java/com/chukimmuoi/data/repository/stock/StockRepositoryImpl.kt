@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.stock
 
 import android.content.Context
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.data.repository.stock.datasource.StockCacheDataSource
 import com.chukimmuoi.data.repository.stock.datasource.StockLocalDataSource
 import com.chukimmuoi.data.util.getJsonDataFromAsset
@@ -31,11 +31,11 @@ class StockRepositoryImpl(
 
         if (data.isNullOrEmpty()) return false
 
-        val stocks = data.fromJsonList<Stock>()
-        if (stocks.isNullOrEmpty()) return false
+        val stockEntities = data.fromJsonList<StockEntity>()
+        if (stockEntities.isNullOrEmpty()) return false
 
         clear()
-        return insert(stocks).isNotEmpty()
+        return insert(stockEntities).isNotEmpty()
     }
 
     override suspend fun importFromCsv(fileName: String): Boolean {
@@ -48,12 +48,12 @@ class StockRepositoryImpl(
 
     override suspend fun <T> update(stock: T): Flow<Long> {
 
-        return local.updateStock(stock as Stock).flowOn(Dispatchers.IO)
+        return local.updateStock(stock as StockEntity).flowOn(Dispatchers.IO)
     }
 
     override suspend fun <T> insert(stocks: List<T>): List<Long> {
 
-        val savedIds = local.saveStock(stocks as List<Stock>)
+        val savedIds = local.saveStock(stocks as List<StockEntity>)
         val isSuccess = savedIds.isNotEmpty()
         if (isSuccess) { cache.saveStock(stocks) }
 

@@ -1,6 +1,6 @@
 package com.chukimmuoi.data.repository.changeprice.datasource
 
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface ChangePriceLocalDataSource {
 
-    suspend fun insertChangePrices(changePrices: List<ChangePrice>): List<Long>
+    suspend fun insertChangePrices(changePriceEntities: List<ChangePriceEntity>): List<Long>
 
-    fun getChangePrices(): Flow<List<ChangePrice>>
+    fun getChangePrices(): Flow<List<ChangePriceEntity>>
 }

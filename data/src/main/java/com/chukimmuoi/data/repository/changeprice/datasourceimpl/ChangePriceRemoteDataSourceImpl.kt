@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.changeprice.datasourceimpl
 
 import com.chukimmuoi.data.api.StockApi
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import com.chukimmuoi.data.model.VNDirectResponse
 import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceRemoteDataSource
 import retrofit2.Response
@@ -22,7 +22,7 @@ class ChangePriceRemoteDataSourceImpl(
     override suspend fun getChangePrices(
         vararg floors: String,
         time: String
-    ): Response<VNDirectResponse<ChangePrice>> {
+    ): Response<VNDirectResponse<ChangePriceEntity>> {
 
         val query = "code:${floors.map { it }}~period:$time"
 

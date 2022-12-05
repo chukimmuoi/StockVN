@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -20,11 +20,11 @@ import kotlinx.coroutines.flow.Flow
 interface ChangePriceDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrUpdate(changePrice: ChangePrice): Long
+    suspend fun insertOrUpdate(changePriceEntity: ChangePriceEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun inserts(changePrices: List<ChangePrice>): List<Long>
+    suspend fun inserts(changePriceEntities: List<ChangePriceEntity>): List<Long>
 
     @Query("SELECT * FROM change_price")
-    fun getAll(): Flow<List<ChangePrice>>
+    fun getAll(): Flow<List<ChangePriceEntity>>
 }

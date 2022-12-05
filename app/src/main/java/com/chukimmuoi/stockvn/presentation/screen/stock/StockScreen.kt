@@ -29,7 +29,7 @@ fun StockScreen(
     modifier: Modifier = Modifier
 ) {
     viewModel.floor = floor
-    val stocks = viewModel.allStock.collectAsLazyPagingItems()
+    val stocks = viewModel.allStockEntity.collectAsLazyPagingItems()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,

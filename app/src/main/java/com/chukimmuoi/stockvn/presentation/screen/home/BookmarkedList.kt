@@ -11,7 +11,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 import com.chukimmuoi.core.designsystem.theme.StockVNTheme
@@ -29,9 +29,9 @@ import kotlinx.coroutines.flow.flowOf
  */
 @Composable
 fun BookmarkedList(
-    stockPages: LazyPagingItems<Stock>,
-    clickableGoTo: (Stock) -> Unit,
-    clickableUpdate: (Stock) -> Unit,
+    stockEntityPages: LazyPagingItems<StockEntity>,
+    clickableGoTo: (StockEntity) -> Unit,
+    clickableUpdate: (StockEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -47,11 +47,11 @@ fun BookmarkedList(
         )
     ) {
         items(
-            items = stockPages,
+            items = stockEntityPages,
             key = { it.code }
         ) {
             BookmarkedItem(
-                stock = it,
+                stockEntity = it,
                 clickableGoTo = clickableGoTo,
                 clickableUpdate = clickableUpdate
             )
@@ -62,11 +62,11 @@ fun BookmarkedList(
 @ThemesPreviews
 @Composable
 fun BookmarkedListPreview(
-    @PreviewParameter(StockListProvider::class) stocks: List<Stock>
+    @PreviewParameter(StockListProvider::class) stockEntities: List<StockEntity>
 ) {
     StockVNTheme {
         BookmarkedList(
-            stockPages = flowOf(PagingData.from(stocks)).collectAsLazyPagingItems(),
+            stockEntityPages = flowOf(PagingData.from(stockEntities)).collectAsLazyPagingItems(),
             clickableGoTo = {},
             clickableUpdate = {}
         )

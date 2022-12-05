@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 import com.chukimmuoi.stockvn.presentation.components.preview.ChangePriceListProvider
@@ -26,8 +26,8 @@ import com.chukimmuoi.core.designsystem.theme.StockVNTheme
  */
 @Composable
 fun ChangePriceList(
-    changePrices: List<ChangePrice>,
-    clickableGoTo: (ChangePrice) -> Unit,
+    changePriceEntities: List<ChangePriceEntity>,
+    clickableGoTo: (ChangePriceEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
@@ -48,9 +48,9 @@ fun ChangePriceList(
             )
         ),
         content = {
-            items(changePrices) { changePrice ->
+            items(changePriceEntities) { changePrice ->
                 ChangePriceItem(
-                    changePrice = changePrice,
+                    changePriceEntity = changePrice,
                     clickableGoTo = clickableGoTo
                 )
             }
@@ -61,11 +61,11 @@ fun ChangePriceList(
 @ThemesPreviews
 @Composable
 fun ChangePriceListPreview(
-    @PreviewParameter(ChangePriceListProvider::class) changePrices: List<ChangePrice>
+    @PreviewParameter(ChangePriceListProvider::class) changePriceEntities: List<ChangePriceEntity>
 ) {
     StockVNTheme {
         ChangePriceList(
-            changePrices = changePrices,
+            changePriceEntities = changePriceEntities,
             clickableGoTo = {},
         )
     }

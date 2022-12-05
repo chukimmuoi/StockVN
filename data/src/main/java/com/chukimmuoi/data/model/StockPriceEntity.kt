@@ -21,7 +21,7 @@ import java.text.NumberFormat
     tableName = "stock_price",
     primaryKeys = ["code", "date"]
 )
-data class StockPrice(
+data class StockPriceEntity(
     @SerializedName("adAverage")
     val adAverage: Double = 0.0,
     @SerializedName("adChange")

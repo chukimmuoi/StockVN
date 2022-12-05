@@ -19,7 +19,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import com.chukimmuoi.stockvn.R
 import com.chukimmuoi.stockvn.presentation.components.annotation.ThemesPreviews
 import com.chukimmuoi.stockvn.presentation.components.preview.ChangePriceProvider
@@ -37,11 +37,11 @@ import com.chukimmuoi.core.designsystem.theme.StockVNTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChangePriceItem(
-    changePrice: ChangePrice,
-    clickableGoTo: (ChangePrice) -> Unit,
+    changePriceEntity: ChangePriceEntity,
+    clickableGoTo: (ChangePriceEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val stateIcon = changePrice.handlerSateIcon(
+    val stateIcon = changePriceEntity.handlerSateIcon(
         upAction = {
             Icons.Filled.ArrowDropUp
         },
@@ -52,10 +52,10 @@ fun ChangePriceItem(
             Icons.Filled.UnfoldMore
         }
     )
-    val stateColor = changePrice.handlerSateColor()
+    val stateColor = changePriceEntity.handlerSateColor()
 
     Card(
-        onClick = { clickableGoTo(changePrice) },
+        onClick = { clickableGoTo(changePriceEntity) },
         modifier = modifier,
         shape = RoundedCornerShape(
             dimensionResource(
@@ -73,12 +73,12 @@ fun ChangePriceItem(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = changePrice.code,
+                    text = changePriceEntity.code,
                     color = stateColor,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = changePrice.priceDisplay(),
+                    text = changePriceEntity.priceDisplay(),
                     color = stateColor,
                     fontWeight = FontWeight.Bold
                 )
@@ -92,13 +92,13 @@ fun ChangePriceItem(
                             contentDescription = "State Icon"
                         )
                         Text(
-                            text = changePrice.changeDisplay(),
+                            text = changePriceEntity.changeDisplay(),
                             color = stateColor,
                             textAlign = TextAlign.Center
                         )
                     }
                     Text(
-                        text = changePrice.changePercentDisplay(),
+                        text = changePriceEntity.changePercentDisplay(),
                         color = stateColor,
                         modifier = modifier.weight(0.5F),
                         textAlign = TextAlign.Center
@@ -111,10 +111,10 @@ fun ChangePriceItem(
 
 @ThemesPreviews
 @Composable
-fun ChangePriceItemPreview(@PreviewParameter(ChangePriceProvider::class) changePrice: ChangePrice) {
+fun ChangePriceItemPreview(@PreviewParameter(ChangePriceProvider::class) changePriceEntity: ChangePriceEntity) {
     StockVNTheme {
         ChangePriceItem(
-            changePrice = changePrice,
+            changePriceEntity = changePriceEntity,
             clickableGoTo = {}
         )
     }

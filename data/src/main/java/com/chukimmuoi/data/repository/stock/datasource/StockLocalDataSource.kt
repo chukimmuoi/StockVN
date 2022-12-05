@@ -1,7 +1,7 @@
 package com.chukimmuoi.data.repository.stock.datasource
 
 import androidx.paging.PagingData
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -15,17 +15,17 @@ import kotlinx.coroutines.flow.Flow
  */
 interface StockLocalDataSource {
 
-    fun getStock(floor: String): Flow<PagingData<Stock>>
+    fun getStock(floor: String): Flow<PagingData<StockEntity>>
 
-    fun getBookmarkedStock(): Flow<PagingData<Stock>>
+    fun getBookmarkedStock(): Flow<PagingData<StockEntity>>
 
-    fun getPurchasedStock(): Flow<PagingData<Stock>>
+    fun getPurchasedStock(): Flow<PagingData<StockEntity>>
 
-    suspend fun updateStock(stock: Stock): Flow<Long>
+    suspend fun updateStock(stockEntity: StockEntity): Flow<Long>
 
     fun isExists(): Flow<Boolean>
 
-    suspend fun saveStock(stocks: List<Stock>): List<Long>
+    suspend fun saveStock(stockEntities: List<StockEntity>): List<Long>
 
     suspend fun clear(): Int
 }

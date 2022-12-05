@@ -32,7 +32,7 @@ fun StockPriceScreen(
 ) {
 
     viewModel.code = stock
-    val stockPrice = viewModel.selectedStockPricePage.collectAsLazyPagingItems()
+    val stockPrice = viewModel.selectedStockPriceEntityPage.collectAsLazyPagingItems()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -48,7 +48,7 @@ fun StockPriceScreen(
         },
         content = {
             StockPriceList(
-                stockPrice = stockPrice,
+                stockPriceEntity = stockPrice,
                 clickable = {
 
                 },

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "change_price")
-data class ChangePrice(
+data class ChangePriceEntity(
     @PrimaryKey
     @SerializedName("code")
     val code: String = "",

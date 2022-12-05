@@ -1,6 +1,6 @@
 package com.chukimmuoi.data.repository.stock.datasource
 
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -14,9 +14,9 @@ import kotlinx.coroutines.flow.Flow
  */
 interface StockCacheDataSource {
 
-    fun getStock(): Flow<List<Stock>>
+    fun getStock(): Flow<List<StockEntity>>
 
-    suspend fun saveStock(stocks: List<Stock>)
+    suspend fun saveStock(stockEntities: List<StockEntity>)
 
     suspend fun clear()
 }

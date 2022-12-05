@@ -2,7 +2,7 @@ package com.chukimmuoi.data.repository.changeprice.datasourceimpl
 
 import com.chukimmuoi.data.db.ChangePriceDao
 import com.chukimmuoi.data.db.StockDatabase
-import com.chukimmuoi.data.model.ChangePrice
+import com.chukimmuoi.data.model.ChangePriceEntity
 import com.chukimmuoi.data.repository.changeprice.datasource.ChangePriceLocalDataSource
 import kotlinx.coroutines.flow.Flow
 
@@ -23,12 +23,12 @@ class ChangePriceLocalDataSourceImpl(
         stockDatabase.getChangePriceDao()
     }
 
-    override suspend fun insertChangePrices(changePrices: List<ChangePrice>): List<Long> {
+    override suspend fun insertChangePrices(changePriceEntities: List<ChangePriceEntity>): List<Long> {
 
-        return changePriceDao.inserts(changePrices)
+        return changePriceDao.inserts(changePriceEntities)
     }
 
-    override fun getChangePrices(): Flow<List<ChangePrice>> {
+    override fun getChangePrices(): Flow<List<ChangePriceEntity>> {
         return changePriceDao.getAll()
     }
 }

@@ -1,7 +1,7 @@
 package com.chukimmuoi.stockvn.presentation.components.preview
 
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import com.chukimmuoi.data.model.Stock
+import com.chukimmuoi.data.model.StockEntity
 
 /**
  * @author: My Project
@@ -12,19 +12,19 @@ import com.chukimmuoi.data.model.Stock
  * @Project: StockVN
  * Created by chukimmuoi on 01/10/2022.
  */
-class StockProvider: CollectionPreviewParameterProvider<Stock>(
+class StockProvider: CollectionPreviewParameterProvider<StockEntity>(
     listOf(
-        Stock(
+        StockEntity(
             "HPG",
             "HOUSE",
             "Thép Hòa Phát"
         ),
-        Stock(
+        StockEntity(
             "PNJ",
             "HOUSE",
             "Vàng bạc đá quá Phú Nhuận"
         ),
-        Stock(
+        StockEntity(
             "MWG",
             "HOUSE",
             "Công ty cổ phần Thế Giới Di Động"
