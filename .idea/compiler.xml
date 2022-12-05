@@ -12,6 +12,7 @@
       <module name="StockVN.domain.main" target="11" />
       <module name="StockVN.domain.test" target="11" />
       <module name="StockVN.macrobenchmark" target="11" />
+      <module name="StockVN.sync.work" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
