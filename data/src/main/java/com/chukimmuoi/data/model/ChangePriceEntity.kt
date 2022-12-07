@@ -58,11 +58,10 @@ data class ChangePriceEntity(
         downAction: () -> ImageVector,
         unchanged: () -> ImageVector
     ): ImageVector {
-        val value = price - bopPrice
 
-        return if (value > 0) {
+        return if (change > 0) {
             upAction()
-        } else if (value < 0){
+        } else if (change < 0){
             downAction()
         } else {
             unchanged()
@@ -70,11 +69,10 @@ data class ChangePriceEntity(
     }
 
     fun handlerSateColor(): Color {
-        val value = price - bopPrice
 
         val color = when {
-            value < 0 -> Color.Red
-            value > 0 -> Color.Green
+            change < 0 -> Color.Red
+            change > 0 -> Color.Green
             else -> Color.Gray
         }
 
