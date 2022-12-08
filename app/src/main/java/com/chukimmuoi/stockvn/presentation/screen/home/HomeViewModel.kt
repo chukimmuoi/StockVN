@@ -81,11 +81,11 @@ class HomeViewModel
         )
 
         val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.UNMETERED)
-            .setRequiresBatteryNotLow(true)
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresBatteryNotLow(false)
             .setRequiresCharging(false)
             .setRequiresStorageNotLow(false)
-            .setRequiresDeviceIdle(true)
+            .setRequiresDeviceIdle(false)
             .build()
 
         val stockPriceWorkRequest =
